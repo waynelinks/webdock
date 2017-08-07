@@ -1,0 +1,71 @@
+version: '2'
+services:
+
+#############################
+### Application container
+#############################
+
+    application:
+        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-application:0.0.1
+
+#############################
+### Nginx container
+#############################
+
+    nginx:
+        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-nginx:0.0.1
+        depends_on:
+            - application
+        links:
+            - php
+        volumes_from:
+            - application
+        environment:
+            - NGINX_HTTP_AUTH_BASIC
+            - NGINX_AVAILABLE_PHP_FRONT_CONTROLLERS
+            - NGINX_DEFAULT_PHP_FRONT_CONTROLLER
+
+#############################
+### PHP container
+#############################
+
+    php:
+        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-php:0.0.1
+        depends_on:
+            - application
+            - storage
+        links:
+            - mariadb
+            - redis
+        volumes_from:
+            - application
+            - storage
+        working_dir: /application/
+        environment:
+            - PHP_DEBUG_FRONT_CONTROLLERS_ACCESS
+
+#############################
+### Storage container
+#############################
+
+    storage:
+        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-storage:0.0.1
+
+#############################
+### MariaDB container
+#############################
+
+    mariadb:
+        image: mariadb:latest
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+            MYSQL_USER: ${MARIADB_USER}
+            MYSQL_PASSWORD: ${MARIADB_PASSWORD}
+            MYSQL_DATABASE: ${MARIADB_DATABASE}
+
+#############################
+### Redis container
+#############################
+
+    redis:
+        image: redis:latest

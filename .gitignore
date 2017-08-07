@@ -1,0 +1,36 @@
+#############################
+### System files
+#############################
+
+/**/*~
+/**/.DS_Store
+
+#############################
+### IDE
+#############################
+
+/.idea/
+/*.sublime-project
+/*.sublime-workspace
+
+#############################
+### Docker
+#############################
+
+# Environment config
+/.env
+
+#############################
+### Application
+#############################
+
+# Package managers
+/application/node_modules/
+/application/vendor/
+
+# Xdebug output dir
+/application/var/xdebug/*
+!/application/var/xdebug/.gitkeep
+
+# Cron log
+/application/var/cron.log

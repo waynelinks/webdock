@@ -1,0 +1,11 @@
+# * * * * *  command to execute
+# ┬ ┬ ┬ ┬ ┬
+# │ │ │ │ │
+# │ │ │ │ │
+# │ │ │ │ └───── day of week (0 - 7) (1 to 6 are Monday to Saturday; 0 and 7 are Sunday)
+# │ │ │ └────────── month (1 - 12)
+# │ │ └─────────────── day of month (1 - 31)
+# │ └──────────────────── hour (0 - 23)
+# └───────────────────────── min (0 - 59)
+
+* * * * * echo "Cron says hello!" >> /application/var/cron.log

@@ -1,0 +1,36 @@
+#############################
+### System files
+#############################
+
+*/*~
+*/.DS_Store
+
+#############################
+### Git
+#############################
+
+*/.gitignore
+*/.gitkeep
+
+#############################
+### Project
+#############################
+
+# Documentation files
+*/*.md
+
+#############################
+### Application
+#############################
+
+# Files needed to build front-end assets
+#application/node_modules/
+
+# PHP debug front controllers
+#application/public/index_*.php
+
+# Xdebug output dir
+application/var/xdebug/*
+
+# Cron log
+application/var/cron.log

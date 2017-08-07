@@ -1,0 +1,56 @@
+version: '2'
+services:
+
+#############################
+### Application container
+#############################
+
+    application:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./application/:/application/
+
+#############################
+### Nginx container
+#############################
+
+    nginx:
+        build: images/nginx
+
+#############################
+### PHP container
+#############################
+
+    php:
+        build: images/php
+
+#############################
+### Storage container
+#############################
+
+    storage:
+        build: images/storage
+
+#############################
+### Composer container
+#############################
+
+    composer:
+        image: composer:latest
+        entrypoint: composer
+        depends_on: [application]
+        volumes_from: [application]
+        working_dir: /application/
+
+#############################
+### NPM container
+#############################
+
+    npm:
+        image: node:latest
+        entrypoint: npm
+        depends_on: [application]
+        volumes_from: [application]
+        working_dir: /application/
