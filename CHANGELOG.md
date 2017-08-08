@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.0.2 - 2017-08-08
+
+### Added
+
+- Makefile `dcs.redis.flush` target.
+
 ### Changed
 
 - Refactor PHP environment variables.

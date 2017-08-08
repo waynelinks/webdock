@@ -48,6 +48,9 @@ dc.update:
 dcs.php.enter-bash:
 	docker-compose exec php bash
 
+dcs.redis.flush:
+	docker-compose exec redis redis-cli -a ${REDIS_PASSWORD} flushdb
+
 #############################
 ### Application
 #############################
