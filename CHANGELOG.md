@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added 
+
+- Protect Redis with a password.
+
 ## 0.0.1 - 2017-08-07
 
 ### Added

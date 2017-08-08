@@ -42,6 +42,7 @@ services:
             - storage
         working_dir: /application/
         environment:
+            - REDIS_PASSWORD
             - PHP_DEBUG_FRONT_CONTROLLERS_ACCESS
 
 #############################
@@ -69,3 +70,4 @@ services:
 
     redis:
         image: redis:latest
+        command: redis-server --requirepass ${REDIS_PASSWORD}
