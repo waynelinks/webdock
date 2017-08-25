@@ -2,20 +2,20 @@ version: '2'
 services:
 
 #############################
-### PHP container
+### Application container
 #############################
 
-    php:
+    application:
         build:
             args:
                 INSTALL_XDEBUG: "yes"
         links:
             - mailhog
         environment:
-            - XDEBUG_REMOTE_CONNECT_BACK
-            - XDEBUG_REMOTE_HOST
-            - XDEBUG_REMOTE_PORT
-            - XDEBUG_IDE_KEY
+            - APP_XDEBUG_REMOTE_CONNECT_BACK
+            - APP_XDEBUG_REMOTE_HOST
+            - APP_XDEBUG_REMOTE_PORT
+            - APP_XDEBUG_IDE_KEY
 
 #############################
 ### MariaDB container

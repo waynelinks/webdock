@@ -9,6 +9,7 @@
 ### Git
 #############################
 
+*/.git/
 */.gitignore
 */.gitkeep
 
@@ -23,7 +24,7 @@
 ### Application
 #############################
 
-# Files needed to build front-end assets
+# Files required to build front-end assets
 #application/node_modules/
 
 # PHP debug front controllers
@@ -34,3 +35,6 @@ application/var/xdebug/*
 
 # Cron log
 application/var/cron.log
+
+# PHP log
+application/var/php.log

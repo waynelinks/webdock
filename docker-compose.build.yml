@@ -13,20 +13,6 @@ services:
             - ./application/:/application/
 
 #############################
-### Nginx container
-#############################
-
-    nginx:
-        build: images/nginx
-
-#############################
-### PHP container
-#############################
-
-    php:
-        build: images/php
-
-#############################
 ### Storage container
 #############################
 

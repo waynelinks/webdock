@@ -7,59 +7,37 @@ services:
 
     application:
         image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-application:0.0.1
-
-#############################
-### Nginx container
-#############################
-
-    nginx:
-        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-nginx:0.0.1
         depends_on:
-            - application
-        links:
-            - php
-        volumes_from:
-            - application
-        environment:
-            - NGINX_HTTP_AUTH_BASIC
-            - NGINX_AVAILABLE_PHP_FRONT_CONTROLLERS
-            - NGINX_DEFAULT_PHP_FRONT_CONTROLLER
-
-#############################
-### PHP container
-#############################
-
-    php:
-        image: ${HUB_USERNAME}/${HUB_REPOSITORY_PREFIX}-php:0.0.1
-        depends_on:
-            - application
             - storage
         links:
             - mariadb
             - redis
         volumes_from:
-            - application
             - storage
         working_dir: /application/
         environment:
-            - PHP_DEBUG_FRONT_CONTROLLERS_ACCESS
+            - APP_HTTP_AUTH_BASIC
 
-            - PHP_MARIADB_HOST=mariadb
-            - PHP_MARIADB_PORT=3306
-            - PHP_MARIADB_USER=${MARIADB_USER}
-            - PHP_MARIADB_PASSWORD=${MARIADB_PASSWORD}
-            - PHP_MARIADB_DATABASE=${MARIADB_DATABASE}
+            - APP_AVAILABLE_FRONT_CONTROLLERS
+            - APP_DEFAULT_FRONT_CONTROLLER
+            - APP_DEBUG_FRONT_CONTROLLERS_ACCESS
 
-            - PHP_REDIS_HOST=redis
-            - PHP_REDIS_PORT=6379
-            - PHP_REDIS_PASSWORD=${REDIS_PASSWORD}
+            - APP_MARIADB_HOST=mariadb
+            - APP_MARIADB_PORT=3306
+            - APP_MARIADB_USER=${MARIADB_USER}
+            - APP_MARIADB_PASSWORD=${MARIADB_PASSWORD}
+            - APP_MARIADB_DATABASE=${MARIADB_DATABASE}
 
-            - PHP_FILE_STORAGE_ROOT=/storage/
+            - APP_REDIS_HOST=redis
+            - APP_REDIS_PORT=6379
+            - APP_REDIS_PASSWORD=${REDIS_PASSWORD}
 
-            - PHP_SMTP_HOST
-            - PHP_SMTP_PORT
-            - PHP_SMTP_USER
-            - PHP_SMTP_PASSWORD
+            - APP_SMTP_HOST
+            - APP_SMTP_PORT
+            - APP_SMTP_USER
+            - APP_SMTP_PASSWORD
+
+            - APP_STORAGE_ROOT=/storage/
 
 #############################
 ### Storage container

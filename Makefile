@@ -2,7 +2,7 @@
 
 include .env
 
-default: dcs.php.enter-bash
+default: dcs.application.enter-bash
 
 #############################
 ### Docker Compose
@@ -16,8 +16,6 @@ dc.stop:
 	docker-compose stop
 dc.down:
 	docker-compose down
-dc.purge:
-	docker-compose down --volumes --rmi=local
 
 dc.state:
 	@echo "\"docker-compose\" command is using \033[44m${COMPOSE_FILE}\033[0m files\n"
@@ -37,16 +35,24 @@ dc.push:
 
 dc.update:
 	docker-compose pull
-	docker-compose stop
-	docker-compose rm --force application
 	docker-compose up -d
 
 #############################
 ### Docker Compose services
 #############################
 
-dcs.php.enter-bash:
-	docker-compose exec php bash
+dcs.application.enter-bash:
+	docker-compose exec application bash
+
+dcs.composer.install-dev:
+	docker-compose run --rm composer install --ignore-platform-reqs --no-scripts --dev
+dcs.composer.install:
+	docker-compose run --rm composer install --ignore-platform-reqs --no-scripts --no-dev
+
+dcs.npm.install-dev:
+	docker-compose run --rm node npm install --ignore-scripts
+dcs.npm.install:
+	docker-compose run --rm node npm install --ignore-scripts --production
 
 dcs.redis.flush:
 	docker-compose exec redis redis-cli -a ${REDIS_PASSWORD} flushdb
@@ -55,32 +61,10 @@ dcs.redis.flush:
 ### Application
 #############################
 
-app.build-dev: app.composer.install-dev \
-	app.npm.install-dev \
-	app.set-files-permissions \
-	app.execute-database-migrations
-app.build: app.composer.install \
-	app.npm.install \
-	app.set-files-permissions \
-	app.execute-database-migrations
-
-app.composer.install-dev:
-	docker-compose run --rm composer install --ignore-platform-reqs --no-scripts --dev
-app.composer.install:
-	docker-compose run --rm composer install --ignore-platform-reqs --no-scripts --no-dev
-
-app.npm.install-dev:
-	docker-compose run --rm node npm install --ignore-scripts
-app.npm.install:
-	docker-compose run --rm node npm install --ignore-scripts --production
-
-app.set-files-permissions: app.storage.set-files-permissions
-	docker-compose exec php chmod -R 777 /application/var/
-app.storage.set-files-permissions:
-	docker-compose exec php chmod -R 777 /storage/
-
-app.execute-database-migrations:
-	@echo "..."
+app.build-dev: dcs.composer.install-dev \
+	dcs.npm.install-dev
+app.build: dcs.composer.install \
+	dcs.npm.install
 
 app.test.unit:
 	@echo "..."

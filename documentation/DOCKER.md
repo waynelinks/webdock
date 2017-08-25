@@ -87,7 +87,7 @@ COMPOSE_FILE=docker-compose.yml:docker-compose.build.yml
 1. `make app.build` - build application without development dependencies.
 1. `make dc.rebuild` - build Docker images with production application.
 1. `make dc.push` - push Docker images to Docker repository.
-1. `make dc.purge` - delete Docker containers, networks and volumes.
+1. `make dc.down` - stop and remove Docker containers and networks.
 
 Remember to update your services versions in `docker-compose.yml` file
 before this procedure.
@@ -148,8 +148,8 @@ Updating:
 1. Use `.env` file to pass environment variables to your application. There is
    an article how to handle them in
    [Symfony](https://symfony.com/blog/new-in-symfony-3-2-runtime-environment-variables).
-1. Use Docker internal network in your functional tests. Your tests could connect with
-   `nginx` host.
+1. Use Docker internal network in your functional tests. Do not expose application 80 port
+   only for this purpose.
 
 ## Useful links
 

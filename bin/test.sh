@@ -16,24 +16,23 @@ source .env
 DOMAIN="$COMPOSE_PROJECT_NAME.localhost"
 
 print_header "Is PHP working?"
-docker-compose exec php php --version
+docker-compose exec application php --version
 
 print_header "Is PHP-FPM working?"
-docker-compose exec php php-fpm --version
+docker-compose exec application php-fpm --version
 
-print_header "Is Cron working inside PHP container?"
-docker-compose exec php service cron status
+print_header "Is Cron working?"
+docker-compose exec application service cron status
 print_divider
-docker-compose exec php crontab -u www-data -l
+docker-compose exec application crontab -u www-data -l
 
 print_header "Is Nginx working?"
-docker-compose exec nginx nginx -v
+docker-compose exec application service nginx status
+print_divider
+docker-compose exec application nginx -v
 
-print_header "Is HTTP responsing? (301 is ok)"
-print_http_status_code "http://$DOMAIN"
-
-print_header "Is HTTPS responsing?"
-print_http_status_code "https://$DOMAIN"
+print_header "Is HTTP responsing?"
+print_http_status_code "http://$DOMAIN:$APPLICATION_PORT"
 
 print_header "Is MariaDB working?"
 docker-compose exec mariadb mysql --version

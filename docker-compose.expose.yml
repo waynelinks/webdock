@@ -2,10 +2,9 @@ version: '2'
 services:
 
 #############################
-### Nginx container
+### Application container
 #############################
 
-    nginx:
+    application:
         ports:
-            - 80:80
-            - 443:443
+            - ${APPLICATION_PORT}:80

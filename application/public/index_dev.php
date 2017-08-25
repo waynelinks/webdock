@@ -3,7 +3,7 @@
 /*
  * This check prevents access to debug front controllers that are deployed by accident to production servers.
  */
-if (empty($_ENV['PHP_DEBUG_FRONT_CONTROLLERS_ACCESS']) || 'on' !== $_ENV['PHP_DEBUG_FRONT_CONTROLLERS_ACCESS']) {
+if (empty($_ENV['APP_DEBUG_FRONT_CONTROLLERS_ACCESS']) || 'on' !== $_ENV['APP_DEBUG_FRONT_CONTROLLERS_ACCESS']) {
     header('HTTP/1.0 403 Forbidden');
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }

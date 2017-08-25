@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.1.0 - 2017-08-25
+
+### Changed
+
+- Merge `application`, `php`, `nginx` containers into `application`.
+
 ## 0.0.2 - 2017-08-08
 
 ### Added

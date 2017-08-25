@@ -34,3 +34,6 @@
 
 # Cron log
 /application/var/cron.log
+
+# PHP log
+/application/var/php.log
