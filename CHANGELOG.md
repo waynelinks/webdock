@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.2.0 - 2017-11-06
+
+### Changed
+
+- Break `application` into `backend` and `frontend`.
+- Use MySQL instead of MariaDB.
+
+### Removed
+
+- `storage` service.
+
 ## 0.1.0 - 2017-08-25
 
 ### Changed

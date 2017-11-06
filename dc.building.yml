@@ -1,0 +1,26 @@
+version: "2"
+services:
+  backend:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/codebase/:/codebase/
+
+  backend_cron:
+    volumes:
+      - ./backend/codebase/:/codebase/
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/codebase/public/:/codebase/public/
+
+  frontend_node:
+    image: node:latest
+    volumes:
+      - ./frontend/codebase/:/codebase/
+    working_dir: /codebase/
+    command: sh -c "sleep infinity"

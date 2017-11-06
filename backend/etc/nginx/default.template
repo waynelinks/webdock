@@ -1,0 +1,44 @@
+server {
+    listen 80 default_server;
+
+    # HTTP auth basic module
+    auth_basic "${BACKEND_HTTP_AUTH_BASIC}";
+    auth_basic_user_file /etc/nginx/htpasswd;
+
+    # Log to Docker STDOUT and STDERR
+    access_log /dev/stdout;
+    error_log /dev/stderr;
+
+    # Resource limits
+    client_max_body_size 1M;
+
+    # Path to public PHP files
+    root /codebase/public/;
+    index ${BACKEND_DEFAULT_FRONT_CONTROLLER}.php;
+
+    # Remove default front controller from URL
+    if ($request_uri ~* "^(.*/)${BACKEND_DEFAULT_FRONT_CONTROLLER}\.php(/?)(.*)$") {
+        return 301 $1$3;
+    }
+
+    # Use default front controller if file not exists
+    location / {
+        try_files $uri /${BACKEND_DEFAULT_FRONT_CONTROLLER}.php$is_args$args;
+    }
+
+    # Process front controllers requests with PHP-FPM
+    location ~ ^/(${BACKEND_AVAILABLE_FRONT_CONTROLLERS})\.php(/|$) {
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index ${BACKEND_DEFAULT_FRONT_CONTROLLER}.php;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_param DOCUMENT_ROOT $realpath_root;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+    }
+
+    # Return 404 for all other PHP files not matching the front controllers
+    location ~ \.php$ {
+        return 404;
+    }
+}

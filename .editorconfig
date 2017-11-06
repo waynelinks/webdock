@@ -1,5 +1,4 @@
-# EditorConfig
-# http://editorconfig.org/
+# See editorconfig.org
 
 root = true
 
@@ -14,7 +13,7 @@ insert_final_newline = true
 [*.{css,less,scss}]
 indent_size = 2
 
-[Dockerfile*]
+[Dockerfile]
 
 [*.feature]
 indent_size = 2
@@ -23,7 +22,7 @@ indent_size = 2
 
 [*.ini]
 
-[*.{js,ts}]
+[*.{js,json}]
 indent_size = 2
 
 [{makefile,Makefile,GNUmakefile}]
@@ -36,4 +35,10 @@ trim_trailing_whitespace = false
 
 [*.sh]
 
+[*.ts]
+
 [*.{yaml,yml}]
+indent_size = 2
+
+[VERSION]
+insert_final_newline = false

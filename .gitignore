@@ -20,20 +20,31 @@
 # Environment config
 /.env
 
+# Backups
+/backups/*
+!/backups/.gitkeep
+
 #############################
-### Application
+### Backend
 #############################
 
 # Package managers
-/application/node_modules/
-/application/vendor/
+/backend/codebase/vendor/
+
+# Logs
+/backend/codebase/var/logs/*
+!/backend/codebase/var/logs/.gitkeep
 
 # Xdebug output dir
-/application/var/xdebug/*
-!/application/var/xdebug/.gitkeep
+/backend/codebase/var/xdebug/*
+!/backend/codebase/var/xdebug/.gitkeep
 
-# Cron log
-/application/var/cron.log
+#############################
+### Frontend
+#############################
 
-# PHP log
-/application/var/php.log
+# Generated file with environment variables
+/frontend/codebase/public/env.js
+
+# Package managers
+/frontend/codebase/node_modules/
