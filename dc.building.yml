@@ -1,5 +1,11 @@
 version: "2"
 services:
+  backend_base:
+    image: damlys/phpdock-backend-base:local
+    build:
+      context: ./backend-base/
+      dockerfile: Dockerfile
+
   backend:
     build:
       context: ./backend/

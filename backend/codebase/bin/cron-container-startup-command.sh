@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export BACKEND_VERSION=$(cat /CODEBASE_VERSION)
+export BACKEND_VERSION=$(cat /VERSION)
 
 (printenv | sed 's/^\(.*\)\=\(.*\)$/export \1\=\2/g' | grep -E '^export BACKEND_') > /etc/cron-env
 
