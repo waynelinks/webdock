@@ -1,15 +1,19 @@
 version: "2"
 services:
   backend_base:
-    image: damlys/phpdock-backend-base:local
+    image: ${BACKEND_IMAGE}-base:current
     build:
-      context: ./backend-base/
-      dockerfile: Dockerfile
+      context: ./backend/
+      dockerfile: Dockerfile.base
 
   backend:
+    depends_on:
+      - backend_base
     build:
       context: ./backend/
       dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: ${BACKEND_IMAGE}-base
     volumes:
       - ./backend/codebase/:/codebase/
 
@@ -25,8 +29,9 @@ services:
       - ./frontend/codebase/public/:/codebase/public/
 
   frontend_node:
-    image: node:latest
+    image: ${FRONTEND_IMAGE}-node:current
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile.node
     volumes:
       - ./frontend/codebase/:/codebase/
-    working_dir: /codebase/
-    command: sh -c "sleep infinity"

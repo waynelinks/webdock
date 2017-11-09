@@ -14,8 +14,6 @@ RUN apt-get update && apt-get install --yes \
 && php /root/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
 && service nginx stop
 
-COPY VERSION /VERSION
-
 EXPOSE 80
 # Port 9000 is exposed by php:~fpm image
 

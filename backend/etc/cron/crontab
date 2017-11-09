@@ -9,4 +9,4 @@
 # └───────────────────────── min (0 - 59)
 
 # execute `echo "Cron says hello!"` command every minute
-* * * * * $(cat /etc/cron-env); echo "$BACKEND_VERSION: Cron says hello!" >> /codebase/var/logs/cron.log 2>&1
+* * * * * $(cat /etc/cron-envs); echo "$BACKEND_VERSION: Cron says hello!" >> /codebase/var/logs/cron.log

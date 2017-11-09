@@ -1,21 +1,22 @@
 #!/usr/bin/make -f
 
-BACKEND_BASE_VERSION=$(shell cat ./backend-base/VERSION)
 BACKEND_VERSION=$(shell cat ./backend/VERSION)
 FRONTEND_VERSION=$(shell cat ./frontend/VERSION)
-
-BACKEND_BASE_REPO="damlys/phpdock-backend-base"
-BACKEND_REPO="damlys/phpdock-backend"
-FRONTEND_REPO="damlys/phpdock-frontend"
 
 include .env
 
 # $(1) docker-compose service name
 # $(2) semver format version
-# $(3) docker-compose image name
+define tag_commit
+	git tag $(1)-$(2)
+	git push origin $(1)-$(2)
+endef
+
+# $(1) docker image name
+# $(2) semver format version
 define pull_image
-	docker pull $(3):$(2)
-	docker tag $(3):$(2) $(3):local
+	docker pull $(1):$(2)
+	docker tag $(1):$(2) $(1):current
 endef
 
 # $(1) docker-compose service name
@@ -23,14 +24,11 @@ define build_image
 	docker-compose build --no-cache $(1)
 endef
 
-# $(1) docker-compose service name
+# $(1) docker image name
 # $(2) semver format version
-# $(3) docker-compose image name
 define release_image
-	git tag $(1)-$(2)
-	git push origin $(1)-$(2)
-	for tag in $(shell ./bin/explode-semver.sh $(2)); do docker tag $(3):local $(3):$$tag; done
-	for tag in $(shell ./bin/explode-semver.sh $(2)); do docker push $(3):$$tag; done
+	for tag in $(shell ./bin/explode-semver.sh $(2)); do docker tag $(1):current $(1):$$tag; done
+	for tag in $(shell ./bin/explode-semver.sh $(2)); do docker push $(1):$$tag; done
 endef
 
 default: backend.enter-container
@@ -53,76 +51,81 @@ state:
 config:
 	@echo "\"docker-compose\" command is using \033[44m${COMPOSE_FILE}\033[0m files"
 	docker-compose config
-pull-images: backend_base.pull-image backend.pull-image frontend.pull-image
-build-images: backend_base.build-image backend.build-image frontend.build-image
-release-images: backend_base.release-image backend.release-image frontend.release-image
-download-assets.dev: backend.download-assets.dev frontend.download-assets.dev
-download-assets.prod: backend.download-assets.prod frontend.download-assets.prod
-build-assets.dev: backend.build-assets.dev frontend.build-assets.dev
-build-assets.prod: backend.build-assets.prod frontend.build-assets.prod
-run-tests: backend.run-tests frontend.run-tests
+tag-commit: backend.tag-commit frontend.tag-commit
+pull-images: backend.pull-image frontend.pull-image
+build-all-images: backend.build-base-image frontend.build-node-image build-images
+build-images: backend.build-image frontend.build-image
+release-images: backend.release-image frontend.release-image
+download-codebase-assets.dev: backend.download-codebase-assets.dev frontend.download-codebase-assets.dev
+download-codebase-assets.prod: backend.download-codebase-assets.prod frontend.download-codebase-assets.prod
+build-codebase-assets.dev: backend.build-codebase-assets.dev frontend.build-codebase-assets.dev
+build-codebase-assets.prod: backend.build-codebase-assets.prod frontend.build-codebase-assets.prod
+run-codebase-tests: backend.run-codebase-tests frontend.run-codebase-tests
 
-backend_base.pull-image:
-	$(call pull_image,backend_base,${BACKEND_BASE_VERSION},${BACKEND_BASE_REPO})
-backend_base.build-image:
-	$(call build_image,backend_base)
-backend_base.release-image:
-	$(call release_image,backend_base,${BACKEND_BASE_VERSION},${BACKEND_BASE_REPO})
-
+backend.tag-commit:
+	@./bin/confirm.sh
+	$(call tag_commit,backend,${BACKEND_VERSION})
 backend.pull-image:
-	$(call pull_image,backend,${BACKEND_VERSION},${BACKEND_REPO})
+	$(call pull_image,${BACKEND_IMAGE},${BACKEND_VERSION})
+backend.build-base-image:
+	$(call build_image,backend_base)
 backend.build-image:
 	$(call build_image,backend)
 backend.release-image:
-	$(call release_image,backend,${BACKEND_VERSION},${BACKEND_REPO})
-backend.download-assets.dev:
+	$(call release_image,${BACKEND_IMAGE},${BACKEND_VERSION})
+backend.download-codebase-assets.dev:
 	docker-compose exec backend \
 		composer install --no-scripts --ignore-platform-reqs
-backend.download-assets.prod:
+backend.download-codebase-assets.prod:
 	docker-compose exec backend \
 		composer install --no-scripts --ignore-platform-reqs --no-dev
-backend.build-assets.dev:
+backend.build-codebase-assets.dev:
 	docker-compose exec backend \
 		composer install
-backend.build-assets.prod:
+backend.build-codebase-assets.prod:
 	docker-compose exec backend \
 		composer install --no-dev
-backend.run-tests: backend.run-tests.unit backend.run-tests.integration backend.run-tests.functional
-backend.run-tests.unit:
+backend.run-codebase-tests: backend.run-codebase-tests.unit backend.run-codebase-tests.integration backend.run-codebase-tests.functional
+backend.run-codebase-tests.unit:
 	@echo "backend unit tests..."
-backend.run-tests.integration:
+backend.run-codebase-tests.integration:
 	@echo "backend integration tests..."
-backend.run-tests.functional:
+backend.run-codebase-tests.functional:
 	@echo "backend functional tests..."
 backend.install-xdebug:
 	-docker-compose exec backend pecl install xdebug
 	-docker-compose exec backend docker-php-ext-enable xdebug
 	docker-compose restart backend
 
+frontend.tag-commit:
+	@./bin/confirm.sh
+	$(call tag_commit,frontend,${FRONTEND_VERSION})
 frontend.pull-image:
-	$(call pull_image,frontend,${FRONTEND_VERSION},${FRONTEND_REPO})
+	$(call pull_image,${FRONTEND_IMAGE},${FRONTEND_VERSION})
 frontend.build-image:
 	$(call build_image,frontend)
+frontend.build-node-image:
+	$(call build_image,frontend_node)
 frontend.release-image:
-	$(call release_image,frontend,${FRONTEND_VERSION},${FRONTEND_REPO})
-frontend.download-assets.dev:
+	$(call release_image,${FRONTEND_IMAGE},${FRONTEND_VERSION})
+frontend.download-codebase-assets.dev:
 	docker-compose exec frontend_node \
 		npm install --ignore-scripts
-frontend.download-assets.prod:
+frontend.download-codebase-assets.prod:
 	docker-compose exec frontend_node \
 		npm install --ignore-scripts --production
-frontend.build-assets.dev:
+frontend.build-codebase-assets.dev:
 	docker-compose exec frontend_node \
 		npm rebuild
-frontend.build-assets.prod:
+frontend.build-codebase-assets.prod:
 	docker-compose exec frontend_node \
 		npm rebuild
-frontend.run-tests: frontend.run-tests.unit frontend.run-tests.integration frontend.run-tests.functional
-frontend.run-tests.unit:
+frontend.run-codebase-tests: frontend.run-codebase-tests.unit frontend.run-codebase-tests.integration frontend.run-codebase-tests.functional
+frontend.run-codebase-tests.unit:
 	@echo "frontent unit tests..."
-frontend.run-tests.integration:
+frontend.run-codebase-tests.integration:
 	@echo "frontent integration tests..."
-frontend.run-tests.functional:
+frontend.run-codebase-tests.functional:
 	@echo "frontent functional tests..."
 
 mysql.backup:

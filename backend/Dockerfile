@@ -1,5 +1,8 @@
-FROM damlys/phpdock-backend-base:local
+#ARG VERSION="N/A"
+ARG BASE_IMAGE
+FROM $BASE_IMAGE:current
 
+# TODO remove BACKEND_VERSION
 ENV BACKEND_VERSION="N/A" \
     BACKEND_AVAILABLE_FRONT_CONTROLLERS="index" \
     BACKEND_DEFAULT_FRONT_CONTROLLER="index" \
@@ -22,6 +25,7 @@ ENV BACKEND_VERSION="N/A" \
     BACKEND_XDEBUG_REMOTE_PORT="9000" \
     BACKEND_XDEBUG_IDE_KEY="DOCKER"
 
+# TODO remove VERSION file from image
 COPY VERSION /VERSION
 COPY codebase/ /codebase/
 COPY etc/nginx/default.template /etc/nginx/sites-available/default.template
@@ -30,6 +34,7 @@ COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 COPY etc/cron/crontab /etc/crontab
 
+# TODO remove VERSION file from image
 RUN chmod 644 /VERSION \
 && chmod -R 644 /codebase/ \
 && chmod -R 755 /codebase/bin/ \
@@ -39,8 +44,6 @@ RUN chmod 644 /VERSION \
 && chmod 644 /usr/local/etc/php/conf.d/zzz-php.ini \
 && chmod 644 /usr/local/etc/php/conf.d/zzz-xdebug.ini \
 && chmod 644 /etc/crontab
-
-# Port 80 and 9000 is exposed by damlys/phpdock-backend-base image
 
 WORKDIR /codebase/
 

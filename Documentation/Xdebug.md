@@ -4,6 +4,10 @@
 
 https://xdebug.org/
 
+Xdebug is not installed in the backend image by default. 
+To do it run `make backend.install-xdebug`.
+This step is required after each container recreation.
+
 ## PHPStorm
 
 ![PHPStorm Xdebug port config](assets/phpstorm-xdebug-port-config.png)

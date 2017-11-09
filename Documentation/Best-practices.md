@@ -39,5 +39,7 @@
 * [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 * [Compose file version 2 reference](https://docs.docker.com/compose/compose-file/compose-file-v2/)
 * [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
-* [New in Symfony 3.2: Runtime Environment Variables](https://symfony.com/blog/new-in-symfony-3-2-runtime-environment-variables)
+* [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 * [Jenkins User Handbook: Pipeline](https://jenkins.io/doc/book/pipeline/)
+* [New in Symfony 3.2: Runtime Environment Variables](https://symfony.com/blog/new-in-symfony-3-2-runtime-environment-variables)
+* [thephpleague/flysystem: Abstraction for local and remote filesystems](https://github.com/thephpleague/flysystem)

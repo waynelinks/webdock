@@ -1,7 +1,7 @@
 version: "2"
 services:
   backend:
-    image: damlys/phpdock-backend:local
+    image: ${BACKEND_IMAGE}:current
     ports:
       - ${BACKEND_PORT}:80
     networks:
@@ -13,7 +13,7 @@ services:
       - .env
 
   backend_cron:
-    image: damlys/phpdock-backend:local
+    image: ${BACKEND_IMAGE}:current
     networks:
       - backend
     links:
@@ -24,7 +24,7 @@ services:
     command: sh -c "/codebase/bin/cron-container-startup-command.sh"
 
   frontend:
-    image: damlys/phpdock-frontend:local
+    image: ${FRONTEND_IMAGE}:current
     ports:
       - ${FRONTEND_PORT}:80
     networks:

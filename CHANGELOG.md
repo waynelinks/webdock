@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## 0.2.2 - 2017-11-09
+
+### Added
+
+- Jenkinsfile pipeline stages.
+- `frontend/Dockerfile.node` image.
+
+### Changed
+
+- Use `backend/Dockerfile.base` instead of `backend-base` image. 
+
 ## 0.2.1 - 2017-11-07
 
 ### Added

@@ -1,4 +1,4 @@
-# See editorconfig.org
+# See http://editorconfig.org
 
 root = true
 
@@ -13,7 +13,7 @@ insert_final_newline = true
 [*.{css,less,scss}]
 indent_size = 2
 
-[Dockerfile]
+[Dockerfile*]
 
 [*.feature]
 indent_size = 2
@@ -21,6 +21,8 @@ indent_size = 2
 [*.{html,xml}]
 
 [*.ini]
+
+[Jenkinsfile*]
 
 [*.{js,json}]
 indent_size = 2
@@ -37,7 +39,7 @@ trim_trailing_whitespace = false
 
 [*.ts]
 
-[*.{yaml,yml}]
+[*.{yml,yaml}]
 indent_size = 2
 
 [VERSION]
