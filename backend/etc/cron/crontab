@@ -8,5 +8,5 @@
 # │ └──────────────────── hour (0 - 23)
 # └───────────────────────── min (0 - 59)
 
-# execute `echo "Cron says hello!"` command every minute
-* * * * * $(cat /etc/cron-envs); echo "$BACKEND_VERSION: Cron says hello!" >> /codebase/var/logs/cron.log
+# execute `echo "$BACKEND_VERSION: Cron says hello!"` command every minute
+* * * * * $(cat /etc/cron-envvars); echo "$BACKEND_VERSION: Cron says hello!" >> /codebase/var/logs/cron.log 2>&1

@@ -1,5 +1,7 @@
 FROM php:fpm
 
+ADD https://getcomposer.org/installer /usr/local/bin/composer-installer
+
 RUN apt-get update && apt-get install --yes \
     cron \
     gettext \
@@ -10,11 +12,10 @@ RUN apt-get update && apt-get install --yes \
     pdo_mysql \
 && docker-php-ext-enable \
     redis \
-&& php -r "copy('https://getcomposer.org/installer', '/root/composer-setup.php');" \
-&& php /root/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+&& php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
 && service nginx stop
 
 EXPOSE 80
 # Port 9000 is exposed by php:~fpm image
 
-CMD exit 0
+CMD ["exit", "0"]

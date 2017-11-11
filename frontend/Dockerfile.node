@@ -2,4 +2,4 @@ FROM node:latest
 
 WORKDIR /codebase/
 
-CMD sh -c "sleep infinity"
+CMD ["sleep", "infinity"]

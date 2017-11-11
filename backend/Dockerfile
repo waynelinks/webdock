@@ -1,10 +1,7 @@
-#ARG VERSION="N/A"
 ARG BASE_IMAGE
 FROM $BASE_IMAGE:current
 
-# TODO remove BACKEND_VERSION
-ENV BACKEND_VERSION="N/A" \
-    BACKEND_AVAILABLE_FRONT_CONTROLLERS="index" \
+ENV BACKEND_AVAILABLE_FRONT_CONTROLLERS="index" \
     BACKEND_DEFAULT_FRONT_CONTROLLER="index" \
     BACKEND_DEBUG_FRONT_CONTROLLERS_ACCESS="off" \
     BACKEND_HTTP_AUTH_BASIC="off" \
@@ -25,26 +22,27 @@ ENV BACKEND_VERSION="N/A" \
     BACKEND_XDEBUG_REMOTE_PORT="9000" \
     BACKEND_XDEBUG_IDE_KEY="DOCKER"
 
-# TODO remove VERSION file from image
 COPY VERSION /VERSION
 COPY codebase/ /codebase/
-COPY etc/nginx/default.template /etc/nginx/sites-available/default.template
+COPY bin/entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY etc/cron/crontab /etc/crontab
+COPY etc/nginx/default.conf.template /etc/nginx/sites-available/default.conf.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
-COPY etc/cron/crontab /etc/crontab
 
-# TODO remove VERSION file from image
 RUN chmod 644 /VERSION \
 && chmod -R 644 /codebase/ \
-&& chmod -R 755 /codebase/bin/ \
 && chmod -R 777 /codebase/var/ \
-&& chmod 644 /etc/nginx/sites-available/default.template \
+&& chmod 755 /usr/local/bin/docker-entrypoint \
+&& chmod 644 /etc/crontab \
+&& chmod 644 /etc/nginx/sites-available/default.conf.template \
 && chmod 644 /etc/nginx/htpasswd \
 && chmod 644 /usr/local/etc/php/conf.d/zzz-php.ini \
-&& chmod 644 /usr/local/etc/php/conf.d/zzz-xdebug.ini \
-&& chmod 644 /etc/crontab
+&& chmod 644 /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
 WORKDIR /codebase/
 
-CMD sh -c "/codebase/bin/container-startup-command.sh"
+ENTRYPOINT ["docker-entrypoint"]
+
+CMD ["--start"]

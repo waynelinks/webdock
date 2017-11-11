@@ -31,11 +31,11 @@ $ docker-machine-nfs
 
 1. Clone git repository
     ```
-    mkdir ~/workspace/your-project/
-    cd ~/workspace/your-project/
-    git clone https://github.com/damlys/phpdock.git .
-    rm -rf .git/
-    git init
+    $ mkdir ~/workspace/your-project/
+    $ cd ~/workspace/your-project/
+    $ git clone https://github.com/damlys/phpdock.git .
+    $ rm -rf .git/
+    $ git init
     ```
 1. Check your Docker IP with `ifconfig docker0` command
    or `docker-machine ip` if you are using Docker Machine.  

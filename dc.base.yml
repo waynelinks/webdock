@@ -21,7 +21,7 @@ services:
       - redis
     env_file:
       - .env
-    command: sh -c "/codebase/bin/cron-container-startup-command.sh"
+    command: ["--start-cron"]
 
   frontend:
     image: ${FRONTEND_IMAGE}:current
@@ -46,7 +46,7 @@ services:
     image: redis:latest
     networks:
       - backend
-    command: redis-server --requirepass ${REDIS_PASSWORD}
+    command: ["--requirepass", "${REDIS_PASSWORD}"]
 
 networks:
   backend:

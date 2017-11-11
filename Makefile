@@ -74,17 +74,21 @@ backend.build-image:
 backend.release-image:
 	$(call release_image,${BACKEND_IMAGE},${BACKEND_VERSION})
 backend.download-codebase-assets.dev:
-	docker-compose exec backend \
-		composer install --no-scripts --ignore-platform-reqs
+	docker-compose exec backend sh -c " \
+		composer install --no-scripts \
+	"
 backend.download-codebase-assets.prod:
-	docker-compose exec backend \
-		composer install --no-scripts --ignore-platform-reqs --no-dev
+	docker-compose exec backend sh -c " \
+		composer install --no-scripts --no-dev \
+	"
 backend.build-codebase-assets.dev:
-	docker-compose exec backend \
-		composer install
+	docker-compose exec backend sh -c " \
+		composer install \
+	"
 backend.build-codebase-assets.prod:
-	docker-compose exec backend \
-		composer install --no-dev
+	docker-compose exec backend sh -c " \
+		composer install --no-dev \
+	"
 backend.run-codebase-tests: backend.run-codebase-tests.unit backend.run-codebase-tests.integration backend.run-codebase-tests.functional
 backend.run-codebase-tests.unit:
 	@echo "backend unit tests..."
@@ -93,8 +97,10 @@ backend.run-codebase-tests.integration:
 backend.run-codebase-tests.functional:
 	@echo "backend functional tests..."
 backend.install-xdebug:
-	-docker-compose exec backend pecl install xdebug
-	-docker-compose exec backend docker-php-ext-enable xdebug
+	docker-compose exec backend sh -c " \
+		pecl install xdebug \
+		&& docker-php-ext-enable xdebug \
+	"
 	docker-compose restart backend
 
 frontend.tag-commit:
@@ -109,17 +115,21 @@ frontend.build-node-image:
 frontend.release-image:
 	$(call release_image,${FRONTEND_IMAGE},${FRONTEND_VERSION})
 frontend.download-codebase-assets.dev:
-	docker-compose exec frontend_node \
-		npm install --ignore-scripts
+	docker-compose exec frontend_node sh -c " \
+		npm install --ignore-scripts \
+	"
 frontend.download-codebase-assets.prod:
-	docker-compose exec frontend_node \
-		npm install --ignore-scripts --production
+	docker-compose exec frontend_node sh -c " \
+		npm install --ignore-scripts --production \
+	"
 frontend.build-codebase-assets.dev:
-	docker-compose exec frontend_node \
-		npm rebuild
+	docker-compose exec frontend_node sh -c " \
+		npm rebuild \
+	"
 frontend.build-codebase-assets.prod:
-	docker-compose exec frontend_node \
-		npm rebuild
+	docker-compose exec frontend_node sh -c " \
+		npm rebuild \
+	"
 frontend.run-codebase-tests: frontend.run-codebase-tests.unit frontend.run-codebase-tests.integration frontend.run-codebase-tests.functional
 frontend.run-codebase-tests.unit:
 	@echo "frontent unit tests..."
