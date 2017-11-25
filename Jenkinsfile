@@ -6,17 +6,21 @@ pipeline {
             steps {
                 sh 'cp .env.dist .env'
 
-                sh 'make build-all-images'
+                sh 'make pull-or-build-images'
             }
         }
         stage('Test') {
             steps {
                 sh 'make up'
 
-                sh 'make download-codebase-assets.dev'
-                sh 'make build-codebase-assets.dev'
+                sh 'make backend.download-codebase-assets.dev'
+                sh 'make frontend.download-codebase-assets.dev'
 
-                sh 'make run-codebase-tests'
+                sh 'make backend.build-codebase-assets.dev'
+                sh 'make frontend.build-codebase-assets.dev'
+
+                sh 'make backend.run-codebase-tests'
+                sh 'make frontend.run-codebase-tests'
 
                 sh 'make stop'
             }
@@ -25,10 +29,14 @@ pipeline {
             steps {
                 sh 'make up'
 
-                sh 'make download-codebase-assets.prod'
-                sh 'make build-codebase-assets.prod'
+                sh 'make backend.download-codebase-assets.prod'
+                sh 'make frontend.download-codebase-assets.prod'
 
-                sh 'make build-images'
+                sh 'make backend.build-codebase-assets.prod'
+                sh 'make frontend.build-codebase-assets.prod'
+
+                sh 'make backend.build-image'
+                sh 'make frontend.build-image'
 
                 sh 'make stop'
             }

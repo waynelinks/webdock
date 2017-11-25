@@ -5,7 +5,7 @@ ENV FRONTEND_HTTP_AUTH_BASIC="off" \
 
 COPY VERSION /VERSION
 COPY codebase/public/ /codebase/public/
-COPY bin/entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY bin/entrypoint.bash /usr/local/bin/docker-entrypoint
 COPY etc/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 

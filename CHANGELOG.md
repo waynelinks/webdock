@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Move `backend/Dockerfile.base` to `backend_base/Dockerfile` and
+  `frontend/Dockerfile.node` to `frontend_node/Dockerfile`.
+- Expose `backend` and `frontend` ports with `docker-compose.expose.yml`
+  file.
+
 ## 0.2.3 - 2017-11-11
 
 ### Added

@@ -1,5 +1,6 @@
-ARG BASE_IMAGE
-FROM $BASE_IMAGE:current
+ARG BASE_IMAGE_NAME
+ARG BASE_IMAGE_TAG
+FROM $BASE_IMAGE_NAME:$BASE_IMAGE_TAG
 
 ENV BACKEND_AVAILABLE_FRONT_CONTROLLERS="index" \
     BACKEND_DEFAULT_FRONT_CONTROLLER="index" \
@@ -24,7 +25,7 @@ ENV BACKEND_AVAILABLE_FRONT_CONTROLLERS="index" \
 
 COPY VERSION /VERSION
 COPY codebase/ /codebase/
-COPY bin/entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY bin/entrypoint.bash /usr/local/bin/docker-entrypoint
 COPY etc/cron/crontab /etc/crontab
 COPY etc/nginx/default.conf.template /etc/nginx/sites-available/default.conf.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
@@ -32,7 +33,6 @@ COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
 RUN chmod 644 /VERSION \
-&& chmod -R 644 /codebase/ \
 && chmod -R 777 /codebase/var/ \
 && chmod 755 /usr/local/bin/docker-entrypoint \
 && chmod 644 /etc/crontab \

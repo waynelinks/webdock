@@ -1,10 +1,10 @@
 version: "2"
 services:
   backend_base:
-    image: ${BACKEND_IMAGE}-base:current
+    image: ${COMPOSE_PROJECT_NAME}/backend_base:current
     build:
-      context: ./backend/
-      dockerfile: Dockerfile.base
+      context: ./backend_base/
+      dockerfile: Dockerfile
 
   backend:
     depends_on:
@@ -13,7 +13,8 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
       args:
-        BASE_IMAGE: ${BACKEND_IMAGE}-base
+        BASE_IMAGE_NAME: ${COMPOSE_PROJECT_NAME}/backend_base
+        BASE_IMAGE_TAG: current
     volumes:
       - ./backend/codebase/:/codebase/
 
@@ -29,9 +30,9 @@ services:
       - ./frontend/codebase/public/:/codebase/public/
 
   frontend_node:
-    image: ${FRONTEND_IMAGE}-node:current
+    image: ${COMPOSE_PROJECT_NAME}/frontend_node:current
     build:
-      context: ./frontend/
-      dockerfile: Dockerfile.node
+      context: ./frontend_node/
+      dockerfile: Dockerfile
     volumes:
       - ./frontend/codebase/:/codebase/
