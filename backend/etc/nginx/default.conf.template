@@ -1,5 +1,6 @@
 server {
     listen 80 default_server;
+    listen [::]:80 default_server;
 
     # HTTP auth basic module
     auth_basic "${BACKEND_HTTP_AUTH_BASIC}";
@@ -12,7 +13,7 @@ server {
     # Resource limits
     client_max_body_size 1M;
 
-    # Path to public PHP files
+    # Path to public files
     root /codebase/public/;
     index ${BACKEND_DEFAULT_FRONT_CONTROLLER}.php;
 

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- Nginx supports HTTP/2.
+
 ### Changed
 
 - Move `backend/Dockerfile.base` to `backend_base/Dockerfile` and
