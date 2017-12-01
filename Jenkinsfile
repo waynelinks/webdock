@@ -1,6 +1,4 @@
 pipeline {
-    agent any
-
     stages {
         stage('Init') {
             steps {
@@ -46,7 +44,7 @@ pipeline {
                 sh 'make release-images'
             }
         }
-        stage('Deliver') {
+        stage('Run') {
             steps {
                 echo 'Delivering...'
             }

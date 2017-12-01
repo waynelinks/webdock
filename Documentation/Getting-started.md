@@ -71,17 +71,3 @@ and write something own. If you don't know how to start see
 [this readme template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
 
 Feel free to modify existing documentation.
-
-### Delivery processes
-
-Fill in following Makefile targets to determine your codebase building processes:
-
-- `api.build-assets.dev`
-- `api.build-assets.prod`
-- `spa.build-assets.dev`
-- `spa.build-assets.prod`
-
-You should also fill in these targets :)
-
-- `api.run-tests`
-- `spa.run-tests`
