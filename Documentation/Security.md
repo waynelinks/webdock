@@ -2,13 +2,13 @@
 
 # Security
 
-## Backend
+## API
 
 Disable debug front controllers on staging and production servers:
 
 ```
-BACKEND_AVAILABLE_FRONT_CONTROLLERS=index
-BACKEND_DEBUG_FRONT_CONTROLLERS_ACCESS=off
+API_AVAILABLE_FRONT_CONTROLLERS=index
+API_DEBUG_FRONT_CONTROLLERS_ACCESS=off
 ```
 
 ~
@@ -16,17 +16,17 @@ BACKEND_DEBUG_FRONT_CONTROLLERS_ACCESS=off
 Enable HTTP Basic Auth on non-production servers with the following value:
 
 ```
-BACKEND_HTTP_AUTH_BASIC=Restricted
+API_HTTP_AUTH_BASIC=Restricted
 ```
 
 Default credentials are `demo`/`demo`.
 
-## Frontend
+## SPA
 
 Enable HTTP Basic Auth on non-production servers with the following value:
 
 ```
-FRONTEND_HTTP_AUTH_BASIC=Restricted
+SPA_HTTP_AUTH_BASIC=Restricted
 ```
 
 Default credentials are `demo`/`demo`.

@@ -1,7 +1,7 @@
 version: "2"
 services:
-  backend:
-    image: ${COMPOSE_PROJECT_NAME}/backend:current
+  api:
+    image: ${COMPOSE_PROJECT_NAME}/api:current
     networks:
       - backend
     links:
@@ -10,8 +10,8 @@ services:
     env_file:
       - .env
 
-  backend_cron:
-    image: ${COMPOSE_PROJECT_NAME}/backend:current
+  api_cron:
+    image: ${COMPOSE_PROJECT_NAME}/api:current
     networks:
       - backend
     links:
@@ -20,13 +20,6 @@ services:
     env_file:
       - .env
     command: ["--start-cron"]
-
-  frontend:
-    image: ${COMPOSE_PROJECT_NAME}/frontend:current
-    networks:
-      - frontend
-    env_file:
-      - .env
 
   mysql:
     image: mysql:latest
@@ -43,6 +36,13 @@ services:
     networks:
       - backend
     command: ["--requirepass", "${REDIS_PASSWORD}"]
+
+  spa:
+    image: ${COMPOSE_PROJECT_NAME}/spa:current
+    networks:
+      - frontend
+    env_file:
+      - .env
 
 networks:
   backend:

@@ -3,7 +3,7 @@ server {
     listen [::]:80 default_server;
 
     # HTTP auth basic module
-    auth_basic "${FRONTEND_HTTP_AUTH_BASIC}";
+    auth_basic "${SPA_HTTP_AUTH_BASIC}";
     auth_basic_user_file /etc/nginx/htpasswd;
 
     # Log to Docker STDOUT and STDERR

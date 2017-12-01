@@ -1,7 +1,7 @@
 FROM nginx:latest
 
-ENV FRONTEND_HTTP_AUTH_BASIC="off" \
-    FRONTEND_SERVER_ENDPOINT="http://backend/"
+ENV SPA_HTTP_AUTH_BASIC="off" \
+    SPA_API_ENDPOINT="http://127.0.0.1"
 
 COPY VERSION /VERSION
 COPY codebase/public/ /codebase/public/

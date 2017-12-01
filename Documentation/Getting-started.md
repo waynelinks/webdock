@@ -57,12 +57,12 @@ Create own repositories for the following images:
 - `damlys/phpdock-frontend`
 
 [Docker Hub](https://hub.docker.com) is an official Docker repository. It allows
-to create an unlimited count of public images.
+to create an unlimited count of repositories for public images.
 
 ### Application codebase
 
-Copy your project codebase to `frontend/codebase/` or `backend/codebase/`
-directory and remove artifacts after an old Vagrant and Docker environment.
+Copy your project codebase to `api/codebase/` and `spa/codebase/`
+directory and remove artifacts after an old Vagrant and Docker environments.
 
 ### Documentation
 
@@ -76,12 +76,12 @@ Feel free to modify existing documentation.
 
 Fill in following Makefile targets to determine your codebase building processes:
 
-- `backend.build-assets.dev`
-- `backend.build-assets.prod`
-- `frontend.build-assets.dev`
-- `frontend.build-assets.prod`
+- `api.build-assets.dev`
+- `api.build-assets.prod`
+- `spa.build-assets.dev`
+- `spa.build-assets.prod`
 
 You should also fill in these targets :)
 
-- `backend.run-tests`
-- `frontend.run-tests`
+- `api.run-tests`
+- `spa.run-tests`

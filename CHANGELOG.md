@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Rename services: `backend` into `api`, `backend_base` into `api_fundament`,
+  `frontend` into `spa` and `frontend_node` into `spa_node`.
 - Move `backend/Dockerfile.base` to `backend_base/Dockerfile` and
   `frontend/Dockerfile.node` to `frontend_node/Dockerfile`.
 - Expose `backend` and `frontend` ports with `docker-compose.expose.yml`

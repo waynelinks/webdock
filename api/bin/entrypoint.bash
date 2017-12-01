@@ -2,14 +2,14 @@
 
 pre_start()
 {
-    export BACKEND_VERSION=$(cat /VERSION)
+    export API_VERSION=$(cat /VERSION)
 }
 
 post_start()
 {
     sleep 1
     #
-    # This is good moment to execute database migrations eg. like this:
+    # This is good place to execute database migrations e.g. like this:
     #
     #     php /codebase/bin/console doctrine:migrations:migrate --no-interaction --env=prod --no-debug || true
     #
@@ -22,7 +22,7 @@ case $1 in
     "--start")
         pre_start
 
-        envsubst '$$BACKEND_HTTP_AUTH_BASIC $$BACKEND_AVAILABLE_FRONT_CONTROLLERS $$BACKEND_DEFAULT_FRONT_CONTROLLER' < /etc/nginx/sites-available/default.conf.template > /etc/nginx/sites-available/default
+        envsubst '$$API_HTTP_AUTH_BASIC $$API_AVAILABLE_FRONT_CONTROLLERS $$API_DEFAULT_FRONT_CONTROLLER' < /etc/nginx/sites-available/default.conf.template > /etc/nginx/sites-available/default
         nginx
 
         php-fpm
@@ -33,7 +33,7 @@ case $1 in
     "--start-cron")
         pre_start
 
-        (printenv | sed 's/^\(.*\)\=\(.*\)$/export \1\=\2/g' | grep -E '^export BACKEND_') > /etc/cron-envvars
+        (printenv | sed 's/^\(.*\)\=\(.*\)$/export \1\=\2/g' | grep -E '^export API_') > /etc/cron-envvars
 
         crontab /etc/crontab
 

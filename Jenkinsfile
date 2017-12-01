@@ -13,14 +13,14 @@ pipeline {
             steps {
                 sh 'make up'
 
-                sh 'make backend.download-codebase-assets.dev'
-                sh 'make frontend.download-codebase-assets.dev'
+                sh 'make api.download-codebase-assets.dev'
+                sh 'make spa.download-codebase-assets.dev'
 
-                sh 'make backend.build-codebase-assets.dev'
-                sh 'make frontend.build-codebase-assets.dev'
+                sh 'make api.build-codebase-assets.dev'
+                sh 'make spa.build-codebase-assets.dev'
 
-                sh 'make backend.run-codebase-tests'
-                sh 'make frontend.run-codebase-tests'
+                sh 'make api.run-codebase-tests'
+                sh 'make spa.run-codebase-tests'
 
                 sh 'make stop'
             }
@@ -29,14 +29,14 @@ pipeline {
             steps {
                 sh 'make up'
 
-                sh 'make backend.download-codebase-assets.prod'
-                sh 'make frontend.download-codebase-assets.prod'
+                sh 'make api.download-codebase-assets.prod'
+                sh 'make spa.download-codebase-assets.prod'
 
-                sh 'make backend.build-codebase-assets.prod'
-                sh 'make frontend.build-codebase-assets.prod'
+                sh 'make api.build-codebase-assets.prod'
+                sh 'make spa.build-codebase-assets.prod'
 
-                sh 'make backend.build-image'
-                sh 'make frontend.build-image'
+                sh 'make api.build-image'
+                sh 'make spa.build-image'
 
                 sh 'make stop'
             }

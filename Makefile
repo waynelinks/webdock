@@ -1,14 +1,14 @@
 #!/usr/bin/make -f
 
-BACKEND_IMAGE=damlys/phpdock-backend
-BACKEND_BASE_IMAGE=damlys/phpdock-backend-base
-FRONTEND_IMAGE=damlys/phpdock-frontend
-FRONTEND_NODE_IMAGE=damlys/phpdock-frontend-node
+API_VERSION=$(shell cat ./api/VERSION)
+API_FUNDAMENT_VERSION=$(shell cat ./api_fundament/VERSION)
+SPA_VERSION=$(shell cat ./spa/VERSION)
+SPA_NODE_VERSION=$(shell cat ./spa_node/VERSION)
 
-BACKEND_VERSION=$(shell cat ./backend/VERSION)
-BACKEND_BASE_VERSION=$(shell cat ./backend_base/VERSION)
-FRONTEND_VERSION=$(shell cat ./frontend/VERSION)
-FRONTEND_NODE_VERSION=$(shell cat ./frontend_node/VERSION)
+API_IMAGE=damlys/phpdock-backend
+API_FUNDAMENT_IMAGE=damlys/phpdock-backend-base
+SPA_IMAGE=damlys/phpdock-frontend
+SPA_NODE_IMAGE=damlys/phpdock-frontend-node
 
 include .env
 
@@ -37,21 +37,21 @@ define tag_vcs_commit
 	git tag $(1)-$(2) && git push origin $(1)-$(2)
 endef
 
-# $(1) docker image name
+# $(1) docker-compose service name
 # $(2) semver format version
-# $(3) docker-compose service name
+# $(3) docker image name
 define release_image
 	for tag in $(shell ./bin/explode-semver.sh $(2)); do \
-		docker tag ${COMPOSE_PROJECT_NAME}/$(3):current $(1):$$tag && docker push $(1):$$tag \
+		docker tag ${COMPOSE_PROJECT_NAME}/$(1):current $(3):$$tag && docker push $(3):$$tag \
 	; done
-	-$(call tag_vcs_commit,$(3),$(2))
+	$(call tag_vcs_commit,$(1),$(2))
 endef
 
-default: backend.enter-container
-backend.enter-container:
-	docker-compose exec backend bash
-frontend_node.enter-container:
-	docker-compose exec frontend_node bash
+default: api.enter-container
+api.enter-container:
+	docker-compose exec api bash
+spa_node.enter-container:
+	docker-compose exec spa_node bash
 
 up:
 	docker-compose up -d
@@ -65,109 +65,109 @@ state:
 config:
 	@echo "\"docker-compose\" command is using \033[44m${COMPOSE_FILE}\033[0m files"
 	docker-compose config
-build-images: backend_base.build-image backend.build-image frontend.build-image frontend_node.build-image
-pull-or-build-images: backend_base.pull-or-build-image backend.pull-or-build-image frontend.pull-or-build-image frontend_node.pull-or-build-image
-release-images: backend_base.release-image backend.release-image frontend.release-image frontend_node.release-image
+build-images: api_fundament.build-image api.build-image spa.build-image spa_node.build-image
+pull-or-build-images: api_fundament.pull-or-build-image api.pull-or-build-image spa.pull-or-build-image spa_node.pull-or-build-image
+release-images: api_fundament.release-image api.release-image spa.release-image spa_node.release-image
 
-backend_base.pull-image:
-	$(call pull_image,${BACKEND_BASE_IMAGE},${BACKEND_BASE_VERSION},backend_base)
-backend_base.build-image:
-	$(call build_image,backend_base)
-backend_base.pull-or-build-image:
-	$(call pull_or_build_image,${BACKEND_BASE_IMAGE},${BACKEND_BASE_VERSION},backend_base)
-backend_base.release-image:
-	$(call release_image,${BACKEND_BASE_IMAGE},${BACKEND_BASE_VERSION},backend_base)
-backend_base.tag-commit:
+api.pull-image:
+	$(call pull_image,${API_IMAGE},${API_VERSION},api)
+api.build-image:
+	$(call build_image,api)
+api.pull-or-build-image:
+	$(call pull_or_build_image,${API_IMAGE},${API_VERSION},api)
+api.release-image:
+	$(call release_image,api,${API_VERSION},${API_IMAGE})
+api.tag-commit:
 	@./bin/confirm.sh
-	$(call tag_vcs_commit,backend_base,${BACKEND_BASE_VERSION})
-
-backend.pull-image:
-	$(call pull_image,${BACKEND_IMAGE},${BACKEND_VERSION},backend)
-backend.build-image:
-	$(call build_image,backend)
-backend.pull-or-build-image:
-	$(call pull_or_build_image,${BACKEND_IMAGE},${BACKEND_VERSION},backend)
-backend.release-image:
-	$(call release_image,${BACKEND_IMAGE},${BACKEND_VERSION},backend)
-backend.tag-commit:
-	@./bin/confirm.sh
-	$(call tag_vcs_commit,backend,${BACKEND_VERSION})
-backend.download-codebase-assets.dev:
-	docker-compose exec backend sh -c " \
+	$(call tag_vcs_commit,api,${API_VERSION})
+api.download-codebase-assets.dev:
+	docker-compose exec api sh -c " \
 		composer install --no-scripts \
 	"
-backend.download-codebase-assets.prod:
-	docker-compose exec backend sh -c " \
+api.download-codebase-assets.prod:
+	docker-compose exec api sh -c " \
 		composer install --no-scripts --no-dev \
 	"
-backend.build-codebase-assets.dev:
-	docker-compose exec backend sh -c " \
+api.build-codebase-assets.dev:
+	docker-compose exec api sh -c " \
 		composer install \
 	"
-backend.build-codebase-assets.prod:
-	docker-compose exec backend sh -c " \
+api.build-codebase-assets.prod:
+	docker-compose exec api sh -c " \
 		composer install --no-dev \
 	"
-backend.run-codebase-tests.unit:
-	@echo "backend unit tests..."
-backend.run-codebase-tests.integration:
-	@echo "backend integration tests..."
-backend.run-codebase-tests.functional:
-	@echo "backend functional tests..."
-backend.run-codebase-tests: backend.run-codebase-tests.unit backend.run-codebase-tests.integration backend.run-codebase-tests.functional
-backend.install-xdebug:
-	docker-compose exec backend sh -c " \
+api.run-codebase-tests.unit:
+	@echo "api unit tests..."
+api.run-codebase-tests.integration:
+	@echo "api integration tests..."
+api.run-codebase-tests.functional:
+	@echo "api functional tests..."
+api.run-codebase-tests: api.run-codebase-tests.unit api.run-codebase-tests.integration api.run-codebase-tests.functional
+api.install-xdebug:
+	docker-compose exec api sh -c " \
 		pecl install xdebug \
 		&& docker-php-ext-enable xdebug \
 	"
-	docker-compose restart backend
+	docker-compose restart api
 
-frontend.pull-image:
-	$(call pull_image,${FRONTEND_IMAGE},${FRONTEND_VERSION},frontend)
-frontend.build-image:
-	$(call build_image,frontend)
-frontend.pull-or-build-image:
-	$(call pull_or_build_image,${FRONTEND_IMAGE},${FRONTEND_VERSION},frontend)
-frontend.release-image:
-	$(call release_image,${FRONTEND_IMAGE},${FRONTEND_VERSION},frontend)
-frontend.tag-commit:
+api_fundament.pull-image:
+	$(call pull_image,${API_FUNDAMENT_IMAGE},${API_FUNDAMENT_VERSION},api_fundament)
+api_fundament.build-image:
+	$(call build_image,api_fundament)
+api_fundament.pull-or-build-image:
+	$(call pull_or_build_image,${API_FUNDAMENT_IMAGE},${API_FUNDAMENT_VERSION},api_fundament)
+api_fundament.release-image:
+	$(call release_image,api_fundament,${API_FUNDAMENT_VERSION},${API_FUNDAMENT_IMAGE})
+api_fundament.tag-commit:
 	@./bin/confirm.sh
-	$(call tag_vcs_commit,frontend,${FRONTEND_VERSION})
-frontend.download-codebase-assets.dev:
-	docker-compose exec frontend_node sh -c " \
+	$(call tag_vcs_commit,api_fundament,${API_FUNDAMENT_VERSION})
+
+spa.pull-image:
+	$(call pull_image,${SPA_IMAGE},${SPA_VERSION},spa)
+spa.build-image:
+	$(call build_image,spa)
+spa.pull-or-build-image:
+	$(call pull_or_build_image,${SPA_IMAGE},${SPA_VERSION},spa)
+spa.release-image:
+	$(call release_image,spa,${SPA_VERSION},${SPA_IMAGE})
+spa.tag-commit:
+	@./bin/confirm.sh
+	$(call tag_vcs_commit,spa,${SPA_VERSION})
+spa.download-codebase-assets.dev:
+	docker-compose exec spa_node sh -c " \
 		npm install --ignore-scripts \
 	"
-frontend.download-codebase-assets.prod:
-	docker-compose exec frontend_node sh -c " \
+spa.download-codebase-assets.prod:
+	docker-compose exec spa_node sh -c " \
 		npm install --ignore-scripts --production \
 	"
-frontend.build-codebase-assets.dev:
-	docker-compose exec frontend_node sh -c " \
+spa.build-codebase-assets.dev:
+	docker-compose exec spa_node sh -c " \
 		npm rebuild \
 	"
-frontend.build-codebase-assets.prod:
-	docker-compose exec frontend_node sh -c " \
+spa.build-codebase-assets.prod:
+	docker-compose exec spa_node sh -c " \
 		npm rebuild \
 	"
-frontend.run-codebase-tests.unit:
-	@echo "frontend unit tests..."
-frontend.run-codebase-tests.integration:
-	@echo "frontend integration tests..."
-frontend.run-codebase-tests.functional:
-	@echo "frontend functional tests..."
-frontend.run-codebase-tests: frontend.run-codebase-tests.unit frontend.run-codebase-tests.integration frontend.run-codebase-tests.functional
+spa.run-codebase-tests.unit:
+	@echo "spa unit tests..."
+spa.run-codebase-tests.integration:
+	@echo "spa integration tests..."
+spa.run-codebase-tests.functional:
+	@echo "spa functional tests..."
+spa.run-codebase-tests: spa.run-codebase-tests.unit spa.run-codebase-tests.integration spa.run-codebase-tests.functional
 
-frontend_node.pull-image:
-	$(call pull_image,${FRONTEND_NODE_IMAGE},${FRONTEND_NODE_VERSION},frontend_node)
-frontend_node.build-image:
-	$(call build_image,frontend_node)
-frontend_node.pull-or-build-image:
-	$(call pull_or_build_image,${FRONTEND_NODE_IMAGE},${FRONTEND_NODE_VERSION},frontend_node)
-frontend_node.release-image:
-	$(call release_image,${FRONTEND_NODE_IMAGE},${FRONTEND_NODE_VERSION},frontend_node)
-frontend_node.tag-commit:
+spa_node.pull-image:
+	$(call pull_image,${SPA_NODE_IMAGE},${SPA_NODE_VERSION},spa_node)
+spa_node.build-image:
+	$(call build_image,spa_node)
+spa_node.pull-or-build-image:
+	$(call pull_or_build_image,${SPA_NODE_IMAGE},${SPA_NODE_VERSION},spa_node)
+spa_node.release-image:
+	$(call release_image,spa_node,${SPA_NODE_VERSION},${SPA_NODE_IMAGE})
+spa_node.tag-commit:
 	@./bin/confirm.sh
-	$(call tag_vcs_commit,frontend_node,${FRONTEND_NODE_VERSION})
+	$(call tag_vcs_commit,spa_node,${SPA_NODE_VERSION})
 
 mysql.backup:
 	./bin/mysql-create-backup.sh

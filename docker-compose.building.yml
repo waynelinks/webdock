@@ -1,38 +1,38 @@
 version: "2"
 services:
-  backend_base:
-    image: ${COMPOSE_PROJECT_NAME}/backend_base:current
-    build:
-      context: ./backend_base/
-      dockerfile: Dockerfile
-
-  backend:
+  api:
     depends_on:
-      - backend_base
+      - api_fundament
     build:
-      context: ./backend/
+      context: ./api/
       dockerfile: Dockerfile
       args:
-        BASE_IMAGE_NAME: ${COMPOSE_PROJECT_NAME}/backend_base
+        BASE_IMAGE_NAME: ${COMPOSE_PROJECT_NAME}/api_fundament
         BASE_IMAGE_TAG: current
     volumes:
-      - ./backend/codebase/:/codebase/
+      - ./api/codebase/:/codebase/
 
-  backend_cron:
+  api_cron:
     volumes:
-      - ./backend/codebase/:/codebase/
+      - ./api/codebase/:/codebase/
 
-  frontend:
+  api_fundament:
+    image: ${COMPOSE_PROJECT_NAME}/api_fundament:current
     build:
-      context: ./frontend/
+      context: ./api_fundament/
+      dockerfile: Dockerfile
+
+  spa:
+    build:
+      context: ./spa/
       dockerfile: Dockerfile
     volumes:
-      - ./frontend/codebase/public/:/codebase/public/
+      - ./spa/codebase/public/:/codebase/public/
 
-  frontend_node:
-    image: ${COMPOSE_PROJECT_NAME}/frontend_node:current
+  spa_node:
+    image: ${COMPOSE_PROJECT_NAME}/spa_node:current
     build:
-      context: ./frontend_node/
+      context: ./spa_node/
       dockerfile: Dockerfile
     volumes:
-      - ./frontend/codebase/:/codebase/
+      - ./spa/codebase/:/codebase/

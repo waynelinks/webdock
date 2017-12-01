@@ -4,8 +4,8 @@
 
 https://xdebug.org/
 
-Xdebug is not installed in the backend image by default. 
-To do it run `make backend.install-xdebug`.
+Xdebug is not installed in the api image by default. 
+To do it run `make api.install-xdebug`.
 This is required after each container recreation.
 
 ## PHPStorm

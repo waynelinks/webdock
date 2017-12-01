@@ -25,26 +25,26 @@
 !/backups/.gitkeep
 
 #############################
-### Backend
+### API
 #############################
 
 # Package managers
-/backend/codebase/vendor/
+/api/codebase/vendor/
 
 # Logs
-/backend/codebase/var/logs/*
-!/backend/codebase/var/logs/.gitkeep
+/api/codebase/var/logs/*
+!/api/codebase/var/logs/.gitkeep
 
 # Xdebug output dir
-/backend/codebase/var/xdebug/*
-!/backend/codebase/var/xdebug/.gitkeep
+/api/codebase/var/xdebug/*
+!/api/codebase/var/xdebug/.gitkeep
 
 #############################
-### Frontend
+### SPA
 #############################
 
 # Generated file with environment variables
-/frontend/codebase/public/env.js
+/spa/codebase/public/env.js
 
 # Package managers
-/frontend/codebase/node_modules/
+/spa/codebase/node_modules/
