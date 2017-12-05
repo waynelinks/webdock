@@ -1,6 +1,7 @@
+# This is an example of CI/CD pipeline for projects written with PHPdock.
 pipeline {
     stages {
-        stage('Init') {
+        stage('Prepare') {
             steps {
                 sh 'cp .env.dist .env'
 

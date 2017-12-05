@@ -1,4 +1,4 @@
-# * * * * *  command to execute
+# * * * * * $(cat /etc/cron-envvars); COMMAND_TO_EXECUTE >> /codebase/var/logs/cron.log 2>&1
 # ┬ ┬ ┬ ┬ ┬
 # │ │ │ │ │
 # │ │ │ │ │
@@ -8,5 +8,4 @@
 # │ └──────────────────── hour (0 - 23)
 # └───────────────────────── min (0 - 59)
 
-# executes `echo "$API_VERSION: Cron says hello!"` command every minute
 * * * * * $(cat /etc/cron-envvars); echo "$API_VERSION: Cron says hello!" >> /codebase/var/logs/cron.log 2>&1

@@ -2,7 +2,7 @@
 
 # Getting Started
 
-These instructions will help you use PHPdock.
+These instructions will help you run any project with PHPdock.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ $ docker-machine-nfs
 ...
 ```
 
-## Run PHPdock
+## First run
 
 1. Clone git repository
     ```
@@ -43,31 +43,49 @@ $ docker-machine-nfs
    the `/etc/hosts` file
    (`C:\Windows\System32\Drivers\etc\hosts` file for Windows).
 1. Copy `.env.dist` to `.env` file.
-1. Run `make build-all-images && make up` commands.
+1. Run `make build-images && make up` commands.
 1. Browse to [phpdock.localhost](http://phpdock.localhost)
    and [phpdock.localhost:81](http://phpdock.localhost:81)
 
 ## Adapt PHPdock to your project
 
-### Docker images repository  
+### Documentation
 
-Create own repositories for the following images: 
+Delete `Documentation/*`, `CHANGELOG.md`, `LICENSE.md`, `README.md` files
+and write something own. If you don't know how to start see
+[this readme template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
 
-- `damlys/phpdock-backend`
-- `damlys/phpdock-frontend`
+Feel free to modify existing documentation.
 
-[Docker Hub](https://hub.docker.com) is an official Docker repository. It allows
-to create an unlimited count of repositories for public images.
+### Docker Hub
+
+[Docker Hub](https://hub.docker.com) is an official repository for Docker images. 
+It allows to create an unlimited count of repositories with public images.
+
+Create own repositories for the following images:
+
+```
+API_IMAGE=damlys/phpdock-backend
+API_FUNDAMENT_IMAGE=damlys/phpdock-backend-base
+SPA_IMAGE=damlys/phpdock-frontend
+SPA_NODE_IMAGE=damlys/phpdock-frontend-node
+```
 
 ### Application codebase
 
 Copy your project codebase to `api/codebase/` and `spa/codebase/`
 directory and remove artifacts after an old Vagrant and Docker environments.
 
-### Documentation
+## Deployment
 
-Delete `Documentation/*`, `CHANGELOG.md`, `LICENSE.md`, `README.md` files 
-and write something own. If you don't know how to start see 
-[this readme template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+This is how you can run your application on staging server:
 
-Feel free to modify existing documentation.
+1. Clone git repository
+   ```
+   $ mkdir ~/workspace/your-project/
+   $ cd ~/workspace/your-project/
+   $ git clone https://github.com/damlys/phpdock.git .
+   ```
+1. Copy `.env.dist` to `.env` file and remove `docker-compose.building.yml` value from 
+   the `COMPOSE_FILE` variable.
+1. Run `make pull-images && make up` commands.

@@ -43,6 +43,10 @@ case $1 in
         post_start
     ;;
 
+    "--install-xdebug")
+        pecl install xdebug && docker-php-ext-enable xdebug
+    ;;
+
     *)
         exec "$@"
     ;;

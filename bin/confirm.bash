@@ -3,7 +3,7 @@
 confirmed=false
 
 while [ $confirmed = false ]; do
-    read -r -p "Are You Sure? [Y/n] " input
+    read -r -p "Are you sure? [Y/n] " input
 
     case $input in
         [yY][eE][sS]|[yY])

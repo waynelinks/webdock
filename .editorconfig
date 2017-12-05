@@ -29,6 +29,8 @@ indent_size = 2
 
 [{makefile,Makefile,GNUmakefile}]
 indent_style = tab
+[*.mk]
+indent_style = tab
 
 [*.md]
 trim_trailing_whitespace = false
