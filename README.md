@@ -8,6 +8,7 @@ PHPdock is a minimalistic Docker starter for SPA/MPA PHP applications.
 
 ## Table of contents
 
+* [Overview](Documentation/Overview.md)
 * [Getting started](Documentation/Getting-started.md)
 * [Security](Documentation/Security.md)
 * [Best practices](Documentation/Best-practices.md)

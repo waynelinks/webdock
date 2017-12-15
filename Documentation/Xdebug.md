@@ -12,6 +12,8 @@ This is required after each container recreation.
 
 ![PHPStorm Xdebug port config](assets/phpstorm-xdebug-port-config.png)
 
+Remember to unblock incoming requests on 9000 port in your firewall.
+
 ![PHPStorm Xdebug run config](assets/phpstorm-xdebug-run-config.png)
 
 ## Chrome

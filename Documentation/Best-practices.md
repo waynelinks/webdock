@@ -18,7 +18,7 @@
    your application's codebase. You have to be prepared for replacing and scaling 
    these containers with newer versions during deployments.
 1. Download and build codebase's assets, warm up cache files and so on before build
-   image with codebase.
+   image with your codebase.
 1. Make images as light as possible. Do not copy `node_modules/` and other unnecessary
    files for production during images building (add them to `.dockerignore` file).
 1. Log errors to Docker STDERR (`/dev/stderr` file) and other stuff to
@@ -26,10 +26,9 @@
 1. Use `Makefile` for integrating your application with CI/CD tools. This will allow 
    your team to make changes e.g. in codebase's assets building flow without changing 
    the CI/CD pipeline.
-1. Use Docker internal network in your functional tests. Do not expose application 80 port
-   only for this purpose.
-1. Adjust `.env.dist` file to your development environment. Do not store production's dists 
-   files in your repository. Keep them safe.
+1. Use Docker internal network with CI/CD tools.
+1. Adjust `.env.dist` file to development environment. Do not store 
+   staging and production dist files in your repository. Keep them safe.
 
 ## Useful links
 
