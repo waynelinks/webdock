@@ -1,0 +1,26 @@
+node {
+    def dockerImage
+
+    stage('Clone repository') {
+        checkout scm
+    }
+
+    stage('Build') {
+        dockerImage = docker.build("damlys/webdock-api")
+    }
+
+    stage('Test') {
+        echo 'Testing...'
+    }
+
+    stage('Release') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            dockerImage.push("${env.BUILD_ID}")
+            dockerImage.push("latest")
+        }
+    }
+
+    stage('Run') {
+        echo 'Delivering...'
+    }
+}

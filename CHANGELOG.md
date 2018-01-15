@@ -1,4 +1,4 @@
-# PHPdock Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.0] - 2018-01-15
+
 ### Changed
 
-- Rename images's entrypoints.
+- Change the project name.
+- Divide services into separate directories.
 
-## 0.3.1 - 2017-12-05
+## [0.3.1] - 2017-12-05
 
 ### Added
 
@@ -21,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `docker-compose.ci.yml` file.
 
-## 0.3.0 - 2017-12-01
+## [0.3.0] - 2017-12-01
 
 ### Added
 
@@ -37,7 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Expose `backend` and `frontend` ports with `docker-compose.expose.yml`
   file.
 
-## 0.2.3 - 2017-11-11
+## [0.2.3] - 2017-11-11
 
 ### Added
 
@@ -47,7 +50,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Remove startup commands from `backend`'s codebase.
 
-## 0.2.2 - 2017-11-09
+## [0.2.2] - 2017-11-09
 
 ### Added
 
@@ -58,13 +61,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Use `backend/Dockerfile.base` instead of `backend-base` image. 
 
-## 0.2.1 - 2017-11-07
+## [0.2.1] - 2017-11-07
 
 ### Added
 
 - `backend-base` image to speed up `backend` image building process. 
 
-## 0.2.0 - 2017-11-06
+## [0.2.0] - 2017-11-06
 
 ### Changed
 
@@ -75,13 +78,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `storage` service.
 
-## 0.1.0 - 2017-08-25
+## [0.1.0] - 2017-08-25
 
 ### Changed
 
 - Merge `application`, `php`, `nginx` containers into `application`.
 
-## 0.0.2 - 2017-08-08
+## [0.0.2] - 2017-08-08
 
 ### Added
 
@@ -95,7 +98,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Protect Redis with a password.
 
-## 0.0.1 - 2017-08-07
+## [0.0.1] - 2017-08-07
 
 ### Added
 

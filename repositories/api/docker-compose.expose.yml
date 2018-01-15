@@ -1,0 +1,5 @@
+version: "2"
+services:
+  app:
+    ports:
+      - ${APP_PORT}:80

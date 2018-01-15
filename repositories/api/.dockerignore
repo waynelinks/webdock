@@ -1,0 +1,26 @@
+#############################
+### System files
+#############################
+
+*/*~
+*/.DS_Store
+
+#############################
+### VCS
+#############################
+
+*/.gitignore
+*/.gitkeep
+
+#############################
+### Application
+#############################
+
+# Debug front controllers
+#app/public/index_*.php
+
+# Logs
+app/var/logs/*
+
+# Xdebug output dir
+app/var/xdebug/*

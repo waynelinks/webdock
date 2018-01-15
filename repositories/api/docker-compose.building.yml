@@ -1,0 +1,16 @@
+version: "2"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - composer_cache:/var/cache/composer
+      - ./app/:/app/
+
+  cron:
+    volumes:
+      - ./app/:/app/
+
+volumes:
+  composer_cache:

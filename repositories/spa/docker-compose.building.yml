@@ -1,0 +1,18 @@
+version: "2"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app/public/:/app/public/
+
+  node:
+    image: damlys/webdock-node:latest
+    volumes:
+      - npm_cache:/var/cache/npm
+      - ./app/:/app/
+    working_dir: /app/
+
+volumes:
+  npm_cache:

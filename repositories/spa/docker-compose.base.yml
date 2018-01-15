@@ -1,0 +1,6 @@
+version: "2"
+services:
+  app:
+    image: damlys/webdock-spa:${APP_VERSION}
+    env_file:
+      - .env

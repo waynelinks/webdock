@@ -1,0 +1,30 @@
+version: "2"
+services:
+  app:
+    image: damlys/webdock-api:${APP_VERSION}
+    links:
+      - mysql
+      - redis
+    env_file:
+      - .env
+
+  cron:
+    image: damlys/webdock-api:${APP_VERSION}
+    links:
+      - mysql
+      - redis
+    env_file:
+      - .env
+    command: ["--start-cron"]
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+  redis:
+    image: redis:latest
+    command: ["--requirepass", "${REDIS_PASSWORD}"]
