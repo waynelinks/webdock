@@ -3,6 +3,11 @@
 default:
 	docker-compose exec app bash
 
+build:
+	docker build --no-cache --tag damlys/webdock-api:latest .
+push:
+	docker push damlys/webdock-api:latest
+
 up:
 	docker-compose up -d
 start:
