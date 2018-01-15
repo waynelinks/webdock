@@ -1,4 +1,4 @@
-# This is an example of CI/CD pipeline for projects written with PHPdock.
+# This is an example of CI pipeline for projects written with PHPdock.
 pipeline {
     stages {
         stage('Prepare') {
@@ -43,11 +43,6 @@ pipeline {
         stage('Release') {
             steps {
                 sh 'make release-images'
-            }
-        }
-        stage('Run') {
-            steps {
-                echo 'Delivering...'
             }
         }
     }

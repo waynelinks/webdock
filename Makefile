@@ -10,10 +10,8 @@ SPA_NODE_IMAGE=damlys/phpdock-frontend-node
 include .env
 
 default: api.enter-container
-api.enter-container:
-	docker-compose exec api bash
-spa_node.enter-container:
-	docker-compose exec spa_node bash
+php: api.enter-container
+node: spa_node.enter-container
 
 up:
 	docker-compose up -d
@@ -32,6 +30,8 @@ build-images: api_fundament.build-image api.build-image spa.build-image spa_node
 pull-or-build-images: api_fundament.pull-or-build-image api.pull-or-build-image spa.pull-or-build-image spa_node.pull-or-build-image
 release-images: api_fundament.release-image api.release-image spa.release-image spa_node.release-image
 
+api.enter-container:
+	docker-compose exec api bash
 api.pull-image:
 	$(call pull_image,${API_IMAGE},api)
 api.build-image:
@@ -67,7 +67,7 @@ api.run-codebase-tests.functional:
 	@echo "api functional tests..."
 api.run-codebase-tests: api.run-codebase-tests.unit api.run-codebase-tests.integration api.run-codebase-tests.functional
 api.install-xdebug:
-	docker-compose exec api docker-entrypoint --install-xdebug
+	docker-compose exec api entrypoint --install-xdebug
 	docker-compose restart api
 
 api_fundament.pull-image:
@@ -82,6 +82,8 @@ api_fundament.tag-commit:
 	@./bin/confirm.bash
 	$(call tag_vcs_commit,api_fundament)
 
+spa_node.enter-container:
+	docker-compose exec spa_node bash
 spa.pull-image:
 	$(call pull_image,${SPA_IMAGE},spa)
 spa.build-image:

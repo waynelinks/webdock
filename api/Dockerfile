@@ -25,7 +25,7 @@ ENV API_AVAILABLE_FRONT_CONTROLLERS="index" \
 
 COPY VERSION /VERSION
 COPY codebase/ /codebase/
-COPY bin/entrypoint.bash /usr/local/bin/docker-entrypoint
+COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY etc/cron/crontab /etc/crontab
 COPY etc/nginx/default.conf.template /etc/nginx/sites-available/default.conf.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
@@ -34,7 +34,7 @@ COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
 RUN chmod 644 /VERSION \
 && chmod -R 777 /codebase/var/ \
-&& chmod 755 /usr/local/bin/docker-entrypoint \
+&& chmod 755 /usr/local/bin/entrypoint \
 && chmod 644 /etc/crontab \
 && chmod 644 /etc/nginx/sites-available/default.conf.template \
 && chmod 644 /etc/nginx/htpasswd \
@@ -43,6 +43,6 @@ RUN chmod 644 /VERSION \
 
 WORKDIR /codebase/
 
-ENTRYPOINT ["docker-entrypoint"]
+ENTRYPOINT ["entrypoint"]
 
 CMD ["--start"]

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Rename images's entrypoints.
+
 ## 0.3.1 - 2017-12-05
 
 ### Added
