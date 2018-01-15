@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+
+- Ignore CI's .env file.
+
 ## [0.4.0] - 2018-01-15
 
 ### Changed
