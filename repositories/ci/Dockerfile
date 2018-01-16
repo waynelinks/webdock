@@ -19,4 +19,7 @@ RUN apt-get update \
     docker-ce \
     docker-compose
 
+# Allow 'jenkins' user to use `docker` command
+RUN usermod -a -G docker jenkins
+
 USER jenkins

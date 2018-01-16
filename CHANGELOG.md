@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Ignore CI's .env file.
+- Allow `jenkins` user to use `docker` command inside `ci` container.
 
 ## [0.4.0] - 2018-01-15
 
