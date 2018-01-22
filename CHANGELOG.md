@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Makefile `build` and `push` commands.
+- Shebang lines in Jenkinsfiles.
 
 ### Fixed
 
