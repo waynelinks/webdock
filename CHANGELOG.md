@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.1] - 2018-01-26
+
 ### Added
 
-- Makefile `build` and `push` commands.
 - Shebang lines in Jenkinsfiles.
+- Documentation for each repository.
 
 ### Fixed
 
