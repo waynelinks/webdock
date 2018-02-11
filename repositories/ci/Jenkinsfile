@@ -8,12 +8,12 @@ node {
     }
 
     stage('Build') {
-        dockerImage = docker.build("damlys/webdock-ci")
+        dockerImage = docker.build('damlys/webdock-ci')
     }
 
     stage('Release') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            dockerImage.push("latest")
+            dockerImage.push('latest')
         }
     }
 }

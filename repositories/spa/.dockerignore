@@ -16,5 +16,5 @@
 ### Application
 #############################
 
-# File with environment variables
+# Public file with environment variables
 app/public/env.js

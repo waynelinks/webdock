@@ -28,5 +28,5 @@ $ docker-compose up -d
 
 Open port 80 in the browser.
 
-\* Remember to build and release at least one version of
+\* Build and release at least one version of
 WebDock's Node image before this step.

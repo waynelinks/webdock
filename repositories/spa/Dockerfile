@@ -8,6 +8,7 @@ COPY app/public/ /app/public/
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY etc/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
+COPY etc/env.js.template /etc/env.js.template
 
 RUN chmod 755 /usr/local/bin/entrypoint
 

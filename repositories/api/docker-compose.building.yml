@@ -9,6 +9,9 @@ services:
       - ./app/:/app/
 
   cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
