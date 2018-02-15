@@ -1,9 +1,8 @@
 FROM damlys/webdock-api-foundation:latest
 
 ENV APP_VERSION="undefined" \
-    APP_AVAILABLE_FRONT_CONTROLLERS="index" \
-    APP_DEFAULT_FRONT_CONTROLLER="index" \
-    APP_DEBUG_FRONT_CONTROLLERS_ACCESS="off" \
+    APP_ENVIRONMENT="prod" \
+    APP_DEBUG="off" \
     APP_HTTP_AUTH_BASIC="off" \
     APP_MYSQL_HOST="127.0.0.1" \
     APP_MYSQL_PORT="3306" \

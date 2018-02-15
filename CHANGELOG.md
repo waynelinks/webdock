@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.3] - 2018-02-15
+
+### Changed
+
+- Move `env.js.template` file to etc directory.
+
+### Removed
+
+- `index_dev.php` front controller.
+
 ## [0.4.2] - 2018-01-29
 
 ### Added

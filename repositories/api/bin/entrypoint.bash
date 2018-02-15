@@ -4,7 +4,7 @@ set -e
 
 case $1 in
     "--start")
-        envsubst '$$APP_HTTP_AUTH_BASIC $$APP_AVAILABLE_FRONT_CONTROLLERS $$APP_DEFAULT_FRONT_CONTROLLER' < /etc/nginx/sites-available/default.conf.template > /etc/nginx/sites-available/default
+        envsubst '$$APP_HTTP_AUTH_BASIC' < /etc/nginx/sites-available/default.conf.template > /etc/nginx/sites-available/default
         nginx
 
         php-fpm
