@@ -1,7 +1,7 @@
 FROM nginx:latest
 
 ENV APP_VERSION="undefined" \
-    APP_API_ENDPOINT="http://localhost:8080" \
+    APP_API_ENDPOINT="http://127.0.0.1:81" \
     APP_HTTP_AUTH_BASIC="off"
 
 COPY app/public/ /app/public/

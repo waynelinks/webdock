@@ -24,7 +24,7 @@ ENV APP_VERSION="undefined" \
 COPY app/ /app/
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY etc/cron/crontab /etc/crontab
-COPY etc/nginx/default.conf.template /etc/nginx/sites-available/default.conf.template
+COPY etc/nginx/default.template /etc/nginx/sites-available/default.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini

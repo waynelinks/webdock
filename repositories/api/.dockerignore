@@ -16,9 +16,6 @@
 ### Application
 #############################
 
-# Debug front controllers
-#app/public/index_*.php
-
 # Logs
 app/var/logs/*
 

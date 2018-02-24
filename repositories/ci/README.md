@@ -10,12 +10,13 @@ WebDock's CI image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-ci:latest .
+$ docker build --no-cache --tag damlys/webdock-ci:build .
 ```
 
 #### Release
 
 ```
+$ docker tag damlys/webdock-ci:build damlys/webdock-ci:latest
 $ docker push damlys/webdock-ci:latest
 ```
 

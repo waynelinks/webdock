@@ -1,11 +1,9 @@
 #!/usr/bin/env groovy
 
 node {
-    def dockerImage
+    checkout scm
 
-    stage('Clone repository') {
-        checkout scm
-    }
+    def dockerImage
 
     stage('Build') {
         dockerImage = docker.build('damlys/webdock-api')

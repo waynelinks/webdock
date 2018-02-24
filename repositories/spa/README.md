@@ -10,12 +10,13 @@ WebDock's SPA image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-spa:latest .
+$ docker build --no-cache --tag damlys/webdock-spa:build .
 ```
 
 #### Release
 
 ```
+$ docker tag damlys/webdock-spa:build damlys/webdock-spa:latest
 $ docker push damlys/webdock-spa:latest
 ```
 

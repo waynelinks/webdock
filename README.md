@@ -80,6 +80,7 @@ damlys/webdock-spa
 - [Compose file version 2 reference](https://docs.docker.com/compose/compose-file/compose-file-v2/)
 - [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
 - [Repositories on Docker Hub](https://docs.docker.com/docker-hub/repos/)
+- [Use multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
 
 ###### Jenkins
 

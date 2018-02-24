@@ -10,7 +10,7 @@ WebDock's API image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-api:latest .
+$ docker build --no-cache --tag damlys/webdock-api:build .
 ```
 
 \* Build and release at least one version of
@@ -19,6 +19,7 @@ WebDock's API Foundation image before this step.
 #### Release
 
 ```
+$ docker tag damlys/webdock-api:build damlys/webdock-api:latest
 $ docker push damlys/webdock-api:latest
 ```
 

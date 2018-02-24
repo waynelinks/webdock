@@ -10,11 +10,12 @@ WebDock's Node image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-node:latest .
+$ docker build --no-cache --tag damlys/webdock-node:build .
 ```
 
 #### Release
 
 ```
+$ docker tag damlys/webdock-node:build damlys/webdock-node:latest
 $ docker push damlys/webdock-node:latest
 ```
