@@ -1,4 +1,4 @@
-# * * * * * $(cat /etc/cron-envvars); COMMAND_TO_EXECUTE >> /app/var/logs/cron.log 2>&1
+# * * * * * $(cat /etc/cron-envvars); COMMAND_TO_EXECUTE > /proc/1/fd/1 2>/proc/1/fd/2
 # ┬ ┬ ┬ ┬ ┬
 # │ │ │ │ │
 # │ │ │ │ │
@@ -8,4 +8,4 @@
 # │ └──────────────────── hour (0 - 23)
 # └───────────────────────── min (0 - 59)
 
-* * * * * $(cat /etc/cron-envvars); echo "$APP_VERSION: Cron says hello!" >> /app/var/logs/cron.log 2>&1
+* * * * * $(cat /etc/cron-envvars); echo "$APP_VERSION: Cron says hello!" > /proc/1/fd/1 2>/proc/1/fd/2

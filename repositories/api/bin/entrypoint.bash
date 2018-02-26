@@ -15,8 +15,7 @@ case $1 in
 
         crontab /etc/crontab
 
-        touch /app/var/logs/cron.log
-        cron && tail -f /app/var/logs/cron.log
+        cron -f
     ;;
 
     "--install-xdebug")

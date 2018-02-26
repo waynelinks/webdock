@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Redirect Cron output to STDOUT and STDERR.
+- Log PHP errors to syslog. 
+
 ## [0.4.3] - 2018-02-15
 
 ### Changed
