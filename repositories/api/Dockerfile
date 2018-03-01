@@ -27,6 +27,7 @@ COPY etc/cron/crontab /etc/crontab
 COPY etc/nginx/default.template /etc/nginx/sites-available/default.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
+COPY etc/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
 RUN chmod 755 /usr/local/bin/entrypoint \

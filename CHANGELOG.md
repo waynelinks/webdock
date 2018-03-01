@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.4] - 2018-03-01
+
+### Added
+
+- PHP-FPM config file.
+
 ### Changed
 
 - Redirect Cron output to STDOUT and STDERR.
-- Log PHP errors to syslog. 
+- Log PHP errors to STDERR.
 
 ## [0.4.3] - 2018-02-15
 

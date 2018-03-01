@@ -9,9 +9,8 @@ services:
       - ./app/:/app/
 
   cron:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    depends_on:
+      - app
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
