@@ -11,5 +11,5 @@ stop:
 	docker-compose stop
 
 install-xdebug:
-	docker-compose exec app entrypoint --install-xdebug
+	docker-compose exec app sh -c "pecl install xdebug && docker-php-ext-enable xdebug"
 	docker-compose restart app

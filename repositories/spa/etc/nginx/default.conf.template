@@ -6,7 +6,7 @@ server {
     auth_basic "${APP_HTTP_AUTH_BASIC}";
     auth_basic_user_file /etc/nginx/htpasswd;
 
-    # Log to Docker STDOUT and STDERR
+    # Logs
     access_log /dev/stdout;
     error_log /dev/stderr;
 

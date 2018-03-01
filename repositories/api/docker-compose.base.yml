@@ -2,7 +2,7 @@ version: "2"
 services:
   app:
     image: damlys/webdock-api:${APP_VERSION}
-    links:
+    depends_on:
       - mysql
       - redis
     env_file:
@@ -10,7 +10,7 @@ services:
 
   cron:
     image: damlys/webdock-api:${APP_VERSION}
-    links:
+    depends_on:
       - mysql
       - redis
     env_file:
