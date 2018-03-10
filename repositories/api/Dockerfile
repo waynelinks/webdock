@@ -1,9 +1,16 @@
 FROM damlys/webdock-api-foundation:latest
 
-ENV APP_VERSION="undefined" \
-    APP_ENVIRONMENT="prod" \
+ENV APP_ENVIRONMENT="prod" \
     APP_DEBUG="off" \
-    APP_HTTP_AUTH_BASIC="off" \
+    APP_DEFAULT_CHARSET="UTF-8" \
+    APP_DEFAULT_LOCALE="en-US" \
+    APP_DEFAULT_TIMEZONE="UTC" \
+    APP_VERSION="undefined" \
+    APP_NGINX_BASIC_AUTH="off" \
+    APP_NGINX_FASTCGI_HOST="127.0.0.1" \
+    APP_NGINX_FASTCGI_PORT="9000" \
+    APP_NGINX_WORKERS_COUNT="1" \
+    APP_PHP_FPM_WORKERS_COUNT="1" \
     APP_MYSQL_HOST="127.0.0.1" \
     APP_MYSQL_PORT="3306" \
     APP_MYSQL_USER="" \
@@ -21,20 +28,22 @@ ENV APP_VERSION="undefined" \
     APP_XDEBUG_REMOTE_PORT="9000" \
     APP_XDEBUG_IDE_KEY="DOCKER"
 
-COPY app/ /app/
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY etc/cron/crontab /etc/crontab
-COPY etc/nginx/default.template /etc/nginx/sites-available/default.template
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
+COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
+COPY app/ /app/
+
 RUN chmod 755 /usr/local/bin/entrypoint \
+&& chmod 755 /app/bin/* \
 && chmod --recursive 777 /app/var/
 
 WORKDIR /app/
 
 ENTRYPOINT ["entrypoint"]
 
-CMD ["--start"]
+CMD ["--start-web"]

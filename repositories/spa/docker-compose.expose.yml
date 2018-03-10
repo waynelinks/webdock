@@ -1,5 +1,5 @@
 version: "2"
 services:
-  app:
+  app_web:
     ports:
       - ${APP_PORT}:80

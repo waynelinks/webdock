@@ -1,14 +1,6 @@
 version: "2"
 services:
-  app:
-    image: damlys/webdock-api:${APP_VERSION}
-    depends_on:
-      - mysql
-      - redis
-    env_file:
-      - .env
-
-  cron:
+  app_cron:
     image: damlys/webdock-api:${APP_VERSION}
     depends_on:
       - mysql
@@ -16,6 +8,14 @@ services:
     env_file:
       - .env
     command: ["--start-cron"]
+
+  app_web:
+    image: damlys/webdock-api:${APP_VERSION}
+    depends_on:
+      - mysql
+      - redis
+    env_file:
+      - .env
 
   mysql:
     image: mysql:latest

@@ -64,7 +64,6 @@ Create own repositories for the following images and replace them in your projec
 ```
 damlys/webdock-api-foundation
 damlys/webdock-api
-damlys/webdock-ci
 damlys/webdock-node
 damlys/webdock-spa
 ```

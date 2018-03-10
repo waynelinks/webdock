@@ -1,6 +1,8 @@
 [<-- Back to main section](../README.md)
 
-# Xdebug
+# PHP Debugging
+
+## Xdebug
 
 https://xdebug.org/
 

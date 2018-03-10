@@ -10,7 +10,7 @@ node {
     }
 
     stage('Test') {
-        echo 'Testing...'
+        echo 'Testing application...'
     }
 
     stage('Release') {
@@ -20,6 +20,6 @@ node {
     }
 
     stage('Run') {
-        echo 'Delivering...'
+        echo 'Deploying image...'
     }
 }

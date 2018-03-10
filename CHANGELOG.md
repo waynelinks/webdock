@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.5] - 2018-03-12
+
+### Added
+
+- Full Nginx config files.
+- `APP_PHP_FPM_WORKERS_COUNT` and `APP_NGINX_WORKERS_COUNT` envs.
+- `--start-fpm` and `--start-ngnix` entrypoints.
+
+### Changed
+
+- Reorganize Dockerfiles for better cache support.
+
+### Fixed
+
+- Install OPcache in the API Foundation image.
+
+### Removed
+
+- Ability to build Docker images with Docker Compose cli.
+- CI service directory.
+
 ## [0.4.4] - 2018-03-01
 
 ### Added

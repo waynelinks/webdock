@@ -1,19 +1,27 @@
 version: "2"
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  app_cron:
+    depends_on:
+      - mailhog
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
 
-  cron:
+  app_web:
     depends_on:
-      - app
+      - mailhog
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - ${MAILHOG_PORT}:8025
+
+  mysql:
+    ports:
+      - ${MYSQL_PORT}:3306
 
 volumes:
   composer_cache:

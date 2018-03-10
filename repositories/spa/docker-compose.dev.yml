@@ -1,9 +1,6 @@
 version: "2"
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  app_web:
     volumes:
       - ./app/public/:/app/public/
 

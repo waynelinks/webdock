@@ -2,12 +2,17 @@
 
 set -e
 
-case $1 in
-    "--start")
-        envsubst '$$APP_VERSION $$APP_API_ENDPOINT' < /etc/env.js.template > /app/public/env.js
+substitute_dockerfile_envs()
+{
+    envsubst $(printenv | grep '^APP_' | cut -f1 -d"=" | sed 's/.*/\\\${&}/' | tr '\n' ',')
+}
 
-        envsubst '$$APP_HTTP_AUTH_BASIC' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf
-        nginx -g 'daemon off;'
+case $1 in
+    "--start-web")
+        substitute_dockerfile_envs < /etc/env.js.template > /app/public/env.js
+
+        substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
+        nginx -g "daemon off;"
     ;;
 
     *)

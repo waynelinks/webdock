@@ -5,6 +5,10 @@ WebDock's SPA image
 
 ## Getting started
 
+### Prerequisites
+
+1. Build and release at least one version of WebDock's Node image.
+
 ### Development
 
 #### Build
@@ -12,6 +16,10 @@ WebDock's SPA image
 ```
 $ docker build --no-cache --tag damlys/webdock-spa:build .
 ```
+
+#### Test
+
+> How to test application?
 
 #### Release
 
@@ -29,15 +37,12 @@ $ docker-compose up -d
 
 Open port 80 in the browser.
 
-\* Build and release at least one version of
-WebDock's Node image before this step.
-
-## Security
+#### Security notes
 
 Enable HTTP Basic Auth on non-production servers with the following value:
 
 ```
-APP_HTTP_AUTH_BASIC=Restricted
+APP_NGINX_BASIC_AUTH=on
 ```
 
 Default credentials are `demo`/`demo`.
