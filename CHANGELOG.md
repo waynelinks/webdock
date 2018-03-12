@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - Ability to build Docker images with Docker Compose cli.
-- CI service directory.
+- CI service directory (moved [here](https://github.com/damlys/webdock-ci)).
 
 ## [0.4.4] - 2018-03-01
 

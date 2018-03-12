@@ -5,7 +5,7 @@ bash:
 logs:
 	docker-compose logs --tail 25 --follow app_web
 top:
-	docker-compose exec app_web sh -c "htop || apt install -y htop && htop"
+	docker-compose exec app_web sh -c "htop || apt-get install --yes htop && htop"
 
 up:
 	docker-compose up -d
