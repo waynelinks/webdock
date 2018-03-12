@@ -27,9 +27,6 @@
 # Package managers
 /app/vendor/
 
-# Logs
-/app/var/logs/*
-!/app/var/logs/.gitkeep
-
-/app/var/xdebug/*
-!/app/var/xdebug/.gitkeep
+# Xdebug output dir
+/app/xdebug/*
+!/app/xdebug/.gitkeep

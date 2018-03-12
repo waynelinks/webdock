@@ -19,3 +19,4 @@ diff:
 install-xdebug:
 	docker-compose exec app_web sh -c "pecl install xdebug; docker-php-ext-enable xdebug"
 	docker-compose restart app_web
+	docker-compose exec app_web chmod a+w /app/xdebug/

@@ -17,8 +17,5 @@
 ### Application
 #############################
 
-# Logs
-app/var/logs/*
-
 # Xdebug output dir
-app/var/xdebug/*
+app/xdebug/*

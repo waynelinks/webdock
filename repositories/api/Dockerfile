@@ -39,8 +39,7 @@ COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 COPY app/ /app/
 
 RUN chmod 755 /usr/local/bin/entrypoint \
-&& chmod 755 /app/bin/* \
-&& chmod --recursive 777 /app/var/
+&& chmod 755 /app/bin/*
 
 WORKDIR /app/
 
