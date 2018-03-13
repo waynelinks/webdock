@@ -7,6 +7,8 @@ logs:
 top:
 	docker-compose exec app_web sh -c "htop || apt-get install --yes htop && htop"
 
+build:
+	docker build --no-cache --tag damlys/webdock-api:build .
 up:
 	docker-compose up -d
 start:

@@ -50,17 +50,17 @@ http {
         root /app/public/;
         index index.php;
 
-        # Remove index.php from URL
-        if ($request_uri ~ "^/index\.php(.*)$") {
-            return 301 $scheme://$http_host$1;
+        # Remove front controller from URL
+        if ($request_uri ~ "^/index\.php/?(.*)$") {
+            return 301 $scheme://$http_host/$1;
         }
 
-        # Use index.php if file not exists
+        # Use front controller if file not exists
         location / {
             try_files $uri /index.php$is_args$args;
         }
 
-        # Process index.php requests with PHP-FPM
+        # Process front controller requests with PHP-FPM
         location ~ ^/index\.php(/|$) {
             fastcgi_pass ${APP_NGINX_FASTCGI_HOST}:${APP_NGINX_FASTCGI_PORT};
             fastcgi_index index.php;
@@ -68,6 +68,11 @@ http {
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
             fastcgi_param DOCUMENT_ROOT $realpath_root;
+        }
+
+        # Return 404 for all other PHP files
+        location ~ \.php$ {
+            return 404;
         }
 
         location ~* \.(css|js)$ {

@@ -8,7 +8,7 @@ substitute_dockerfile_envs()
 }
 
 case $1 in
-    '--start-web')
+    '--start')
         substitute_dockerfile_envs < /etc/env.js.template > /app/public/env.js
 
         substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf

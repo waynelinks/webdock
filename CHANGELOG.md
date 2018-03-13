@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- `APP_PHP_SESSION_DATABASE_ID` env.
+- `make build` commands.
+
 ### Changed
 
 - Move Xdebug output dir to `app/xdebug/`.
+- Reorganize Dockerfiles for better cache support - move app's stuff
+  at the end of the file.
 
 ## [0.4.5] - 2018-03-12
 

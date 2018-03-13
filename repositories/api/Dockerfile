@@ -11,6 +11,7 @@ ENV APP_ENVIRONMENT="prod" \
     APP_NGINX_FASTCGI_PORT="9000" \
     APP_NGINX_WORKERS_COUNT="1" \
     APP_PHP_FPM_WORKERS_COUNT="1" \
+    APP_PHP_SESSION_DATABASE_ID="1" \
     APP_MYSQL_HOST="127.0.0.1" \
     APP_MYSQL_PORT="3306" \
     APP_MYSQL_USER="" \
@@ -28,7 +29,6 @@ ENV APP_ENVIRONMENT="prod" \
     APP_XDEBUG_REMOTE_PORT="9000" \
     APP_XDEBUG_IDE_KEY="DOCKER"
 
-COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY etc/cron/crontab /etc/crontab
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
@@ -36,13 +36,11 @@ COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
-COPY app/ /app/
-
-RUN chmod 755 /usr/local/bin/entrypoint \
-&& chmod 755 /app/bin/*
-
-WORKDIR /app/
-
+COPY bin/entrypoint.bash /usr/local/bin/entrypoint
+RUN chmod a+x /usr/local/bin/entrypoint
 ENTRYPOINT ["entrypoint"]
-
 CMD ["--start-web"]
+
+COPY app/ /app/
+WORKDIR /app/
+RUN chmod a+x /app/bin/*
