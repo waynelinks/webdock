@@ -10,6 +10,7 @@ VOLUME $NPM_CACHE_DIR
 
 RUN npm install --global \
     typescript \
-    webpack
+    webpack \
+&& rm -rf $NPM_CACHE_DIR/*
 
 CMD ["sleep", "infinity"]

@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Reorganize Dockerfiles for better cache support - move app's stuff
   at the end of the file.
 
+### Fixed
+
+- Clear NPM cache directory after image dependencies installation.
+
 ## [0.4.5] - 2018-03-12
 
 ### Added
