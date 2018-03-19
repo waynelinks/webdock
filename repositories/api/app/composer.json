@@ -1,5 +1,7 @@
 {
-    "require": {},
+    "require": {
+        "php-amqplib/php-amqplib": "*"
+    },
     "require-dev": {},
     "scripts": {}
 }

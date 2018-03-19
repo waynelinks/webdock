@@ -4,6 +4,7 @@ services:
     image: damlys/webdock-api:${APP_VERSION}
     depends_on:
       - mysql
+      - rabbitmq
       - redis
     env_file:
       - .env
@@ -13,6 +14,7 @@ services:
     image: damlys/webdock-api:${APP_VERSION}
     depends_on:
       - mysql
+      - rabbitmq
       - redis
     env_file:
       - .env
@@ -24,6 +26,12 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+
+  rabbitmq:
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER
+      - RABBITMQ_DEFAULT_PASS
 
   redis:
     image: redis:latest
