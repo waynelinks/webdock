@@ -33,6 +33,7 @@ http {
     keepalive_timeout 65s;
 
     gzip on;
+    gzip_disable "msie6";
 
     map "${APP_NGINX_BASIC_AUTH}" $authenticable {
         on "Restricted";
