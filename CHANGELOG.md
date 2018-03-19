@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Reorganize Dockerfiles for better cache support - move app's stuff
   at the end of the file.
 - Rename `latest` tag to `example` for project's images.
+- Remove hosts and ports from `.env` file.
 
 ### Fixed
 

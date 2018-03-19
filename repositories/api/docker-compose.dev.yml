@@ -1,27 +1,14 @@
 version: "2"
 services:
   app_cron:
-    depends_on:
-      - mailhog
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
 
   app_web:
-    depends_on:
-      - mailhog
     volumes:
       - composer_cache:/var/cache/composer
       - ./app/:/app/
-
-  mailhog:
-    image: mailhog/mailhog:latest
-    ports:
-      - ${MAILHOG_PORT}:8025
-
-  mysql:
-    ports:
-      - ${MYSQL_PORT}:3306
 
 volumes:
   composer_cache:
