@@ -1,4 +1,4 @@
-FROM damlys/webdock-api-foundation:latest
+FROM damlys/webdock-api-foundation:example
 
 ENV APP_ENVIRONMENT="prod" \
     APP_DEBUG="off" \

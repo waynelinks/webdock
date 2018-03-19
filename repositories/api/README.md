@@ -24,8 +24,8 @@ $ docker build --no-cache --tag damlys/webdock-api:build .
 #### Release
 
 ```
-$ docker tag damlys/webdock-api:build damlys/webdock-api:latest
-$ docker push damlys/webdock-api:latest
+$ docker tag damlys/webdock-api:build damlys/webdock-api:example
+$ docker push damlys/webdock-api:example
 ```
 
 ### Run

@@ -11,7 +11,7 @@ node {
 
     stage('Release') {
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            dockerImage.push('latest')
+            dockerImage.push('example')
         }
     }
 }

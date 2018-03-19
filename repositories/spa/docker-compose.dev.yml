@@ -5,7 +5,7 @@ services:
       - ./app/public/:/app/public/
 
   node:
-    image: damlys/webdock-node:latest
+    image: damlys/webdock-node:example
     volumes:
       - npm_cache:/var/cache/npm
       - ./app/:/app/
