@@ -7,8 +7,8 @@ RUN apt-get update
 ARG COMPOSER_CACHE_DIR="/var/cache/composer"
 ADD https://getcomposer.org/installer /usr/local/bin/composer-installer
 RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
-&& chmod --recursive 777 $COMPOSER_CACHE_DIR \
 && mkdir --parents $COMPOSER_CACHE_DIR \
+&& chmod --recursive 777 $COMPOSER_CACHE_DIR \
 && composer config --global cache-dir $COMPOSER_CACHE_DIR
 VOLUME $COMPOSER_CACHE_DIR
 

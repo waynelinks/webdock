@@ -1,5 +1,6 @@
 {
     "require": {
+        "league/flysystem": "*",
         "php-amqplib/php-amqplib": "*"
     },
     "require-dev": {},

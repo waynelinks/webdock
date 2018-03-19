@@ -8,7 +8,7 @@ ENV APP_ENVIRONMENT="prod" \
     APP_VERSION="undefined" \
     APP_NGINX_BASIC_AUTH="off" \
     APP_NGINX_WORKERS_COUNT="1" \
-    APP_API_ENDPOINT="http://127.0.0.1:81"
+    APP_API_URL="http://127.0.0.1:50080"
 
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template

@@ -50,7 +50,7 @@ http {
         root /app/public/;
         index index.html;
 
-        # Remove front controller from URL
+        # Remove front controller from the URI
         if ($request_uri ~ "^/index\.html/?(.*)$") {
             return 301 $scheme://$http_host/$1;
         }
