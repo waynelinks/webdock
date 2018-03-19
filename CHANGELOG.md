@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `APP_PHP_SESSION_DATABASE_ID` env.
 - `make build` commands.
 - RabbitMQ service in the API repository.
+- Git inside API Foundation and Node images.
 
 ### Changed
 
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Clear NPM cache directory after image dependencies installation.
+- Install `zip` extension in the API Foundation image.
 
 ## [0.4.5] - 2018-03-12
 

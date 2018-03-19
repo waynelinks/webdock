@@ -8,6 +8,8 @@ RUN mkdir --parents $NPM_CACHE_DIR \
 && npm config set cache $NPM_CACHE_DIR --global
 VOLUME $NPM_CACHE_DIR
 
+RUN apt-get install --yes git
+
 RUN npm install --global \
     typescript \
     webpack \
