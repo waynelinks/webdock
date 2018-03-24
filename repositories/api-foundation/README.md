@@ -10,12 +10,12 @@ WebDock's API Foundation image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-api-foundation:build .
+$ docker build --no-cache --tag damlys/webdock-api-foundation:unreleased .
 ```
 
 #### Release
 
 ```
-$ docker tag damlys/webdock-api-foundation:build damlys/webdock-api-foundation:example
+$ docker tag damlys/webdock-api-foundation:unreleased damlys/webdock-api-foundation:example
 $ docker push damlys/webdock-api-foundation:example
 ```

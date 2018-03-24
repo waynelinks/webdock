@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.4.6] - 2018-03-25
+
 ### Added
 
 - `APP_PHP_SESSION_DATABASE_ID` env.
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   at the end of the file.
 - Rename `latest` tag to `example` for project's images.
 - Remove hosts and ports from `.env` file.
+- Rename `build` tag to `unreleased` for project's images.
 
 ### Fixed
 

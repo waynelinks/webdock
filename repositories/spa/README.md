@@ -14,7 +14,7 @@ WebDock's SPA image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-spa:build .
+$ docker build --no-cache --tag damlys/webdock-spa:unreleased .
 ```
 
 #### Test
@@ -24,7 +24,7 @@ $ docker build --no-cache --tag damlys/webdock-spa:build .
 #### Release
 
 ```
-$ docker tag damlys/webdock-spa:build damlys/webdock-spa:example
+$ docker tag damlys/webdock-spa:unreleased damlys/webdock-spa:example
 $ docker push damlys/webdock-spa:example
 ```
 

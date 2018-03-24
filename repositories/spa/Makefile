@@ -8,7 +8,7 @@ logs:
 	docker-compose logs --tail 25 --follow app_web
 
 build:
-	docker build --no-cache --tag damlys/webdock-spa:build .
+	docker build --no-cache --tag damlys/webdock-spa:unreleased .
 up:
 	docker-compose up -d
 start:

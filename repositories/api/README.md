@@ -14,7 +14,7 @@ WebDock's API image
 #### Build
 
 ```
-$ docker build --no-cache --tag damlys/webdock-api:build .
+$ docker build --no-cache --tag damlys/webdock-api:unreleased .
 ```
 
 #### Test
@@ -24,7 +24,7 @@ $ docker build --no-cache --tag damlys/webdock-api:build .
 #### Release
 
 ```
-$ docker tag damlys/webdock-api:build damlys/webdock-api:example
+$ docker tag damlys/webdock-api:unreleased damlys/webdock-api:example
 $ docker push damlys/webdock-api:example
 ```
 

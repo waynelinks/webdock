@@ -12,7 +12,7 @@ install-xdebug:
 	docker-compose exec app_web chmod a+w /app/xdebug/
 
 build:
-	docker build --no-cache --tag damlys/webdock-api:build .
+	docker build --no-cache --tag damlys/webdock-api:unreleased .
 up:
 	docker-compose up -d
 start:
