@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Clear NPM cache directory after image dependencies installation.
 - Install `zip` extension in the API Foundation image.
+- Redirect Nginx 404 page to the application's front controller.
 
 ## [0.4.5] - 2018-03-12
 

@@ -60,6 +60,7 @@ http {
         location / {
             try_files $uri /index.html;
         }
+        error_page 404 /index.html;
 
         location ~* \.(css|js)$ {
             expires 365d;
