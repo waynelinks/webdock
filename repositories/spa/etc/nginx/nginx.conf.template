@@ -8,7 +8,7 @@ error_log /dev/stderr error;
 
 events {
     worker_connections 1024;
-    multi_accept off;
+    multi_accept on;
 }
 
 http {
@@ -57,16 +57,14 @@ http {
         }
 
         # Use front controller if file not exists
-        location / {
-            try_files $uri /index.html;
-        }
+        try_files $uri /index.html;
         error_page 404 /index.html;
 
         location ~* \.(css|js)$ {
             expires 365d;
         }
 
-        location ~* \.(jpg|jpeg|gif|png|svg|ico)$ {
+        location ~* \.(gif|ico|jpe?g|png|svg)$ {
             expires 30d;
         }
     }

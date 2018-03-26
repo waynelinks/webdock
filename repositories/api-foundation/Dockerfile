@@ -23,7 +23,6 @@ RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filenam
 && mkdir --parents $COMPOSER_CACHE_DIR \
 && chmod --recursive 777 $COMPOSER_CACHE_DIR \
 && composer config --global cache-dir $COMPOSER_CACHE_DIR
-VOLUME $COMPOSER_CACHE_DIR
 
 # Install PHP dependencies
 RUN apt-get install --yes \

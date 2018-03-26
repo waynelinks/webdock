@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+default: bash
+
 bash:
 	docker-compose exec app_web bash
 logs:
