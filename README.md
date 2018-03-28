@@ -7,11 +7,11 @@ be prepared for PHP MPA in few minutes.
 
 ## Getting started
 
-These instructions will help you run any sub-repository from this project.
+These instructions will help you run any service from this project.
 
 ### Prerequisites
 
-To start working with WebDock's repositories you have to install this software:
+To start working with WebDock's services you have to install this software:
 
 * [Docker Engine](https://docs.docker.com/engine/)
 * [Docker Compose](https://docs.docker.com/compose/)
@@ -50,9 +50,9 @@ Add `172.17.0.1 docker.localhost www.docker.localhost` line to
 the `/etc/hosts` file
 (`C:\Windows\System32\Drivers\etc\hosts` file for Windows).
 
-### Copy repositories
+### Copy files
 
-Copy any [sub-repository](./repositories/) from this project to your
+Copy any [service](./services/) from this project to your
 own Git repository and follow it's readme file.
 
 #### Docker registry
@@ -62,10 +62,10 @@ own Git repository and follow it's readme file.
 Create own repositories for the following images and replace them in your projects.
 
 ```
-damlys/webdock-api-foundation
-damlys/webdock-api
-damlys/webdock-node
-damlys/webdock-spa
+damlys/webdock-php-foundation
+damlys/webdock-php-web-server
+damlys/webdock-web-assets-builder
+damlys/webdock-web-client
 ```
 
 ## Useful links

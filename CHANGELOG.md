@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Rename `repositories/` to `services/`.
+
 ### Removed
 
 - Cache volumes from Dockerfiles.
