@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- `index.html.template` file inside Web Client service.
+
 ### Changed
 
-- Rename `repositories/` to `services/`.
+- Rename `repositories/` to `services/` and folders inside:
+  ```
+  api-foundation -> php-foundation
+  api            -> php-web-server
+  node           -> web-assets-builder
+  spa            -> web-client
+  ```
 
 ### Removed
 

@@ -27,5 +27,6 @@
 # Package managers
 /app/node_modules/
 
-# Public file with environment variables
+# Generated public files
 /app/public/env.js
+/app/public/index.html

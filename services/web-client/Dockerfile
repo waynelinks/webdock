@@ -13,6 +13,7 @@ ENV APP_ENVIRONMENT="prod" \
 COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY etc/env.js.template /etc/env.js.template
+COPY etc/index.html.template /etc/index.html.template
 
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 RUN chmod a+x /usr/local/bin/entrypoint
