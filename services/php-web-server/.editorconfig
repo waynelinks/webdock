@@ -1,4 +1,4 @@
-# See http://editorconfig.org
+# Docs: http://editorconfig.org
 
 root = true
 
@@ -20,7 +20,7 @@ trim_trailing_whitespace = false
 
 [*.php]
 
-[*.{yml,yaml}]
+[*.{yaml,yml}]
 indent_size = 2
 
 [Makefile]

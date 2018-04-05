@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.5.0] - 2018-04-24
+
 ### Added
 
 - `index.html.template` file inside Web Client service.
+- Support for custom Nginx basic auth credentials.
 
 ### Changed
 
@@ -20,6 +23,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   node           -> web-assets-builder
   spa            -> web-client
   ```
+- Use global volumes for package managers cache.
+- Move `docker-compose.*.yml` files to `compose/` directory.
+- Rename `.env.dist` file to `.env.compose`.
+- Use data source name (DSN) convention for attached resources in Dockerfiles.
+- Healthcheck for PHP `--start-web` entrypoint.
 
 ### Removed
 

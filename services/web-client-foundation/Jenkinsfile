@@ -6,19 +6,14 @@ node {
     def dockerImage
 
     stage('Build') {
-        dockerImage = docker.build('damlys/webdock-php-foundation')
+        dockerImage = docker.build('damlys/webdock-web-client-foundation')
     }
 
     stage('Test') {
         dockerImage.inside {
-            sh 'dpkg --status cron'
-            sh 'dpkg --status git'
-            sh 'dpkg --status nginx'
-            sh 'dpkg --status gettext'
+            sh 'dpkg --status apache2-utils'
 
-            sh 'php --version'
-            sh 'php-fpm --version'
-            sh 'composer --version'
+            sh 'nginx -v'
         }
     }
 

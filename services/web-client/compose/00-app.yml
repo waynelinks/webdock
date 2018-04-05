@@ -3,4 +3,4 @@ services:
   web:
     image: damlys/webdock-web-client:${APP_VERSION}
     env_file:
-      - .env
+      - ./../.env

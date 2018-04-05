@@ -10,7 +10,7 @@ node {
     }
 
     stage('Test') {
-        dockerImage.inside(
+        dockerImage.inside {
             sh 'dpkg --status git'
 
             sh 'git --version'
@@ -19,7 +19,7 @@ node {
             sh 'tsc --version'
             sh 'webpack --version'
             sh 'webpack-cli --version'
-        )
+        }
     }
 
     stage('Release') {

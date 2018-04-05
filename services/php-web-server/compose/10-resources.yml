@@ -1,0 +1,40 @@
+version: "2"
+services:
+  web:
+    depends_on:
+      - minio
+      - mysql
+      - rabbitmq
+      - redis
+
+  cron:
+    depends_on:
+      - minio
+      - mysql
+      - rabbitmq
+      - redis
+
+  minio:
+    image: minio/minio:latest
+    environment:
+      - MINIO_ACCESS_KEY
+      - MINIO_SECRET_KEY
+    command: minio server /data
+
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+
+  rabbitmq:
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+
+  redis:
+    image: redis:latest
+    command: ["--requirepass", "${REDIS_PASSWORD}"]

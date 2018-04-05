@@ -15,7 +15,7 @@ $ docker build --no-cache --tag damlys/webdock-web-assets-builder:unreleased .
 
 #### Test
 
-See Jenkinsfile's test stage.
+See [Jenkinsfile](Jenkinsfile)'s test stage.
 
 #### Release
 

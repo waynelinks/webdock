@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
-set -e
-
 substitute_dockerfile_envs()
 {
     envsubst $(printenv | grep '^APP_' | cut -f1 -d'=' | sed 's/.*/\\\${&}/' | tr '\n' ',')
 }
 
-case $1 in
+set -e
+
+if [ "$APP_DEBUG" == "off" ]
+then
+    composer run-script migrate
+fi
+
+export ENTRYPOINT_ARGUMENT=$1
+case $ENTRYPOINT_ARGUMENT in
     '--start-cron')
         (printenv | grep '^APP_') > /etc/cronenvs
         crontab /etc/crontab
@@ -21,18 +27,23 @@ case $1 in
     '--start-nginx')
         export APP_NGINX_LOGGABLE='1'
         substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
+        htpasswd -b -c /etc/nginx/htpasswd $APP_NGINX_BASIC_AUTH_USER $APP_NGINX_BASIC_AUTH_PASSWORD
         nginx -g 'daemon off;'
     ;;
 
     '--start-web')
         export APP_NGINX_LOGGABLE='0'
         substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
+        htpasswd -b -c /etc/nginx/htpasswd $APP_NGINX_BASIC_AUTH_USER $APP_NGINX_BASIC_AUTH_PASSWORD
         nginx -g 'daemon on;'
 
         php-fpm --nodaemonize
     ;;
 
     *)
+        export ENTRYPOINT_ARGUMENT="unrecognized: $@"
         exec "$@"
     ;;
 esac
+
+exit 0

@@ -1,5 +1,5 @@
 FROM php:fpm
-# php:fpm exposes port 9000
+# php:~fpm exposes port 9000
 
 RUN apt-get update
 
@@ -11,16 +11,18 @@ RUN apt-get install --yes git
 
 # Install Nginx
 RUN apt-get install --yes \
+    apache2-utils \
     gettext \
     nginx \
 && service nginx stop
 EXPOSE 80
 
 # Install Composer
-ARG COMPOSER_CACHE_DIR="/var/cache/composer"
 ADD https://getcomposer.org/installer /usr/local/bin/composer-installer
-RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
-&& mkdir --parents $COMPOSER_CACHE_DIR \
+RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer
+
+ARG COMPOSER_CACHE_DIR="/var/cache/composer"
+RUN mkdir --parents $COMPOSER_CACHE_DIR \
 && chmod --recursive 777 $COMPOSER_CACHE_DIR \
 && composer config --global cache-dir $COMPOSER_CACHE_DIR
 

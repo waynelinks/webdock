@@ -15,7 +15,7 @@ $ docker build --no-cache --tag damlys/webdock-php-foundation:unreleased .
 
 #### Test
 
-See Jenkinsfile's test stage.
+See [Jenkinsfile](Jenkinsfile)'s test stage.
 
 #### Release
 

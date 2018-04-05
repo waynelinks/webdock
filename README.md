@@ -66,20 +66,37 @@ damlys/webdock-php-foundation
 damlys/webdock-php-web-server
 damlys/webdock-web-assets-builder
 damlys/webdock-web-client
+damlys/webdock-web-client-foundation
 ```
 
 ## Useful links
 
 - [12 factor app](https://12factor.net/)
+- [Semantic Versioning 2.0.0](https://semver.org)
+    - [Software release life cycle: Stages of development - Wikipedia](https://en.wikipedia.org/wiki/Software_release_life_cycle#Stages_of_development)
+- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ###### Docker
 
 - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 - [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
-- [Compose file version 2 reference](https://docs.docker.com/compose/compose-file/compose-file-v2/)
-- [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
 - [Repositories on Docker Hub](https://docs.docker.com/docker-hub/repos/)
-- [Use multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
+- [Compose file version 2 reference](https://docs.docker.com/compose/compose-file/compose-file-v2/)
+- [Compose file version 3 reference](https://docs.docker.com/compose/compose-file/)
+- [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
+    - [Compose CLI environment variables](https://docs.docker.com/compose/reference/envvars/)
+
+###### PHP
+
+- [Scripts - Composer](https://getcomposer.org/doc/articles/scripts.md)
+- [thephpleague/flysystem: Abstraction for local and remote filesystems](https://github.com/thephpleague/flysystem)
+- [Plates - Native PHP Templates](http://platesphp.com)
+- [RabbitMQ - PHP tutorial - "Hello World!"](https://www.rabbitmq.com/tutorials/tutorial-one-php.html)
+- [New in Symfony 3.2: Runtime Environment Variables](https://symfony.com/blog/new-in-symfony-3-2-runtime-environment-variables)
+
+###### Node.js
+
+- [Scripts - NPM](https://docs.npmjs.com/misc/scripts)
 
 ###### Jenkins
 
@@ -87,17 +104,7 @@ damlys/webdock-web-client
 - [Pipeline Syntax](https://jenkins.io/doc/book/pipeline/syntax/)
 - [Using a Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/)
 
-###### PHP
-
-- [Scripts - Composer](https://getcomposer.org/doc/articles/scripts.md)
-- [thephpleague/flysystem: Abstraction for local and remote filesystems](https://github.com/thephpleague/flysystem)
-- [New in Symfony 3.2: Runtime Environment Variables](https://symfony.com/blog/new-in-symfony-3-2-runtime-environment-variables)
-
-###### Node.js
-
-- [Scripts - NPM](https://docs.npmjs.com/misc/scripts)
-
-## Useful images
+## Useful Docker images
 
 - [PHP](https://hub.docker.com/_/php/)
 - [Node.js](https://hub.docker.com/_/node/)

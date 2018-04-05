@@ -1,40 +1,35 @@
 FROM damlys/webdock-php-foundation:example
 
-ENV APP_ENVIRONMENT="prod" \
+ENV APP_VERSION="undefined" \
+    APP_ENVIRONMENT="prod" \
     APP_DEBUG="off" \
+
+    APP_NGINX_BASIC_AUTH="off" \
+    APP_NGINX_BASIC_AUTH_USER="demo" \
+    APP_NGINX_BASIC_AUTH_PASSWORD="secret" \
+    APP_NGINX_CGI_HOST="127.0.0.1" \
+    APP_NGINX_CGI_PORT="9000" \
+    APP_NGINX_WORKERS_COUNT="1" \
+    APP_PHP_FPM_WORKERS_COUNT="4" \
+
     APP_DEFAULT_CHARSET="UTF-8" \
     APP_DEFAULT_LOCALE="en-US" \
     APP_DEFAULT_TIMEZONE="UTC" \
-    APP_VERSION="undefined" \
-    APP_NGINX_BASIC_AUTH="off" \
-    APP_NGINX_FASTCGI_HOST="127.0.0.1" \
-    APP_NGINX_FASTCGI_PORT="9000" \
-    APP_NGINX_WORKERS_COUNT="1" \
-    APP_PHP_FPM_WORKERS_COUNT="4" \
-    APP_PHP_SESSION_DATABASE_ID="1" \
-    APP_MYSQL_HOST="127.0.0.1" \
-    APP_MYSQL_PORT="3306" \
-    APP_MYSQL_USER="" \
-    APP_MYSQL_PASSWORD="" \
-    APP_MYSQL_DATABASE="" \
-    APP_RABBITMQ_HOST="127.0.0.1" \
-    APP_RABBITMQ_PORT="5672" \
-    APP_RABBITMQ_USER="" \
-    APP_RABBITMQ_PASSWORD="" \
-    APP_REDIS_HOST="127.0.0.1" \
-    APP_REDIS_PORT="6379" \
-    APP_REDIS_PASSWORD="" \
-    APP_SMTP_HOST="127.0.0.1" \
-    APP_SMTP_PORT="25" \
-    APP_SMTP_USER="" \
-    APP_SMTP_PASSWORD="" \
+
+    APP_CACHE_STORAGE_DSN="tcp://127.0.0.1:6379?auth=password&database=2" \
+    APP_DATA_STORAGE_DSN="mysql://username:password@127.0.0.1:3306/dbname" \
+    APP_FILE_STORAGE_DSN="http://accesskey:secretkey@127.0.0.1/" \
+    APP_LOG_STORAGE_DSN="tcp://127.0.0.1:6379?auth=password&database=0" \
+    APP_MAIL_SENDER_URI="smtp://username:password@127.0.0.1:587/" \
+    APP_MESSAGE_QUEUE_DSN="amqp://username:password@127.0.0.1:5672/" \
+    APP_SESSION_STORAGE_DSN="tcp://127.0.0.1:6379?auth=password&database=1" \
+
     APP_XDEBUG_REMOTE_CONNECT_BACK="off" \
     APP_XDEBUG_REMOTE_HOST="127.0.0.1" \
     APP_XDEBUG_REMOTE_PORT="9000" \
     APP_XDEBUG_IDE_KEY="DOCKER"
 
 COPY etc/cron/crontab /etc/crontab
-COPY etc/nginx/htpasswd /etc/nginx/htpasswd
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
@@ -44,6 +39,10 @@ COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 RUN chmod a+x /usr/local/bin/entrypoint
 ENTRYPOINT ["entrypoint"]
 CMD ["--start-web"]
+
+COPY bin/healthcheck.bash /usr/local/bin/healthcheck
+RUN chmod a+x /usr/local/bin/healthcheck
+HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
 COPY app/ /app/
 WORKDIR /app/

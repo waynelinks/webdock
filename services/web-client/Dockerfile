@@ -1,16 +1,20 @@
-FROM nginx:latest
+FROM damlys/webdock-web-client-foundation:example
 
-ENV APP_ENVIRONMENT="prod" \
+ENV APP_VERSION="undefined" \
+    APP_ENVIRONMENT="prod" \
     APP_DEBUG="off" \
+
+    APP_NGINX_BASIC_AUTH="off" \
+    APP_NGINX_BASIC_AUTH_USER="demo" \
+    APP_NGINX_BASIC_AUTH_PASSWORD="secret" \
+    APP_NGINX_WORKERS_COUNT="1" \
+
     APP_DEFAULT_CHARSET="UTF-8" \
     APP_DEFAULT_LOCALE="en-US" \
     APP_DEFAULT_TIMEZONE="UTC" \
-    APP_VERSION="undefined" \
-    APP_NGINX_BASIC_AUTH="off" \
-    APP_NGINX_WORKERS_COUNT="1" \
-    APP_API_URL="http://127.0.0.1:50080"
 
-COPY etc/nginx/htpasswd /etc/nginx/htpasswd
+    APP_API_GATEWAY_DSN="http://username:password@127.0.0.1:50080/"
+
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 COPY etc/env.js.template /etc/env.js.template
 COPY etc/index.html.template /etc/index.html.template

@@ -2,6 +2,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "test": "echo 'Run all tests!'"
+    "build": "echo 'building...'",
+    "test": "echo 'testing...'"
   }
 }

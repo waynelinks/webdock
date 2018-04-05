@@ -7,50 +7,17 @@ Web Client
 
 ### Prerequisites
 
-1. Build and release at least one version of Web Assets Builder image.
+1. Build and release at least one version of
+   [Web Client Foundation](../web-client-foundation/README.md) image
+   and [Web Assets Builder](../web-assets-builder/README.md) image.
 
-### Development
-
-#### Build
-
-```
-$ docker build --no-cache --tag damlys/webdock-web-client:unreleased .
-```
-
-#### Run
+### Prepare development environment
 
 ```
-$ cp .env.dist .env
-$ docker-compose up -d
+$ make build-image
+$ cp .env.compose .env
+$ make up
+$ make build-app
 ```
 
 Open port 80 in the browser.
-
-#### Test
-
-Inside `assets_builder` container:
-
-```
-$ npm run test
-```
-
-#### Release
-
-```
-$ docker tag damlys/webdock-web-client:unreleased damlys/webdock-web-client:example
-$ docker push damlys/webdock-web-client:example
-```
-
-### Deployment
-
-Write something own here.
-
-#### Security notes
-
-Enable HTTP Basic Auth on non-production servers with the following value:
-
-```
-APP_NGINX_BASIC_AUTH=on
-```
-
-Credentials: `demo`/`demo`.

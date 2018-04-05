@@ -1,0 +1,12 @@
+version: "2"
+services:
+  web:
+    image: damlys/webdock-php-web-server:${APP_VERSION}
+    env_file:
+      - ./../.env
+
+  cron:
+    image: damlys/webdock-php-web-server:${APP_VERSION}
+    env_file:
+      - ./../.env
+    command: ["--start-cron"]
