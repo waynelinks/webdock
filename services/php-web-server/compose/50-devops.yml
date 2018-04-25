@@ -28,6 +28,11 @@ services:
     ports:
       - ${MYSQL_PORT}:3306
 
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - ${RABBITMQ_MANAGEMENT_PORT}:15672
+
   redis-commander:
     image: rediscommander/redis-commander:latest
     ports:
