@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `X-Version` HTTP header.
-- Adminer container.
+- [Adminer](https://hub.docker.com/_/adminer/) container.
+- [Redis Commander](https://hub.docker.com/r/rediscommander/redis-commander/) container.
 
 ## [0.5.0] - 2018-04-24
 
