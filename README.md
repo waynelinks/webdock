@@ -120,6 +120,7 @@ damlys/webdock-web-client-foundation
 ###### Storage
 
 - [MySQL](https://hub.docker.com/_/mysql/)
+    - [Adminer](https://hub.docker.com/_/adminer/)
     - [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
     - [MariaDB](https://hub.docker.com/_/mariadb/)
 - [Postgres](https://hub.docker.com/_/postgres/)
