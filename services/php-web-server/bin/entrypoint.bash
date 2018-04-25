@@ -20,19 +20,17 @@ case $ENTRYPOINT_ARGUMENT in
         cron -f
     ;;
 
-    '--start-fpm')
-        php-fpm --nodaemonize
-    ;;
-
-    '--start-nginx')
-        export APP_NGINX_LOGGABLE='1'
-        substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
-        htpasswd -b -c /etc/nginx/htpasswd $APP_NGINX_BASIC_AUTH_USER $APP_NGINX_BASIC_AUTH_PASSWORD
-        nginx -g 'daemon off;'
-    ;;
+#    '--start-fpm')
+#        php-fpm --nodaemonize
+#    ;;
+#
+#    '--start-nginx')
+#        substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
+#        htpasswd -b -c /etc/nginx/htpasswd $APP_NGINX_BASIC_AUTH_USER $APP_NGINX_BASIC_AUTH_PASSWORD
+#        nginx -g 'daemon off;'
+#    ;;
 
     '--start-web')
-        export APP_NGINX_LOGGABLE='0'
         substitute_dockerfile_envs < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
         htpasswd -b -c /etc/nginx/htpasswd $APP_NGINX_BASIC_AUTH_USER $APP_NGINX_BASIC_AUTH_PASSWORD
         nginx -g 'daemon on;'
