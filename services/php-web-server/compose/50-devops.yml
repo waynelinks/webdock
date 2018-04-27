@@ -19,6 +19,13 @@ services:
     image: mailhog/mailhog:latest
     ports:
       - ${MAILHOG_PORT}:8025
+    entrypoint: >
+      sh -c "
+        mkdir -p /var/tmp/mailhog/;
+        echo \"${MAILHOG_USER}:$$(MailHog bcrypt ${MAILHOG_PASSWORD})\" > /var/tmp/mailhog/htpasswd;
+        MailHog -auth-file=/var/tmp/mailhog/htpasswd;
+        exit 0;
+      "
 
   minio:
     ports:
@@ -33,7 +40,7 @@ services:
     ports:
       - ${RABBITMQ_MANAGEMENT_PORT}:15672
 
-  redis-commander:
+  redis_commander:
     image: rediscommander/redis-commander:latest
     ports:
     - ${REDIS_COMMANDER_PORT}:8081
