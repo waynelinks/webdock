@@ -2,12 +2,12 @@ version: "2"
 services:
   web:
     volumes:
-      - ./../app/:/app/
+      - ./../app/:/opt/app/
       - global_composer_cache:/var/cache/composer
 
   cron:
     volumes:
-      - ./../app/:/app/
+      - ./../app/:/opt/app/
       - global_composer_cache:/var/cache/composer
 
 volumes:

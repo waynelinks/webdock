@@ -8,4 +8,4 @@
 # │ └──────────────────── hour (0 - 23)
 # └───────────────────────── min (0 - 59)
 
-* * * * * export $(cat /etc/cronenvs); /usr/local/bin/php --file /app/bin/console.php > /proc/1/fd/1 2>/proc/1/fd/2
+* * * * * export $(cat /etc/cronenvs); /usr/local/bin/php --file /opt/app/bin/console.php > /proc/1/fd/1 2>/proc/1/fd/2

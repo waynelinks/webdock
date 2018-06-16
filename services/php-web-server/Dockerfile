@@ -44,6 +44,6 @@ HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 COPY bin/operations.bash /usr/local/bin/operations
 RUN chmod a+x /usr/local/bin/operations
 
-COPY app/ /app/
-WORKDIR /app/
-RUN chmod a+x /app/bin/*
+COPY app/ /opt/app/
+WORKDIR /opt/app/
+RUN chmod a+x /opt/app/bin/*

@@ -21,5 +21,5 @@ RUN chmod a+x /usr/local/bin/entrypoint
 ENTRYPOINT ["entrypoint"]
 CMD ["--start-web"]
 
-COPY app/public/ /app/public/
-WORKDIR /app/
+COPY app/public/ /opt/app/public/
+WORKDIR /opt/app/
