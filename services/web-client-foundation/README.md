@@ -1,5 +1,5 @@
 Web Client Foundation
-========================
+===
 
 [Changelog](CHANGELOG.md)
 

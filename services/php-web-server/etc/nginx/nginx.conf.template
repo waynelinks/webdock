@@ -61,7 +61,7 @@ http {
 
         # Process front controller requests with PHP-FPM
         location ~ ^/index\.php(/|$) {
-            fastcgi_pass ${APP_NGINX_CGI_HOST}:${APP_NGINX_CGI_PORT};
+            fastcgi_pass ${APP_NGINX_CGI_AUTHORITY};
             fastcgi_index index.php;
             fastcgi_split_path_info ^(.+\.php)(/.*)$;
             include fastcgi_params;

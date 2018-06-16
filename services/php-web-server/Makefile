@@ -25,11 +25,12 @@ build-app:
 	docker-compose exec web bash -c "composer install --dev"
 bash:
 	docker-compose exec web bash
-logs:
+watch-logs:
 	docker-compose logs --tail 25 --follow web
-processes:
+watch-processes:
 	docker-compose exec web bash -c "htop || apt-get install --yes htop && htop"
+watch-network:
+	docker-compose exec web bash -c "iftop || apt-get install --yes iftop && iftop"
 install-xdebug:
-	docker-compose exec web bash -c "pecl install xdebug; docker-php-ext-enable xdebug"
+	docker-compose exec web operations --install-xdebug
 	docker-compose restart web
-	docker-compose exec web chmod a+w /app/xdebug/

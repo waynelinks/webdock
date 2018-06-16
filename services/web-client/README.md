@@ -1,5 +1,5 @@
 Web Client
-========================
+===
 
 [Changelog](CHANGELOG.md)
 

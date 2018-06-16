@@ -1,5 +1,5 @@
 Web Assets Builder
-========================
+===
 
 [Changelog](CHANGELOG.md)
 

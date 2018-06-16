@@ -14,10 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [Redis Commander](https://hub.docker.com/r/rediscommander/redis-commander/) container.
 - [RabbitMQ Management](https://www.rabbitmq.com/management.html) support.
 - MailHog credentials.
+- `APP_XDEBUG_REMOTE_AUTOSTART` env.
+- `operations.bash` file.
 
 ### Changed
 
 - Rename `php-foundation` to `php-web-server-foundation`.
+- `APP_NGINX_CGI_AUTHORITY` env.
 
 ## [0.5.0] - 2018-04-24
 

@@ -23,7 +23,7 @@ build-app:
 	docker-compose exec assets_builder npm run build
 bash:
 	docker-compose exec web bash
-logs:
+watch-logs:
 	docker-compose logs --tail 25 --follow web
 assets-builder-bash:
 	docker-compose exec assets_builder bash

@@ -1,5 +1,5 @@
 PHP Web Server
-========================
+===
 
 [Changelog](CHANGELOG.md)
 

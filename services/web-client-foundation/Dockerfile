@@ -1,5 +1,5 @@
 FROM nginx:latest
-# nginx:~ exposes port 9000
+# nginx:~ exposes port 80
 
 RUN apt-get update
 

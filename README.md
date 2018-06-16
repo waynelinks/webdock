@@ -1,5 +1,5 @@
 WebDock
-========================
+===
 
 WebDock is a minimalistic Docker starter for web applications.
 Project is designed to build PHP micro services and SPA apps, but it can
