@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [RabbitMQ Management](https://www.rabbitmq.com/management.html) support.
 - MailHog credentials.
 
+### Changed
+
+- Rename `php-foundation` to `php-web-server-foundation`.
+
 ## [0.5.0] - 2018-04-24
 
 ### Added

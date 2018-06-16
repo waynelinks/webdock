@@ -1,4 +1,4 @@
-FROM damlys/webdock-php-foundation:example
+FROM damlys/webdock-php-web-server-foundation:example
 
 ENV APP_VERSION="undefined" \
     APP_ENVIRONMENT="prod" \

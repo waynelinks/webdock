@@ -8,7 +8,7 @@ PHP Web Server
 ### Prerequisites
 
 1. Build and release at least one version of 
-   [PHP Foundation](../php-foundation/README.md) image.
+   [PHP Web Server Foundation](../php-web-server-foundation/README.md) image.
 
 ### Prepare development environment
 

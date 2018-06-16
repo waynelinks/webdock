@@ -62,8 +62,8 @@ own Git repository and follow it's readme file.
 Create own repositories for the following images and replace them in your projects.
 
 ```
-damlys/webdock-php-foundation
 damlys/webdock-php-web-server
+damlys/webdock-php-web-server-foundation
 damlys/webdock-web-assets-builder
 damlys/webdock-web-client
 damlys/webdock-web-client-foundation
