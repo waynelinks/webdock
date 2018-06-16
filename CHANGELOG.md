@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - MailHog credentials.
 - `APP_XDEBUG_REMOTE_AUTOSTART` env.
 - `operations.bash` file.
+- Memory limits in Docker Compose files.
 
 ### Changed
 

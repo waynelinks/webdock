@@ -4,9 +4,13 @@ services:
     image: damlys/webdock-php-web-server:${APP_VERSION}
     env_file:
       - ./../.env
+    mem_limit: 512m
+    memswap_limit: 0
 
   cron:
     image: damlys/webdock-php-web-server:${APP_VERSION}
     env_file:
       - ./../.env
     command: ["--start-cron"]
+    mem_limit: 128m
+    memswap_limit: 0
