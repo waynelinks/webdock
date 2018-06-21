@@ -1,4 +1,4 @@
-#!/usr/bin/make -f
+#!/usr/bin/env make
 
 # Note:
 # `bash -c ""` is a workaround for correct handling of PHP exit codes with Docker.
@@ -8,7 +8,7 @@ default: bash
 build-image:
 	docker build --no-cache --tag damlys/webdock-php-web-server:unreleased .
 up:
-	docker volume create global_composer_cache
+	docker volume create --name=global_composer_cache
 	docker-compose up -d --remove-orphans
 start:
 	docker-compose start

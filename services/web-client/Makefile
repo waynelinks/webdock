@@ -1,11 +1,11 @@
-#!/usr/bin/make -f
+#!/usr/bin/env make
 
 default: assets-builder-bash
 
 build-image:
 	docker build --no-cache --tag damlys/webdock-web-client:unreleased .
 up:
-	docker volume create global_npm_cache
+	docker volume create --name=global_npm_cache
 	docker-compose up -d --remove-orphans
 start:
 	docker-compose start

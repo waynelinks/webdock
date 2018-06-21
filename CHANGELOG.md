@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Clear a package managers cache after every package installation command.
+- Create external volumes commands.
 
 ## [0.5.0] - 2018-04-24
 
