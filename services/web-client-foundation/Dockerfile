@@ -4,6 +4,7 @@ FROM nginx:latest
 RUN apt-get update
 
 RUN apt-get install --yes \
-    apache2-utils
+    apache2-utils \
+&& apt-get clean
 
 CMD ["exit", "0"]

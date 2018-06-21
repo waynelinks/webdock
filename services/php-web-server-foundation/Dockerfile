@@ -4,16 +4,21 @@ FROM php:fpm
 RUN apt-get update
 
 # Install Cron
-RUN apt-get install --yes cron
+RUN apt-get install --yes \
+    cron \
+&& apt-get clean
 
 # Install Git
-RUN apt-get install --yes git
+RUN apt-get install --yes \
+    git \
+&& apt-get clean
 
 # Install Nginx
 RUN apt-get install --yes \
     apache2-utils \
     gettext \
     nginx \
+&& apt-get clean \
 && service nginx stop
 EXPOSE 80
 
@@ -29,8 +34,10 @@ RUN mkdir --parents $COMPOSER_CACHE_DIR \
 # Install PHP dependencies
 RUN apt-get install --yes \
     zlib1g-dev \
+&& apt-get clean \
 && pecl install \
     redis \
+&& pecl clear-cache \
 && docker-php-ext-install \
     pdo_mysql \
     opcache \

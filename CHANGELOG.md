@@ -25,6 +25,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Rename `php-foundation` to `php-web-server-foundation`.
 - `APP_NGINX_CGI_AUTHORITY` env.
 
+### Fixed
+
+- Clear a package managers cache after every package installation command.
+
 ## [0.5.0] - 2018-04-24
 
 ### Added
