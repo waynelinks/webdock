@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `operations.bash` file.
 - Memory limits in Docker Compose files.
 - Move application code to `/opt/app/` directory.
+- Add `file_uploads` to PHP configuration file.
 
 ### Changed
 
