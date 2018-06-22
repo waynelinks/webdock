@@ -14,7 +14,6 @@ node {
             sh 'dpkg --status git'
 
             sh 'git --version'
-            sh 'node --version'
             sh 'npm --version'
             sh 'tsc --version'
             sh 'webpack --version'

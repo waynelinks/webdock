@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Memory limits in Docker Compose files.
 - Move application code to `/opt/app/` directory.
 - Add `file_uploads` to PHP configuration file.
+- Bash completion support.
 
 ### Changed
 
@@ -29,7 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Clear a package managers cache after every package installation command.
 - Create external volumes commands.
-- Healthcheck.
+- Health check.
 
 ## [0.5.0] - 2018-04-24
 
