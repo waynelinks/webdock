@@ -12,8 +12,8 @@ then
     composer run-script migrate
 fi
 
-export ENTRYPOINT_ARGUMENT=$1
-case $ENTRYPOINT_ARGUMENT in
+echo $1 > /etc/docker_entrypoint_argument
+case $1 in
     '--start-cron')
         printenv > /etc/cronenvs
         crontab /etc/crontab
@@ -39,7 +39,7 @@ case $ENTRYPOINT_ARGUMENT in
     ;;
 
     *)
-        export ENTRYPOINT_ARGUMENT="unrecognized: $@"
+        echo "unrecognized: $@" > /etc/docker_entrypoint_argument
         exec "$@"
     ;;
 esac

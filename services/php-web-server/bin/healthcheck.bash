@@ -2,7 +2,7 @@
 
 set -e
 
-case $ENTRYPOINT_ARGUMENT in
+case $(cat /etc/docker_entrypoint_argument) in
     '--start-web')
         service nginx status || exit 1
     ;;

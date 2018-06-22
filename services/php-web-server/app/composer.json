@@ -30,8 +30,8 @@
         ],
         "test": [
             "phpunit",
-            "phpspec run",
-            "behat"
+            "phpspec run --no-code-generation",
+            "behat --format progress"
         ],
         "migrate": [
             "echo 'migrating...'"

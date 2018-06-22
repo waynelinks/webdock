@@ -7,8 +7,7 @@ substitute_environment_variables()
 
 set -e
 
-export ENTRYPOINT_ARGUMENT=$1
-case $ENTRYPOINT_ARGUMENT in
+case $1 in
     '--start-web')
         substitute_environment_variables < /etc/env.js.template > /opt/app/public/env.js
         substitute_environment_variables < /etc/index.html.template > /opt/app/public/index.html
@@ -19,7 +18,6 @@ case $ENTRYPOINT_ARGUMENT in
     ;;
 
     *)
-        export ENTRYPOINT_ARGUMENT="unrecognized: $@"
         exec "$@"
     ;;
 esac
