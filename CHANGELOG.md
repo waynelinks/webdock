@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Move application code to `/opt/app/` directory.
 - Add `file_uploads` to PHP configuration file.
 - Bash completion support.
+- NPM `postinstall` script.
 
 ### Changed
 

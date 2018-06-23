@@ -19,8 +19,7 @@ diff:
 	diff .env.compose .env
 
 build-app:
-	docker-compose exec assets_builder npm install
-	docker-compose exec assets_builder npm run build
+	docker-compose exec assets_builder npm install --unsafe-perm
 bash:
 	docker-compose exec web bash
 watch-logs:

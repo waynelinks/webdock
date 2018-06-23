@@ -9,7 +9,7 @@ services:
     volumes:
       - ./../app/:/opt/app/
       - global_npm_cache:/var/cache/npm
-    working_dir: /app/
+    working_dir: /opt/app/
 
 volumes:
   global_npm_cache:

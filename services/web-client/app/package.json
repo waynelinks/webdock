@@ -2,6 +2,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
+    "postinstall": "npm run build",
     "build": "echo 'building...'",
     "test": "echo 'testing...'"
   }
