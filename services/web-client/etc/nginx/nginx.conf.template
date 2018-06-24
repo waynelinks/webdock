@@ -15,6 +15,7 @@ http {
     charset ${APP_DEFAULT_CHARSET};
     server_tokens off;
     add_header X-Version ${APP_VERSION};
+    expires -1;
 
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
@@ -30,7 +31,6 @@ http {
     keepalive_timeout 65s;
 
     gzip on;
-    gzip_disable "msie6";
 
     map "${APP_NGINX_BASIC_AUTH}" $authenticable {
         on "Restricted";
