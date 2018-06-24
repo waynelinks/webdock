@@ -21,7 +21,7 @@ APP_VERSION=${uniqueTag}
 APP_ENVIRONMENT=prod
 APP_DEBUG=on
 
-APP_API_GATEWAY_DSN=http://docker.localhost:81/
+APP_API_GATEWAY_DSN=http://docker.localhost:81
 """.toString())
         sh 'docker volume create global_npm_cache'
         sh 'docker-compose up -d --remove-orphans'

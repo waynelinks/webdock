@@ -15,10 +15,10 @@ ENV APP_VERSION="undefined" \
     APP_DEFAULT_TIMEZONE="UTC" \
     APP_CACHE_STORAGE_DSN="redis://127.0.0.1:6379?auth=password&database=2" \
     APP_DATA_STORAGE_DSN="mysql://username:password@127.0.0.1:3306/dbname" \
-    APP_FILE_STORAGE_DSN="http://accesskey:secretkey@127.0.0.1/" \
+    APP_FILE_STORAGE_DSN="http://accesskey:secretkey@127.0.0.1" \
     APP_LOG_STORAGE_DSN="redis://127.0.0.1:6379?auth=password&database=0" \
-    APP_MAIL_SENDER_URI="smtp://username:password@127.0.0.1:587/" \
-    APP_MESSAGE_QUEUE_DSN="amqp://username:password@127.0.0.1:5672/" \
+    APP_MAIL_SENDER_URL="smtp://username:password@127.0.0.1:587" \
+    APP_MESSAGE_QUEUE_DSN="amqp://username:password@127.0.0.1:5672" \
     APP_SESSION_STORAGE_DSN="redis://127.0.0.1:6379?auth=password&database=1" \
     APP_XDEBUG_REMOTE_AUTOSTART="off" \
     APP_XDEBUG_REMOTE_CONNECT_BACK="off" \
