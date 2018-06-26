@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+print_environment_variables()
+{
+    export -p | sed 's/declare -x/export/g'
+}
 substitute_environment_variables()
 {
     envsubst $(printenv | cut -f1 -d'=' | sed 's/.*/\\\${&}/' | tr '\n' ',')
@@ -15,7 +19,7 @@ fi
 echo $1 > /etc/docker_entrypoint_argument
 case $1 in
     '--start-cron')
-        printenv > /etc/cronenvs
+        print_environment_variables > /etc/cronenvs
         crontab /etc/crontab
         cron -f
     ;;

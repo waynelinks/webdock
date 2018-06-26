@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.5.2] - 2018-06-26
+
+### Fixed
+
+- Environments variables in cron jobs.
+
 ## [0.5.1] - 2018-06-26
 
 ### Added
