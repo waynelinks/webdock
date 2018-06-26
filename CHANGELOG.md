@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.5.1] - 2018-06-26
+
 ### Added
 
-- `X-Version` HTTP header.
+- Add `X-Version` HTTP header to Ngnix responses.
 - [Adminer](https://hub.docker.com/_/adminer/) container.
 - [Redis Commander](https://hub.docker.com/r/rediscommander/redis-commander/) container.
 - [RabbitMQ Management](https://www.rabbitmq.com/management.html) support.
@@ -32,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Clear a package managers cache after every package installation command.
 - Create external volumes commands.
-- Health check.
+- Broken healthcheck.
 
 ## [0.5.0] - 2018-04-24
 
