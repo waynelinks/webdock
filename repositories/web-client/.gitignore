@@ -1,0 +1,32 @@
+#############################
+### System files
+#############################
+
+/**/*~
+/**/.DS_Store
+
+#############################
+### IDE
+#############################
+
+/.idea/
+/*.sublime-project
+/*.sublime-workspace
+
+#############################
+### Docker
+#############################
+
+# Docker Compose environment config
+/.env
+
+#############################
+### Application
+#############################
+
+# Package managers
+/image/app/node_modules/
+
+# Files generated during container startup
+/image/app/public/env.js
+/image/app/public/index.html

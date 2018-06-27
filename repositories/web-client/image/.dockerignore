@@ -1,0 +1,22 @@
+#############################
+### System files
+#############################
+
+*/*~
+*/.DS_Store
+
+#############################
+### VCS
+#############################
+
+*/.git/
+*/.gitignore
+*/.gitkeep
+
+#############################
+### Application
+#############################
+
+# Files generated during container startup
+app/public/env.js
+app/public/index.html

@@ -1,0 +1,32 @@
+#############################
+### System files
+#############################
+
+/**/*~
+/**/.DS_Store
+
+#############################
+### IDE
+#############################
+
+/.idea/
+/*.sublime-project
+/*.sublime-workspace
+
+#############################
+### Docker
+#############################
+
+# Docker Compose environment config
+/.env
+
+#############################
+### Application
+#############################
+
+# Package managers
+/image/app/vendor/
+
+# Xdebug output dir
+/image/app/xdebug/*
+!/image/app/xdebug/.gitkeep

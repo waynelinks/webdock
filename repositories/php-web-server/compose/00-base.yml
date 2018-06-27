@@ -1,0 +1,38 @@
+version: "2"
+services:
+  cgi_server:
+    image: "damlys/webdock-php-web-server:${APP_VERSION}"
+    command: ["--start-cgi-server"]
+    env_file:
+      - ./../.env
+    mem_limit: 512m
+    memswap_limit: 0
+
+  http_server:
+    image: "damlys/webdock-php-web-server:${APP_VERSION}"
+    depends_on:
+      - cgi_server
+    environment:
+      - APP_CGI_SERVER_HOST=cgi_server
+      - APP_CGI_SERVER_PORT=9000
+    env_file:
+      - ./../.env
+    mem_limit: 32m
+    memswap_limit: 0
+
+  task_scheduler:
+    image: "damlys/webdock-php-web-server:${APP_VERSION}"
+    command: ["--start-task-scheduler"]
+    env_file:
+      - ./../.env
+    mem_limit: 128m
+    memswap_limit: 0
+
+  example_worker:
+    image: "damlys/webdock-php-web-server:${APP_VERSION}"
+    command: ["--start-example-worker"]
+    restart: always
+    env_file:
+      - ./../.env
+    mem_limit: 64m
+    memswap_limit: 0

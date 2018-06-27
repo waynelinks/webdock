@@ -1,0 +1,16 @@
+version: "2"
+services:
+  http_server:
+    volumes:
+      - ./../image/app/public/:/opt/app/public/
+
+  assets_builder:
+    image: damlys/webdock-web-assets-builder:example
+    volumes:
+      - global_npm_cache:/var/cache/npm/
+      - ./../image/app/:/opt/app/
+    working_dir: /opt/app/
+
+volumes:
+  global_npm_cache:
+    external: true

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.6.0] - 2018-08-01
+
+### Added
+
+- Common user name for all backing services (`BACKING_SERVICES_USER`).
+
+### Changed
+
+- Split `web` container into `http_server` and `cgi_server`.
+- Move files required to build Docker images to `image/` directories.
+- Run application processes with `deploy` user.
+
 ## [0.5.2] - 2018-06-26
 
 ### Fixed
@@ -17,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Add `X-Version` HTTP header to Ngnix responses.
+- Add `X-Version` HTTP header to Nginx responses.
 - [Adminer](https://hub.docker.com/_/adminer/) container.
 - [Redis Commander](https://hub.docker.com/r/rediscommander/redis-commander/) container.
 - [RabbitMQ Management](https://www.rabbitmq.com/management.html) support.
@@ -98,7 +110,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Full Nginx config files.
 - `APP_PHP_FPM_WORKERS_COUNT` and `APP_NGINX_WORKERS_COUNT` envs.
-- `--start-fpm` and `--start-ngnix` entrypoints.
+- `--start-fpm` and `--start-nginx` entrypoints.
 
 ### Changed
 

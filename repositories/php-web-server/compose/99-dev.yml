@@ -1,0 +1,25 @@
+version: "2"
+services:
+  cgi_server:
+    volumes:
+      - global_composer_cache:/var/cache/composer/
+      - ./../image/app/:/opt/app/
+
+  http_server:
+    volumes:
+      - global_composer_cache:/var/cache/composer/
+      - ./../image/app/:/opt/app/
+
+  task_scheduler:
+    volumes:
+      - global_composer_cache:/var/cache/composer/
+      - ./../image/app/:/opt/app/
+
+  example_worker:
+    volumes:
+      - global_composer_cache:/var/cache/composer/
+      - ./../image/app/:/opt/app/
+
+volumes:
+  global_composer_cache:
+    external: true
