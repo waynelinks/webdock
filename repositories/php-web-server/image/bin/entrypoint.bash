@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-print_environment_variables()
+serialize_environment_variables()
 {
     export -p | sed 's/declare -x/export/g'
 }
@@ -19,12 +19,12 @@ case "$1" in
 
     '--start-http-server')
         substitute_environment_variables < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
-        htpasswd -b -c /etc/nginx/htpasswd "$APP_HTTP_BASIC_AUTH_USER" "$APP_HTTP_BASIC_AUTH_PASSWORD"
+        htpasswd -b -c /etc/nginx/htpasswd "$WEBSERVER_HTTP_BASIC_AUTH_USER" "$WEBSERVER_HTTP_BASIC_AUTH_PASSWORD"
         nginx -g 'daemon off;'
     ;;
 
     '--start-task-scheduler')
-        print_environment_variables > /etc/cronenvs
+        serialize_environment_variables > /etc/cronenvs
         crontab /etc/crontab
         cron -f
     ;;
