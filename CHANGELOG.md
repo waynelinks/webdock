@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- Use official Nginx package source inside `php-web-server-foundation` image.
+
 ## [0.7.1] - 2018-09-07
 
 ### Added
