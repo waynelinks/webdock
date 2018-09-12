@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `automation-server` repository with Jenkins images and infrastructure.
+- Add volumes to Docker Compose files for stateful services.
 
 ## [0.7.2] - 2018-09-10
 
