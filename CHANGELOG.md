@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Group parsed json logs under `parsed_json_log` key.
 
+### Changed
+
+- Move Jenkins infrastructure to `composes/automation-server/` directory.
+
 ## [0.7.5] - 2018-09-30
 
 ### Added
