@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Move Jenkins infrastructure to `composes/automation-server/` directory.
+- Divide `90-operations.yml` into `21-management.yml` and `90-mocks.yml`.
 
 ### Removed
 
