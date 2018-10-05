@@ -1,0 +1,15 @@
+version: "2"
+services:
+  http_tester:
+    depends_on:
+    - http_server
+    image: ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${DOCKER_IMAGE_VERSION}
+    command: ["sleep", "infinity"]
+    restart: on-failure
+    environment:
+    - WEBSERVERTESTER_TESTS_TARGET_URL=http://http_server
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+    - version=${DOCKER_IMAGE_VERSION}

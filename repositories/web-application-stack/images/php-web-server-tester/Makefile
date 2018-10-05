@@ -25,15 +25,15 @@ build-appilcation:
 run-unit-tests:
 	$(call run_application_builder,composer unit-tests)
 build: download-application-packages
-	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} .
+	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${draftVersion} .
 tag:
-	docker tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} ${DOCKER_IMAGE_PREFIX}php-web-server:${version}
+	docker tag ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${draftVersion} ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${version}
 push:
-	docker push ${DOCKER_IMAGE_PREFIX}php-web-server:${version}
+	docker push ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${version}
 release: tag push
 
 shell:
-	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} bash
+	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}php-web-server-tester:${draftVersion} bash
 application-builder-shell:
 	$(call run_application_builder,bash,--interactive --tty)
 fix-mounted-files-permissions:

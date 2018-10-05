@@ -24,4 +24,9 @@ $logger->info('Web front controller logging stuff.', ['env' => $env]);
 /*
  * Some output
  */
-echo 'Hello world!<br>web front controller / '.$version;
+header('Content-Type: application/json');
+echo json_encode([
+    'message' => 'Hello world!',
+    'from' => 'web front controller',
+    'version' => $version,
+]);

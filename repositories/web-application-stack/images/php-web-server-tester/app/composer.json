@@ -10,20 +10,14 @@
         }
     },
     "require": {
-        "monolog/monolog": "*"
-    },
-    "require-dev": {
+        "guzzlehttp/guzzle": "*",
         "phpunit/phpunit": "*"
     },
+    "require-dev": {
+    },
     "scripts": {
-        "post-install-cmd": [
-            "@build"
-        ],
-        "post-update-cmd": [
-            "@build"
-        ],
-        "build": [
-            "echo 'building...'"
+        "http-tests": [
+            "vendor/bin/phpunit --testsuite 'HTTP Tests Suite'"
         ],
         "unit-tests": [
             "vendor/bin/phpunit --testsuite 'Unit Tests Suite'"

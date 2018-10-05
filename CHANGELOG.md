@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- `php-web-server-tester` image and `http_tester` service.
+
 ### Changed
 
 - Regroup Compose files (`99-development.yml` -> `01-development.yml`).

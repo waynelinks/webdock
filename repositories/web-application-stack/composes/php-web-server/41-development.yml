@@ -1,0 +1,6 @@
+version: "2"
+services:
+  http_tester:
+    volumes:
+    - global_composer_cache:/var/cache/composer/
+    - ./../../images/php-web-server-tester/app/:/opt/app/

@@ -6,6 +6,6 @@
     "scripts": {
         "postinstall": "npm run build",
         "build": "echo 'building...'",
-        "test": "jest --config=jest.unit-tests-suite.js"
+        "unit-tests": "jest --config=jest.unit-tests-suite.js"
     }
 }
