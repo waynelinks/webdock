@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Regroup Compose files (`99-development.yml` -> `01-development.yml`).
+
 ## [0.7.7] - 2018-10-05
 
 ### Added

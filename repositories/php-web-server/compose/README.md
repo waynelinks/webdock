@@ -12,7 +12,7 @@
 $ cp .env.example .env
 ```
 
-**Hey!** Do not use `99-development.yml` file outside of the development environment.
+**Hey!** Do not use `01-development.yml` file outside of the local development environment.
 
 ### Setup
 
