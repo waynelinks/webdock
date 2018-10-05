@@ -13,18 +13,21 @@ build:
 	docker build --no-cache --tag damlys/webdock-php-web-server-foundation:unreleased ./php-web-server-foundation/image/
 	docker tag damlys/webdock-php-web-server-foundation:unreleased damlys/webdock-php-web-server-foundation:0.0.1-example
 	@echo "\e[42m---\e[0m"
-	docker build --no-cache --tag damlys/webdock-web-client:unreleased ./web-client/image/
+
+	docker build --no-cache --tag damlys/webdock-web-client:unreleased ./web-application-stack/images/web-client/
 	docker tag damlys/webdock-web-client:unreleased damlys/webdock-web-client:0.0.1-example
 	@echo "\e[42m---\e[0m"
-	docker build --no-cache --tag damlys/webdock-php-web-server:unreleased ./php-web-server/image/
+	docker build --no-cache --tag damlys/webdock-php-web-server:unreleased ./web-application-stack/images/php-web-server/
 	docker tag damlys/webdock-php-web-server:unreleased damlys/webdock-php-web-server:0.0.1-example
 	@echo "\e[42m---\e[0m"
+
 	docker build --no-cache --tag damlys/webdock-jenkins-master:unreleased ./automation-stack/images/jenkins-master/
 	docker tag damlys/webdock-jenkins-master:unreleased damlys/webdock-jenkins-master:0.0.1-example
 	@echo "\e[42m---\e[0m"
 	docker build --no-cache --tag damlys/webdock-jenkins-slave:unreleased ./automation-stack/images/jenkins-slave/
 	docker tag damlys/webdock-jenkins-slave:unreleased damlys/webdock-jenkins-slave:0.0.1-example
 	@echo "\e[42m---\e[0m"
+
 	docker build --no-cache --tag damlys/webdock-fluent-collector:unreleased ./monitoring-stack/images/fluent-collector/
 	docker tag damlys/webdock-fluent-collector:unreleased damlys/webdock-fluent-collector:0.0.1-example
 	@echo "\e[42m---\e[0m"
@@ -38,14 +41,17 @@ push:
 	@echo "\e[42m---\e[0m"
 	docker push damlys/webdock-php-web-server-foundation:0.0.1-example
 	@echo "\e[42m---\e[0m"
+
 	docker push damlys/webdock-web-client:0.0.1-example
 	@echo "\e[42m---\e[0m"
 	docker push damlys/webdock-php-web-server:0.0.1-example
 	@echo "\e[42m---\e[0m"
+
 	docker push damlys/webdock-jenkins-master:0.0.1-example
 	@echo "\e[42m---\e[0m"
 	docker push damlys/webdock-jenkins-slave:0.0.1-example
 	@echo "\e[42m---\e[0m"
+
 	docker push damlys/webdock-fluent-collector:0.0.1-example
 	@echo "\e[42m---\e[0m"
 	docker push damlys/webdock-fluent-forwarder:0.0.1-example

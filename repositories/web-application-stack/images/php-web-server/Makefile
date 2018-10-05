@@ -22,7 +22,7 @@ download-application-packages:
 	$(call run_application_builder,composer install --no-interaction --no-autoloader --no-scripts)
 build-appilcation:
 	$(call run_application_builder,composer install --no-interaction)
-test-application:
+run-unit-tests:
 	$(call run_application_builder,composer test)
 build: download-application-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} .

@@ -12,10 +12,10 @@
 $ make build-appilcation
 ```
 
-### Test application
+### Run unit tests
 
 ```
-$ make test-appilcation
+$ make run-unit-tests
 ```
 
 ### Build image

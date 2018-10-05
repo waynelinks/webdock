@@ -22,7 +22,7 @@ download-application-packages:
 	$(call run_assets_builder,npm install --ignore-scripts)
 build-appilcation:
 	$(call run_assets_builder,npm install)
-test-application:
+run-unit-tests:
 	$(call run_assets_builder,npm test)
 build: download-application-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} .

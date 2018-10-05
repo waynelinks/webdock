@@ -3,7 +3,7 @@ x-volumes:
   &volumes
   volumes:
   - global_composer_cache:/var/cache/composer/
-  - ./../image/app/:/opt/app/
+  - ./../../images/php-web-server/app/:/opt/app/
 
 services:
   cgi_server: *volumes

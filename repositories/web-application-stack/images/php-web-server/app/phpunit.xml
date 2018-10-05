@@ -6,8 +6,8 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Fake Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Unit Tests Suite">
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
 </phpunit>
