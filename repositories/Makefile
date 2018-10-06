@@ -17,6 +17,9 @@ build:
 	docker build --no-cache --tag damlys/webdock-web-client:unreleased ./web-application-stack/images/web-client/
 	docker tag damlys/webdock-web-client:unreleased damlys/webdock-web-client:0.0.1-example
 	@echo "\e[42m---\e[0m"
+	docker build --no-cache --tag damlys/webdock-web-client-tester:unreleased ./web-application-stack/images/web-client-tester/
+	docker tag damlys/webdock-web-client:unreleased damlys/webdock-web-client-tester:0.0.1-example
+	@echo "\e[42m---\e[0m"
 	docker build --no-cache --tag damlys/webdock-php-web-server:unreleased ./web-application-stack/images/php-web-server/
 	docker tag damlys/webdock-php-web-server:unreleased damlys/webdock-php-web-server:0.0.1-example
 	@echo "\e[42m---\e[0m"
@@ -46,6 +49,8 @@ push:
 	@echo "\e[42m---\e[0m"
 
 	docker push damlys/webdock-web-client:0.0.1-example
+	@echo "\e[42m---\e[0m"
+	docker push damlys/webdock-web-client-tester:0.0.1-example
 	@echo "\e[42m---\e[0m"
 	docker push damlys/webdock-php-web-server:0.0.1-example
 	@echo "\e[42m---\e[0m"

@@ -19,3 +19,15 @@ $ cp .env.example .env
 ```
 $ make setup
 ```
+
+### Run unit tests
+
+```
+$ make run-unit-tests
+```
+
+### Run web tests
+
+```
+$ make run-web-tests
+```

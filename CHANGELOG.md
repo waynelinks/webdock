@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `php-web-server-tester` image and `http_tester` service.
+- `web-client-tester` image and `web_tester` service.
 
 ### Changed
 

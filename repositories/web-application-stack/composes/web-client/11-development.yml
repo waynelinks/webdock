@@ -1,0 +1,6 @@
+version: "2"
+services:
+  web_tester:
+    volumes:
+    - global_npm_cache:/var/cache/npm/
+    - ./../../images/web-client-tester/app/:/opt/app/

@@ -1,0 +1,7 @@
+# Package managers
+/app/node_modules/
+/app/package-lock.json
+
+# Nightwatch output
+/app/nightwatch_output/*
+!/app/nightwatch_output/.gitkeep
