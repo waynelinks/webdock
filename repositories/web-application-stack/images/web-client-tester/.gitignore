@@ -3,5 +3,5 @@
 /app/package-lock.json
 
 # Nightwatch output
-/app/nightwatch_output/*
-!/app/nightwatch_output/.gitkeep
+/app/var/nightwatch_output/*
+!/app/var/nightwatch_output/.gitkeep

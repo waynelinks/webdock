@@ -13,28 +13,28 @@ define run_assets_builder
 		$(2) \
 	${DOCKER_IMAGE_PREFIX}web-assets-builder:0.0.1-example \
 	$(1)
-	@echo "\e[42m---\e[0m"
 endef
 
 default: assets-builder-shell
 
-download-application-packages:
+download-packages:
 	$(call run_assets_builder,npm install --ignore-scripts)
 build-appilcation:
 	$(call run_assets_builder,npm install)
 run-unit-tests:
 	$(call run_assets_builder,npm run unit-tests)
-build: download-application-packages
+assets-builder-shell:
+	$(call run_assets_builder,bash,--interactive --tty)
+
+build: download-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} .
+shell:
+	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} bash
 tag:
 	docker tag ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} ${DOCKER_IMAGE_PREFIX}web-client:${version}
 push:
 	docker push ${DOCKER_IMAGE_PREFIX}web-client:${version}
 release: tag push
 
-shell:
-	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} bash
-assets-builder-shell:
-	$(call run_assets_builder,bash,--interactive --tty)
 fix-mounted-files-permissions:
 	$(call run_assets_builder,chown --recursive $(shell id -u):$(shell id -g) .)

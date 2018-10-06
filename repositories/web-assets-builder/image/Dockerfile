@@ -8,7 +8,8 @@ RUN apt-get install --yes \
     git \
 && apt-get clean
 
-RUN npm config set unsafe-perm true --global
+RUN npm config set --global unsafe-perm true \
+&& npm config set --global update-notifier false
 
 RUN NPM_CACHE_DIR="/var/cache/npm/" \
 && mkdir --parents ${NPM_CACHE_DIR} \

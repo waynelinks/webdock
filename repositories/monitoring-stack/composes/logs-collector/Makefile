@@ -8,5 +8,7 @@ start:
 	docker-compose start
 stop:
 	docker-compose stop
+state:
+	docker-compose ps
 logs:
 	docker-compose logs --timestamps --tail 25 --follow

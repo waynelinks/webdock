@@ -13,28 +13,28 @@ define run_application_builder
 		$(2) \
 	${DOCKER_IMAGE_PREFIX}php-web-server-foundation:0.0.1-example \
 	$(1)
-	@echo "\e[42m---\e[0m"
 endef
 
 default: application-builder-shell
 
-download-application-packages:
+download-packages:
 	$(call run_application_builder,composer install --no-interaction --no-autoloader --no-scripts)
 build-appilcation:
 	$(call run_application_builder,composer install --no-interaction)
 run-unit-tests:
 	$(call run_application_builder,composer unit-tests)
-build: download-application-packages
+application-builder-shell:
+	$(call run_application_builder,bash,--interactive --tty)
+
+build: download-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} .
+shell:
+	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} bash
 tag:
 	docker tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} ${DOCKER_IMAGE_PREFIX}php-web-server:${version}
 push:
 	docker push ${DOCKER_IMAGE_PREFIX}php-web-server:${version}
 release: tag push
 
-shell:
-	docker run --interactive --tty --rm ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} bash
-application-builder-shell:
-	$(call run_application_builder,bash,--interactive --tty)
 fix-mounted-files-permissions:
 	$(call run_application_builder,chown --recursive $(shell id -u):$(shell id -g) .)

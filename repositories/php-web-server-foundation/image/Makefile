@@ -6,7 +6,6 @@ version=latest
 
 define run
 	docker run --rm ${DOCKER_IMAGE_PREFIX}php-web-server-foundation:${draftVersion} $(1)
-	@echo "\e[42m---\e[0m"
 endef
 
 default: shell

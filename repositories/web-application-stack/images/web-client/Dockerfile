@@ -1,6 +1,7 @@
 ARG DOCKER_IMAGE_PREFIX="damlys/webdock-"
 
 FROM ${DOCKER_IMAGE_PREFIX}web-assets-builder:0.0.1-example AS assets_builder
+
 COPY app/ /opt/app/
 WORKDIR /opt/app/
 RUN npm install
@@ -19,7 +20,6 @@ ENV WEBCLIENT_VERSION="undefined" \
     WEBCLIENT_DEFAULT_TIMEZONE="UTC" \
     WEBCLIENT_API_GATEWAY_DSN="http://username:password@127.0.0.1:80"
 
-COPY --from=assets_builder --chown=deploy:deploy /opt/app/public/ /opt/app/public/
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY bin/healthcheck.bash /usr/local/bin/healthcheck
 COPY etc/app/env.js.template /etc/opt/app/env.js.template
@@ -29,7 +29,9 @@ COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 RUN chmod a+x /usr/local/bin/entrypoint \
 && chmod a+x /usr/local/bin/healthcheck
 
-WORKDIR /opt/app/
 ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 HEALTHCHECK --timeout=3s CMD ["healthcheck"]
+
+COPY --from=assets_builder --chown=deploy:deploy /opt/app/public/ /opt/app/public/
+WORKDIR /opt/app/

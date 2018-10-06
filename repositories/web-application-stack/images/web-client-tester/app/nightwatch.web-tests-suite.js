@@ -2,7 +2,7 @@ module.exports = {
     "src_folders": [
         "src/WebTests"
     ],
-    "output_folder": "nightwatch_output",
+    "output_folder": "var/nightwatch_output",
     "selenium": {
         "start_process": false,
         "start_session": true
@@ -21,7 +21,7 @@ module.exports = {
                 "enabled": true,
                 "on_failure": true,
                 "on_error": false,
-                "path": "nightwatch_output/screenshots"
+                "path": "var/nightwatch_output/screenshots"
             },
             "desiredCapabilities": {
                 "browserName": "chrome"

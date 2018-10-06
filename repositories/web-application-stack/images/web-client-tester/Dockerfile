@@ -9,7 +9,5 @@ ENV WEBCLIENTTESTER_TESTS_TARGET_URL="http://127.0.0.1:80" \
     WEBCLIENTTESTER_SELENIUM_FIREFOX_DRIVER_PORT="4444"
 
 COPY app/ /opt/app/
-
 WORKDIR /opt/app/
-
 RUN npm install --production

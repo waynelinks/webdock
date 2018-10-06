@@ -28,8 +28,8 @@ Change `HOST_DOCKER_GID` in `.env` file.
 $ make setup
 ```
 
-### Test
+### Run smoke tests
 
 ```
-$ make test
+$ make run-smoke-tests
 ```

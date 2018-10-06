@@ -18,4 +18,4 @@
 #############################
 
 # Nightwatch output
-/app/nightwatch_output/*
+/app/var/nightwatch_output/*

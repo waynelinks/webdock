@@ -6,7 +6,6 @@ version=latest
 
 define run
 	docker run --rm ${DOCKER_IMAGE_PREFIX}web-client-foundation:${draftVersion} $(1)
-	@echo "\e[42m---\e[0m"
 endef
 
 default: shell

@@ -27,7 +27,6 @@ ENV WEBSERVER_VERSION="undefined" \
     WEBSERVER_XDEBUG_REMOTE_PORT="9000" \
     WEBSERVER_XDEBUG_IDE_KEY="DOCKER"
 
-COPY --chown=deploy:deploy app/ /opt/app/
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY bin/healthcheck.bash /usr/local/bin/healthcheck
 COPY bin/operation.bash /usr/local/bin/operation
@@ -37,14 +36,15 @@ COPY etc/php/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
 COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
-RUN chmod a+x /opt/app/bin/* \
-&& chmod a+x /usr/local/bin/entrypoint \
+RUN chmod a+x /usr/local/bin/entrypoint \
 && chmod a+x /usr/local/bin/healthcheck \
 && chmod a+x /usr/local/bin/operation
 
-WORKDIR /opt/app/
 ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
-RUN su --command "composer install --no-dev --no-interaction" deploy
+COPY --chown=deploy:deploy app/ /opt/app/
+WORKDIR /opt/app/
+RUN chmod a+x /opt/app/bin/* \
+&& su --command "composer install --no-dev --no-interaction" deploy

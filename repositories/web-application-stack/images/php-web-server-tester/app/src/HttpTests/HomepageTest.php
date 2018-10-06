@@ -17,11 +17,11 @@ class HomepageTest extends \PHPUnit\Framework\TestCase
 
         // Act
         $response = $client->request('GET', $this->getTestsTargetUrl());
-        $payload = json_decode($response->getBody()->getContents(), true);
 
         // Assert
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/json', array_shift($response->getHeader('Content-Type')));
+        $payload = json_decode($response->getBody()->getContents(), true);
         $this->assertEquals('Hello world!', $payload['message']);
     }
 }
