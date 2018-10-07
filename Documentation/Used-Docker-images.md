@@ -1,6 +1,8 @@
 [<-- Back to main section](../README.md)
 
-# Useful Docker images
+# Used Docker images
+
+Runtime environment:
 
 - [PHP](https://hub.docker.com/_/php/)
 - [Node](https://hub.docker.com/_/node/)
@@ -8,11 +10,6 @@
 HTTP server:
 
 - [Nginx](https://hub.docker.com/_/nginx/)
-
-AMQP server:
-
-- [RabbitMQ](https://hub.docker.com/_/rabbitmq/)
-    - see also `management` tag
 
 Data storage:
 
@@ -22,9 +19,6 @@ Data storage:
     - [phpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 - [Postgres](https://hub.docker.com/_/postgres/)
     - [pgAdmin](https://hub.docker.com/r/dpage/pgadmin4/)
-
-In-memory storage:    
-    
 - [Redis](https://hub.docker.com/_/redis/)
     - [Redis Commander](https://hub.docker.com/r/rediscommander/redis-commander/)
 
@@ -33,21 +27,26 @@ File storage:
 - [Minio](https://hub.docker.com/r/minio/minio/)
     - [Minio Client](https://hub.docker.com/r/minio/mc/)
 
-[Elastic stack](https://www.docker.elastic.co/):
+AMQP server:
 
-- Elasticsearch
-    - Kibana
+- [RabbitMQ](https://hub.docker.com/_/rabbitmq/)
+    - see also `management` tag
 
 SMTP catcher:
 
 - [MailHog](https://hub.docker.com/r/mailhog/mailhog/)
 
-Monitoring layer:
+Monitoring stack:
 
 - [Fluentd](https://hub.docker.com/r/fluent/fluentd/)
 - [Fluent Bit](https://hub.docker.com/r/fluent/fluent-bit/)
 
-Automation layer:
+Automation stack:
 
 - [Jenkins](https://hub.docker.com/r/jenkins/jenkins/)
 - [Jenkins JNLP Agent](https://hub.docker.com/r/jenkins/jnlp-slave/)
+
+Browser drivers:
+
+- [Selenium Chrome](https://hub.docker.com/r/selenium/standalone-chrome/)
+- [Selenium Firefox](https://hub.docker.com/r/selenium/standalone-firefox/)

@@ -1,6 +1,7 @@
-# Image
+# PHP Web Server image
 
-...
+This directory contains files required to build and release
+Docker image that contains web server application.
 
 ## Development
 
@@ -9,7 +10,7 @@
 ### Build application
 
 ```
-$ make build-appilcation
+$ make build-application
 ```
 
 ### Run unit tests

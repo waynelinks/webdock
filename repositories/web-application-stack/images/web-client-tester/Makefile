@@ -19,7 +19,7 @@ default: application-builder-shell
 
 download-packages:
 	$(call run_application_builder,npm install --ignore-scripts)
-build-appilcation:
+build-application:
 	$(call run_application_builder,npm install)
 run-unit-tests:
 	$(call run_application_builder,npm run unit-tests)

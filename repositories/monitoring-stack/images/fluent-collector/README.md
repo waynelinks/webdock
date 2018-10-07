@@ -1,6 +1,7 @@
-# Image
+# Fluent Collector image
 
-...
+This directory contains files required to build and release
+Docker image that contains Fluentd service.
 
 ## Development
 

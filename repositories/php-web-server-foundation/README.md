@@ -1,18 +1,27 @@
-PHP Web Server Foundation
+PHP Web Server Foundation image
 ===
 
-...
+This repository contains files required to build and release
+Docker image that has PHP runtime environment and PHP-FPM, 
+Nginx and CRON services.
 
 ## Getting started
 
-...
+`Dockerfile` is required to build Docker image.
 
 ### Requirements
 
+Following software is required to work with this repository:
+
 ```
 $ make --version; \
-  docker --version; \
-  docker run --rm hello-world
+  docker --version
+```
+
+Check also if Docker daemon works correctly:
+
+```
+$ docker run --rm hello-world
 ```
 
 ### Prerequisites
@@ -45,14 +54,8 @@ $ make test
 $ make release version=0.0.1-example
 ```
 
-## Contributing
-
-...
-
-### Versioning
+## Versioning
 
 [Semantic Versioning](http://semver.org/)?
-
-### Changelog
 
 [Keep a Changelog](https://keepachangelog.com/)?

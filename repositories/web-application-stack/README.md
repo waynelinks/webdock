@@ -1,19 +1,31 @@
 Web Application Stack
 ===
 
-...
+This repository contains files required to build and run
+web application.
 
 ## Getting started
 
-...
+The `images` directory contains files required to build
+Docker images.
+
+The `composes` directory contains files required to run
+Docker Compose infrastructure with these images.
 
 ### Requirements
+
+Following software is required to work with this repository:
 
 ```
 $ make --version; \
   docker --version; \
-  docker-compose --version; \
-  docker run --rm hello-world
+  docker-compose --version
+```
+
+Check also if Docker daemon works correctly:
+
+```
+$ docker run --rm hello-world
 ```
 
 ### Prerequisites
@@ -36,34 +48,8 @@ $ docker volume create --name=global_composer_cache
 $ docker volume create --name=global_npm_cache
 ```
 
-## Development
-
-1. Go to `images/` directory. For each image:
-    1. Build application.
-    1. Run unit tests.
-    1. Build image.
-1. Go to `composes/` directory. For each compose:
-    1. Setup infrastructure.
-    1. Run system tests.
-1. Go back to `images/` directory. For each image:
-    1. Release image with version number.
-1. Tag repository with version number.
-
-## Deployment
-
-1. Checkout repository to any released version number.
-1. Go to `composes/` directory. For each compose:
-    1. Set released version number in `DOCKER_IMAGE_VERSION` variable (in `.env` file).
-    1. Setup infrastructure.
-
-## Contributing
-
-...
-
-### Versioning
+## Versioning
 
 [Semantic Versioning](http://semver.org/)?
-
-### Changelog
 
 [Keep a Changelog](https://keepachangelog.com/)?

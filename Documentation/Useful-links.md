@@ -25,6 +25,7 @@ Docker:
     - [Control startup order in Compose](https://docs.docker.com/compose/startup-order/)
     - [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
 - [Docker Logging Design and Best Practices](https://success.docker.com/article/logging-best-practices)
+    - [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
     - [Fluentd logging driver](https://docs.docker.com/config/containers/logging/fluentd/)
 
 PHP:

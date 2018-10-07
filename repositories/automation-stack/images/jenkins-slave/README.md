@@ -1,6 +1,7 @@
-# Image
+# Jenkins Slave image
 
-...
+This directory contains files required to build and release
+Docker image that contains Jenkins slave service.
 
 ## Development
 

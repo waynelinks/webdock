@@ -19,7 +19,7 @@ default: application-builder-shell
 
 download-packages:
 	$(call run_application_builder,composer install --no-interaction --no-autoloader --no-scripts)
-build-appilcation:
+build-application:
 	$(call run_application_builder,composer install --no-interaction)
 run-unit-tests:
 	$(call run_application_builder,composer unit-tests)

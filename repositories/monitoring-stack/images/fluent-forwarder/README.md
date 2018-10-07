@@ -1,6 +1,7 @@
-# Image
+# Fluent Forwarder image
 
-...
+This directory contains files required to build and release
+Docker image that contains Fluent Bit service.
 
 ## Development
 

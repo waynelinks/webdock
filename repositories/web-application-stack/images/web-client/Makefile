@@ -19,7 +19,7 @@ default: assets-builder-shell
 
 download-packages:
 	$(call run_assets_builder,npm install --ignore-scripts)
-build-appilcation:
+build-application:
 	$(call run_assets_builder,npm install)
 run-unit-tests:
 	$(call run_assets_builder,npm run unit-tests)

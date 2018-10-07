@@ -1,19 +1,34 @@
 Monitoring Stack
 ===
 
-...
+This repository contains files required to collect logs from
+many Docker nodes into one place.
+
+The Logs Forwarder, which will run on every node, is prepared 
+to catch logs from Docker daemon and pass them to the Logs Collector.
 
 ## Getting started
 
-...
+The `images` directory contains files required to build
+Docker images.
+
+The `composes` directory contains files required to run
+Docker Compose infrastructure with these images.
 
 ### Requirements
+
+Following software is required to work with this repository:
 
 ```
 $ make --version; \
   docker --version; \
-  docker-compose --version; \
-  docker run --rm hello-world
+  docker-compose --version
+```
+
+Check also if Docker daemon works correctly:
+
+```
+$ docker run --rm hello-world
 ```
 
 ### Prerequisites
@@ -30,29 +45,8 @@ Create network for monitoring purposes:
 $ docker network create monitoring_tier
 ```
 
-## Development
-
-1. Go to `images/` directory. For each image:
-    1. Build image.
-    1. Test image.
-    1. Release image with version number.
-1. Tag repository with version number.
-
-## Deployment
-
-1. Checkout repository to any released version number.
-1. Go to `composes/` directory. For each compose:
-    1. Set released version number in `DOCKER_IMAGE_VERSION` variable (in `.env` file).
-    1. Setup infrastructure.
-
-## Contributing
-
-...
-
-### Versioning
+## Versioning
 
 [Semantic Versioning](http://semver.org/)?
-
-### Changelog
 
 [Keep a Changelog](https://keepachangelog.com/)?

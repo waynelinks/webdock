@@ -1,7 +1,8 @@
 WebDock
 ===
 
-WebDock is a minimalistic Docker starter for web applications.
+WebDock is a Docker starter for web applications.
+
 Project is designed to work with PHP micro services and SPA web clients,
 but it is also great to work with PHP MPA.
 
@@ -9,12 +10,41 @@ but it is also great to work with PHP MPA.
 
 1. [Getting started](#getting-started)
 1. [Useful links](./Documentation/Useful-links.md)
-1. [Useful Docker images](./Documentation/Useful-Docker-images.md)
+1. [Used Docker images](./Documentation/Used-Docker-images.md)
 1. [PHP Debugging](./Documentation/PHP-Debugging.md)
 
 ## Getting started
 
-These instructions will help you use any repository from this project.
+The general structure of this starter:
+
+```
+└── repositories
+    ├── automation-stack
+    │   ├── composes
+    │   │   └── automation-server
+    │   └── images
+    │       ├── jenkins-master
+    │       └── jenkins-slave
+    ├── monitoring-stack
+    │   ├── composes
+    │   │   ├── logs-collector
+    │   │   └── logs-forwarder
+    │   └── images
+    │       ├── fluent-collector
+    │       └── fluent-forwarder
+    ├── php-web-server-foundation
+    ├── web-application-stack
+    │   ├── composes
+    │   │   ├── php-web-server
+    │   │   └── web-client
+    │   └── images
+    │       ├── php-web-server
+    │       ├── php-web-server-tester
+    │       ├── web-client
+    │       └── web-client-tester
+    ├── web-assets-builder
+    └── web-client-foundation
+```
 
 ### Requirements
 
@@ -44,8 +74,7 @@ docker0   Link encap:Ethernet  HWaddr 02:42:be:e6:83:00
           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
 ```
 
-Add `172.17.0.1 docker.localhost www.docker.localhost` line to
-the `/etc/hosts` file  
+Add `172.17.0.1 docker.localhost` line to the `/etc/hosts` file  
 (`C:\Windows\System32\Drivers\etc\hosts` file for Windows).
 
 ### Copy files
@@ -53,17 +82,5 @@ the `/etc/hosts` file
 Copy any [repository](./repositories/) from this project to your
 own Git repository and follow it's readme file.
 
-### Images registry
-
-Note that following images names are used only to visualise
-the relationships between repositories.
-
-```
-damlys/webdock-web-assets-builder
-damlys/webdock-web-client
-damlys/webdock-web-client-foundation
-damlys/webdock-php-web-server
-damlys/webdock-php-web-server-foundation
-```
-
-You should change them immediately after repositories clone.
+**Tip:** search for the `DOCKER_IMAGE_PREFIX` variable to learn about
+connections between services in the project.

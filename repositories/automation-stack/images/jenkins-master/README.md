@@ -1,6 +1,7 @@
-# Image
+# Jenkins Master image
 
-...
+This directory contains files required to build and release
+Docker image that contains Jenkins master service.
 
 ## Development
 

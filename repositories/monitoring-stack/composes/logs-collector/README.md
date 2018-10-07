@@ -1,6 +1,7 @@
-# Compose
+# Logs Collector infrastructure
 
-...
+This directory contains files required to run
+logs collector infrastructure.
 
 ## Deployment
 
@@ -11,6 +12,8 @@
 ```
 $ cp .env.example .env
 ```
+
+Set released version number in `DOCKER_IMAGE_VERSION` variable.
 
 ### Setup
 
