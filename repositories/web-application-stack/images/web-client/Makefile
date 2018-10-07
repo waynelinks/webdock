@@ -26,6 +26,8 @@ run-unit-tests:
 assets-builder-shell:
 	$(call run_assets_builder,bash,--interactive --tty)
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}web-client"
 build: download-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}web-client:${draftVersion} .
 shell:

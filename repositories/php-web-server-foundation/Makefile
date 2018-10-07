@@ -10,6 +10,8 @@ endef
 
 default: shell
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}php-web-server-foundation"
 build:
 	docker build --tag ${DOCKER_IMAGE_PREFIX}php-web-server-foundation:${draftVersion} .
 shell:

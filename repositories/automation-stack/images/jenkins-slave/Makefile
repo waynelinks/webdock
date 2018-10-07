@@ -10,6 +10,8 @@ endef
 
 default: shell
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}jenkins-slave"
 build:
 	docker build --tag ${DOCKER_IMAGE_PREFIX}jenkins-slave:${draftVersion} .
 shell:

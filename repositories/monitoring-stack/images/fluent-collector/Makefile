@@ -10,6 +10,8 @@ endef
 
 default: shell
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}fluent-collector"
 build:
 	docker build --tag ${DOCKER_IMAGE_PREFIX}fluent-collector:${draftVersion} .
 shell:

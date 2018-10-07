@@ -26,6 +26,8 @@ run-unit-tests:
 application-builder-shell:
 	$(call run_application_builder,bash,--interactive --tty)
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}php-web-server"
 build: download-packages
 	docker build --no-cache --tag ${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} .
 shell:

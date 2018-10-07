@@ -10,6 +10,8 @@ endef
 
 default: shell
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}jenkins-master"
 build:
 	docker build --tag ${DOCKER_IMAGE_PREFIX}jenkins-master:${draftVersion} .
 shell:

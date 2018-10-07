@@ -10,6 +10,8 @@ endef
 
 default: shell
 
+which:
+	@echo "${DOCKER_IMAGE_PREFIX}web-assets-builder"
 build:
 	docker build --tag ${DOCKER_IMAGE_PREFIX}web-assets-builder:${draftVersion} .
 shell:
