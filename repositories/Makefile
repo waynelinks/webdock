@@ -4,13 +4,13 @@ default:
 	exit 0
 
 build:
-	docker build --no-cache --tag damlys/webdock-web-assets-builder:unreleased ./web-assets-builder/image/
+	docker build --no-cache --tag damlys/webdock-web-assets-builder:unreleased ./web-assets-builder/
 	docker tag damlys/webdock-web-assets-builder:unreleased damlys/webdock-web-assets-builder:0.0.1-example
 	@echo "\e[42m---\e[0m"
-	docker build --no-cache --tag damlys/webdock-web-client-foundation:unreleased ./web-client-foundation/image/
+	docker build --no-cache --tag damlys/webdock-web-client-foundation:unreleased ./web-client-foundation/
 	docker tag damlys/webdock-web-client-foundation:unreleased damlys/webdock-web-client-foundation:0.0.1-example
 	@echo "\e[42m---\e[0m"
-	docker build --no-cache --tag damlys/webdock-php-web-server-foundation:unreleased ./php-web-server-foundation/image/
+	docker build --no-cache --tag damlys/webdock-php-web-server-foundation:unreleased ./php-web-server-foundation/
 	docker tag damlys/webdock-php-web-server-foundation:unreleased damlys/webdock-php-web-server-foundation:0.0.1-example
 	@echo "\e[42m---\e[0m"
 
