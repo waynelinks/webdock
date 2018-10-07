@@ -1,8 +1,17 @@
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/config.json", false);
+xhr.send();
+
+if (xhr.status !== 200) {
+    throw new Error('Missing runtime configuration.');
+}
+var runtimeConfiguration = JSON.parse(xhr.responseText);
+
 /** @param {string} version */
-var version = typeof window._env_version === "undefined" ? "undefined" : window._env_version;
+var version = typeof runtimeConfiguration.version === "undefined" ? "undefined" : runtimeConfiguration.version;
 /** @param {string} env */
-var env = typeof window._env_environment === "undefined" ? "prod" : window._env_environment;
+var env = typeof runtimeConfiguration.environment === "undefined" ? "prod" : runtimeConfiguration.environment;
 /** @param {boolean} debug */
-var debug = (typeof window._env_debug === "undefined" ? "off" : window._env_debug) === "on" && env !== "prod";
+var debug = (typeof runtimeConfiguration.debug === "undefined" ? "off" : runtimeConfiguration.debug) === "on" && env !== "prod";
 
 document.write("Hello world!<br>spa / " + version);

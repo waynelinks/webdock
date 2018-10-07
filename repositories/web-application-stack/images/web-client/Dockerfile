@@ -22,7 +22,7 @@ ENV WEBCLIENT_VERSION="undefined" \
 
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY bin/healthcheck.bash /usr/local/bin/healthcheck
-COPY etc/app/env.js.template /etc/opt/app/env.js.template
+COPY etc/app/config.json.template /etc/opt/app/config.json.template
 COPY etc/app/index.html.template /etc/opt/app/index.html.template
 COPY etc/nginx/nginx.conf.template /etc/nginx/nginx.conf.template
 

@@ -18,5 +18,5 @@
 #############################
 
 # Files generated during container startup
-app/public/env.js
+app/public/config.json
 app/public/index.html
