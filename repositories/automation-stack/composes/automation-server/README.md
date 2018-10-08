@@ -37,14 +37,16 @@ Set Docker GID in `HOST_DOCKER_GID` variable.
 
 Set released version number in `DOCKER_IMAGE_VERSION` variable.
 
+**Hey!** Do not use `*-development.yml` files outside of the local development environment!
+
 ### Setup
 
 ```
 $ make setup
 ```
 
-### Run smoke tests
+### Run implementation tests
 
 ```
-$ make run-smoke-tests
+$ make run-implementation-tests
 ```

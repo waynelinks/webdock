@@ -19,7 +19,7 @@ state:
 logs:
 	docker-compose logs --timestamps --tail 25 --follow
 
-run-smoke-tests:
+run-implementation-tests:
 	docker-compose exec jenkins_master bash -c "docker run --rm hello-world | grep 'Hello'"
 	docker-compose exec jenkins_slave bash -c "docker run --rm hello-world | grep 'Hello'"
 

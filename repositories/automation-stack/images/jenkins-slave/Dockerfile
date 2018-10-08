@@ -24,7 +24,7 @@ RUN COMPOSE_VERSION="1.22.0" \
 && chmod a+rx /usr/local/bin/docker-compose
 
 # kubectl (https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-RUN KUBERNETES_VERSION="1.12.0" \
+RUN KUBERNETES_VERSION="1.12.1" \
 && curl -fsSL https://storage.googleapis.com/kubernetes-release/release/v${KUBERNETES_VERSION}/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl \
 && chmod a+rx /usr/local/bin/kubectl
 
@@ -47,7 +47,7 @@ RUN TERRAFORM_VERSION="0.11.8" \
 && chmod a+rx /usr/local/bin/terraform
 
 # vault (https://releases.hashicorp.com/vault/)
-RUN VAULT_VERSION="0.11.2" \
+RUN VAULT_VERSION="0.11.3" \
 && mkdir -p /var/tmp/vault-setup/ \
 && curl -fsSL https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip -o /var/tmp/vault-setup/archive.zip \
 && unzip /var/tmp/vault-setup/archive.zip -d /var/tmp/vault-setup/ \

@@ -1,0 +1,5 @@
+version: "2"
+services:
+  jenkins_master:
+    volumes:
+    - ./../../images/jenkins-master/etc/jenkins/casc/:/etc/jenkins/casc/

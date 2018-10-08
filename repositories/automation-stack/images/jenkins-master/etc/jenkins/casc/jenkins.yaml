@@ -1,0 +1,78 @@
+##################################
+### Configure System
+##################################
+
+unclassified:
+  location:
+    adminAddress: ${CASC_ADMIN_ADDRESS}
+    url: ${CASC_SELF_URL}
+
+jenkins:
+  systemMessage: |
+    This Jenkins is configured and managed "as code".
+
+  numExecutors: 2
+  labelString: master
+  mode: EXCLUSIVE
+  quietPeriod: 0
+  scmCheckoutRetryCount: 0
+
+  clouds:
+  - docker:
+      name: DooD Cloud
+      dockerApi:
+        dockerHost:
+          uri: unix:///var/run/docker.sock
+        connectTimeout: 3
+        readTimeout: 15
+      templates:
+      - name: DooD Slave
+        labelString: slave
+        dockerTemplateBase:
+          image: ${CASC_SLAVE_IMAGE}
+          volumesString: ${CASC_SLAVE_VOLUMES}
+          environmentsString: ${CASC_SLAVE_ENVIRONMENTS}
+          memoryLimit: 1024
+          memorySwap: 0
+          cpuShares: 1024
+        remoteFs: /home/jenkins/
+        mode: NORMAL
+        connector:
+          attach:
+            user: jenkins
+        removeVolumes: true
+        pullStrategy: PULL_NEVER
+        pullTimeout: 300
+
+  ##################################
+  ### Configure Global Security
+  ##################################
+
+  disableRememberMe: false
+  securityRealm:
+    local:
+      allowsSignup: false
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  slaveAgentPort: 50000
+  agentProtocols:
+  - JNLP4-connect
+
+security:
+  remotingCLI:
+    enabled: false
+
+##################################
+### Global Tool Configuration
+##################################
+
+tool:
+  dockertool:
+    installations:
+    - name: Default
+  git:
+    installations:
+    - home: git
+      name: Default
