@@ -25,6 +25,7 @@ RUN /usr/local/bin/install-plugins.sh \
     git-parameter \
     matrix-auth \
     pipeline-stage-view \
+    simple-theme-plugin \
     workflow-aggregator
 
 ENV CASC_JENKINS_CONFIG="/etc/jenkins/casc/" \
@@ -35,3 +36,4 @@ ENV CASC_JENKINS_CONFIG="/etc/jenkins/casc/" \
     CASC_SLAVE_VOLUMES=""
 
 COPY etc/jenkins/casc/ /etc/jenkins/casc/
+COPY resources/user-content/ /usr/share/jenkins/ref/userContent/

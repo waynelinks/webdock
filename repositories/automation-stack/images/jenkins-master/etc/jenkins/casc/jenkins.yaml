@@ -6,6 +6,18 @@ unclassified:
   location:
     adminAddress: ${CASC_ADMIN_ADDRESS}
     url: ${CASC_SELF_URL}
+  mailer:
+    adminAddress: ${CASC_ADMIN_ADDRESS}
+    replyToAddress: ${CASC_ADMIN_ADDRESS}
+    charset: UTF-8
+  simple-theme-plugin:
+    elements:
+    - faviconUrl:
+        url: /userContent/favicon.ico
+    - cssUrl:
+        url: /userContent/theme.css
+    - jsUrl:
+        url: /userContent/theme.js
 
 jenkins:
   systemMessage: |

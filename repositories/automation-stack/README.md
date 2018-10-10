@@ -12,7 +12,8 @@ with few pre-installed plugins:
 - [Git Parameter](https://plugins.jenkins.io/git-parameter) (`git-parameter`),
 - [Matrix Authorization Strategy](https://plugins.jenkins.io/matrix-auth) (`matrix-auth`),
 - [Pipeline](https://plugins.jenkins.io/workflow-aggregator) (`workflow-aggregator`),
-- [Pipeline: Stage View](https://plugins.jenkins.io/pipeline-stage-view) (`pipeline-stage-view`)
+- [Pipeline: Stage View](https://plugins.jenkins.io/pipeline-stage-view) (`pipeline-stage-view`),
+- [Simple Theme](https://plugins.jenkins.io/simple-theme-plugin) (`simple-theme-plugin`)
 
 and few useful CLI scripts inside:
 
