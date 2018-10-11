@@ -22,6 +22,7 @@ test:
 	$(call run,docker-compose --version)
 	$(call run,git --version)
 	$(call run,helm version --client --short)
+	$(call run,jq --version)
 	$(call run,kubectl version --client --short=true)
 	$(call run,make --version)
 	$(call run,terraform --version)

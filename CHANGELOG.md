@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Install Configuration as Code Jenkins plugin.
 - Customize Jenkins theme as code.
+- Install `jq` inside Jenkins images.
 
 ## [0.8.0] - 2018-10-07
 

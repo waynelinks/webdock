@@ -18,6 +18,7 @@ with few pre-installed plugins:
 and few useful CLI scripts inside:
 
 - `make`,
+- `jq`,
 - `docker`,
 - `docker-compose`,
 - `kubectl`,

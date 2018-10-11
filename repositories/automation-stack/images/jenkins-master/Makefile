@@ -20,6 +20,8 @@ test:
 	$(call run,curl --version)
 	$(call run,docker --version)
 	$(call run,git --version)
+	$(call run,jq --version)
+	$(call run,make --version)
 tag:
 	docker tag ${DOCKER_IMAGE_PREFIX}jenkins-master:${draftVersion} ${DOCKER_IMAGE_PREFIX}jenkins-master:${version}
 push:

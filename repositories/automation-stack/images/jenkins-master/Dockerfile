@@ -6,6 +6,12 @@ FROM jenkins/jenkins:latest
 
 USER root
 
+RUN apt-get update \
+&& apt-get install --yes \
+    jq \
+    make \
+&& apt-get clean
+
 # docker (https://download.docker.com/linux/static/stable/x86_64/)
 RUN DOCKER_VERSION="18.06.1-ce" \
 && mkdir -p /var/tmp/docker-setup/ \
