@@ -50,6 +50,8 @@ RUN apt-get install --yes \
 
 # `apt-get` is used here to install packages required by php libraries
 RUN apt-get install --yes \
+    unzip \
+    zip \
     zlib1g-dev \
 && apt-get clean \
 && pecl install \

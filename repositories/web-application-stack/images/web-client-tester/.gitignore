@@ -1,5 +1,6 @@
 # Package managers
 /app/node_modules/
+/app/npm-debug.log
 /app/package-lock.json
 
 # Nightwatch output

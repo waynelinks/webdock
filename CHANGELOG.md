@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- Install `zip` and `unzip` packages inside `php-web-server-foundation` image.
+
+### Fixed
+
+- Add `npm-debug.log` file to `.gitignore` and `.dockerignore`.
+
 ## [0.8.1] - 2018-10-17
 
 ### Added
