@@ -5,9 +5,9 @@
          bootstrap="vendor/autoload.php"
          colors="true"
 >
-    <testsuites>
-        <testsuite name="Unit Tests Suite">
-            <directory>tests/Unit</directory>
-        </testsuite>
-    </testsuites>
+  <testsuites>
+    <testsuite name="Unit Tests Suite">
+      <directory>tests/Unit</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

@@ -12,13 +12,13 @@ FROM ${DOCKER_IMAGE_PREFIX}web-client-foundation:0.0.1-example
 # exposes port 80
 
 ENV WEBCLIENT_VERSION="undefined" \
-    WEBCLIENT_HTTP_WORKERS_COUNT="1" \
-    WEBCLIENT_ENVIRONMENT="prod" \
-    WEBCLIENT_DEBUG="off" \
-    WEBCLIENT_DEFAULT_CHARSET="UTF-8" \
-    WEBCLIENT_DEFAULT_LOCALE="en-US" \
-    WEBCLIENT_DEFAULT_TIMEZONE="UTC" \
-    WEBCLIENT_API_GATEWAY_DSN="http://username:password@127.0.0.1:80"
+  WEBCLIENT_HTTP_WORKERS_COUNT="1" \
+  WEBCLIENT_ENVIRONMENT="prod" \
+  WEBCLIENT_DEBUG="off" \
+  WEBCLIENT_DEFAULT_CHARSET="UTF-8" \
+  WEBCLIENT_DEFAULT_LOCALE="en-US" \
+  WEBCLIENT_DEFAULT_TIMEZONE="UTC" \
+  WEBCLIENT_API_GATEWAY_DSN="http://username:password@127.0.0.1:80"
 
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY bin/healthcheck.bash /usr/local/bin/healthcheck

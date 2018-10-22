@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.8.2] - 2018-10-22
+
 ### Added
 
 - Install `zip` and `unzip` packages inside `php-web-server-foundation` image.
+
+### Changed
+
+- Indent lines with 2 spaces by default.
 
 ### Fixed
 

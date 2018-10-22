@@ -6,8 +6,8 @@ USER root
 
 RUN apt-get update \
 && apt-get install --yes \
-    jq \
-    make \
+  jq \
+  make \
 && apt-get clean
 
 # docker (https://download.docker.com/linux/static/stable/x86_64/)

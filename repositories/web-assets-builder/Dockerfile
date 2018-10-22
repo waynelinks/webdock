@@ -5,7 +5,7 @@ FROM node:latest
 RUN apt-get update
 
 RUN apt-get install --yes \
-    git \
+  git \
 && apt-get clean
 
 RUN npm config set --global unsafe-perm true \
@@ -17,14 +17,14 @@ RUN NPM_CACHE_DIR="/var/cache/npm/" \
 && npm config set cache ${NPM_CACHE_DIR} --global
 
 RUN apt-get install --yes \
-    bash-completion \
+  bash-completion \
 && apt-get clean \
 && echo ". /etc/bash_completion" >> ~/.bashrc \
 && npm completion > /etc/bash_completion.d/npm
 
 RUN npm install --global \
-    sass \
-    typescript \
-    webpack \
-    webpack-cli \
+  sass \
+  typescript \
+  webpack \
+  webpack-cli \
 && npm cache clean --force

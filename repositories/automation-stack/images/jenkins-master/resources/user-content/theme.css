@@ -1,17 +1,17 @@
 img#jenkins-head-icon, img#jenkins-name-icon {
-    height: 40px;
-    width: auto;
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
+  height: 40px;
+  width: auto;
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
 }
 
 img#jenkins-head-icon {
-    display: none;
+  display: none;
 }
 
 img#jenkins-name-icon {
-    content: url("/userContent/logo.png");
+  content: url("/userContent/logo.png");
 }

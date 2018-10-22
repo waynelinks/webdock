@@ -21,8 +21,6 @@ Following command will prepare host to run this infrastructure.
 
 ```
 $ make prepare-host
-.
-..
 ...
 Your Docker GID is: 999
 ```

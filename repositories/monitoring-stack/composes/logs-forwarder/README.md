@@ -18,12 +18,12 @@ variable is equal to `24224`.
 ```
 $ cat /etc/docker/daemon.json
 {
-    "log-driver": "fluentd",
-    "log-opts": {
-        "fluentd-address": "127.0.0.1:24224",
-        "tag": "docker",
-        "labels": "version"
-    }
+  "log-driver": "fluentd",
+  "log-opts": {
+    "fluentd-address": "127.0.0.1:24224",
+    "tag": "docker",
+    "labels": "version"
+  }
 }
 ```
 

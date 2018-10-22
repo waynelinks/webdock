@@ -7,7 +7,7 @@ RUN groupadd --gid 1000 deploy \
 RUN apt-get update
 
 RUN apt-get install --yes \
-    git \
+  git \
 && apt-get clean
 
 ENV COMPOSER_ALLOW_SUPERUSER="1"
@@ -20,46 +20,46 @@ RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin/ --filena
 && composer config --global cache-dir ${COMPOSER_CACHE_DIR}
 
 RUN apt-get install --yes \
-    bash-completion \
+  bash-completion \
 && apt-get clean \
 && echo ". /etc/bash_completion" >> ~/.bashrc \
 && composer global require \
-    bamarni/symfony-console-autocomplete \
+  bamarni/symfony-console-autocomplete \
 && composer clear-cache \
 && echo "$(php ~/.composer/vendor/bin/symfony-autocomplete --shell bash composer)" > /etc/bash_completion.d/composer
 
 # `gettext` package contains `envsubst` tool
 RUN apt-get install --yes \
-    gnupg \
+  gnupg \
 && apt-get clean \
 && echo 'deb http://nginx.org/packages/mainline/debian/ stretch nginx' >> /etc/apt/sources.list \
 && curl -fsSL http://nginx.org/keys/nginx_signing.key -o /root/nginx_signing.key \
 && apt-key add /root/nginx_signing.key \
 && apt-get update \
 && apt-get install --yes \
-    gettext \
-    nginx \
+  gettext \
+  nginx \
 && apt-get clean \
 && service nginx stop
 EXPOSE 80
 
 RUN apt-get install --yes \
-    cron \
+  cron \
 && apt-get clean \
 && service cron stop
 
 # `apt-get` is used here to install packages required by php libraries
 RUN apt-get install --yes \
-    unzip \
-    zip \
-    zlib1g-dev \
+  unzip \
+  zip \
+  zlib1g-dev \
 && apt-get clean \
 && pecl install \
-    redis \
+  redis \
 && pecl clear-cache \
 && docker-php-ext-install \
-    opcache \
-    pdo_mysql \
-    zip \
+  opcache \
+  pdo_mysql \
+  zip \
 && docker-php-ext-enable \
-    redis
+  redis

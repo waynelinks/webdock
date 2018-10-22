@@ -7,5 +7,5 @@ RUN groupadd --gid 1000 deploy \
 RUN apt-get update
 
 RUN apt-get install --yes \
-    curl \
+  curl \
 && apt-get clean

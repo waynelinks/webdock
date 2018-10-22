@@ -3,7 +3,7 @@ xhr.open("GET", "/config.json", false);
 xhr.send();
 
 if (xhr.status !== 200) {
-    throw new Error('Missing runtime configuration.');
+  throw new Error('Missing runtime configuration.');
 }
 var runtimeConfiguration = JSON.parse(xhr.responseText);
 

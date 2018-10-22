@@ -8,8 +8,8 @@ USER root
 
 RUN apt-get update \
 && apt-get install --yes \
-    jq \
-    make \
+  jq \
+  make \
 && apt-get clean
 
 # docker (https://download.docker.com/linux/static/stable/x86_64/)
@@ -24,22 +24,22 @@ RUN DOCKER_VERSION="18.06.1-ce" \
 USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
-    configuration-as-code \
-    docker-plugin \
-    generic-webhook-trigger \
-    git \
-    git-parameter \
-    matrix-auth \
-    pipeline-stage-view \
-    simple-theme-plugin \
-    workflow-aggregator
+  configuration-as-code \
+  docker-plugin \
+  generic-webhook-trigger \
+  git \
+  git-parameter \
+  matrix-auth \
+  pipeline-stage-view \
+  simple-theme-plugin \
+  workflow-aggregator
 
 ENV CASC_JENKINS_CONFIG="/etc/jenkins/casc/" \
-    CASC_ADMIN_ADDRESS="undefined <undefined@dummy.tld>" \
-    CASC_SELF_URL="http://127.0.0.1:80" \
-    CASC_SLAVE_ENVIRONMENTS="" \
-    CASC_SLAVE_IMAGE="jenkins-slave:latest" \
-    CASC_SLAVE_VOLUMES=""
+  CASC_ADMIN_ADDRESS="undefined <undefined@dummy.tld>" \
+  CASC_SELF_URL="http://127.0.0.1:80" \
+  CASC_SLAVE_ENVIRONMENTS="" \
+  CASC_SLAVE_IMAGE="jenkins-slave:latest" \
+  CASC_SLAVE_VOLUMES=""
 
 COPY etc/jenkins/casc/ /etc/jenkins/casc/
 COPY resources/user-content/ /usr/share/jenkins/ref/userContent/
