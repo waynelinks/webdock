@@ -3,37 +3,53 @@ services:
   web_tester:
     depends_on:
     - http_server
-    - selenium_chrome
-    - selenium_firefox
-    image: ${DOCKER_IMAGE_PREFIX}web-client-tester:${DOCKER_IMAGE_VERSION}
+    - selenium_hub
+    image: ${DOCKER_IMAGE_PREFIX}web-client-tester:${VERSION}
     command: ["sleep", "infinity"]
-    restart: on-failure
+    restart: always
     environment:
     - WEBCLIENTTESTER_TESTS_TARGET_URL=http://http_server
-    - WEBCLIENTTESTER_SELENIUM_CHROME_DRIVER_HOST=selenium_chrome
-    - WEBCLIENTTESTER_SELENIUM_CHROME_DRIVER_PORT=4444
-    - WEBCLIENTTESTER_SELENIUM_FIREFOX_DRIVER_HOST=selenium_firefox
-    - WEBCLIENTTESTER_SELENIUM_FIREFOX_DRIVER_PORT=4444
+    - WEBCLIENTTESTER_SELENIUM_HUB_HOST=selenium_hub
+    - WEBCLIENTTESTER_SELENIUM_HUB_PORT=4444
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
+
+  selenium_hub:
+    image: selenium/hub:latest
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+    - version=${VERSION}
 
   selenium_chrome:
-    image: selenium/standalone-chrome:latest
-    restart: on-failure
+    depends_on:
+    - selenium_hub
+    image: selenium/node-chrome:latest
+    restart: always
+    environment:
+    - HUB_HOST=selenium_hub
+    - HUB_PORT=4444
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   selenium_firefox:
-    image: selenium/standalone-firefox:latest
-    restart: on-failure
+    depends_on:
+    - selenium_hub
+    image: selenium/node-firefox:latest
+    restart: always
+    environment:
+    - HUB_HOST=selenium_hub
+    - HUB_PORT=4444
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}

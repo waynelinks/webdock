@@ -7,11 +7,11 @@ if (xhr.status !== 200) {
 }
 var runtimeConfiguration = JSON.parse(xhr.responseText);
 
-/** @param {string} version */
+/** @type {string} */
 var version = typeof runtimeConfiguration.version === "undefined" ? "undefined" : runtimeConfiguration.version;
-/** @param {string} env */
+/** @type {string} */
 var env = typeof runtimeConfiguration.environment === "undefined" ? "prod" : runtimeConfiguration.environment;
-/** @param {boolean} debug */
+/** @type {boolean} */
 var debug = (typeof runtimeConfiguration.debug === "undefined" ? "off" : runtimeConfiguration.debug) === "on" && env !== "prod";
 
 document.write("Hello world!<br>spa / " + version);

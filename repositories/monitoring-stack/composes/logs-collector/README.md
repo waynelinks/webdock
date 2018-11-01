@@ -13,7 +13,7 @@ logs collector infrastructure.
 $ cp .env.example .env
 ```
 
-Set released version number in `DOCKER_IMAGE_VERSION` variable.
+Set released version number in `VERSION` variable.
 
 ### Setup
 

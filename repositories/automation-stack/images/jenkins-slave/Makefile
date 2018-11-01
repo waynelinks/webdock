@@ -23,7 +23,7 @@ test:
 	$(call run,git --version)
 	$(call run,helm version --client --short)
 	$(call run,jq --version)
-	$(call run,kubectl version --client --short=true)
+	$(call run,kubectl version --client --short)
 	$(call run,make --version)
 	$(call run,terraform --version)
 	$(call run,vault --version)

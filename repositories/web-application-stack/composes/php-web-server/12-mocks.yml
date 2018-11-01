@@ -17,11 +17,11 @@ services:
         echo \"${BACKING_SERVICES_USER}:$$(MailHog bcrypt '${MAILHOG_PASSWORD}')\" > /home/mailhog/htpasswd;
         MailHog -auth-file=/home/mailhog/htpasswd
       "
-    restart: on-failure
+    restart: always
     ports:
     - ${MAILHOG_PORT}:8025
     cpu_shares: 256
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}

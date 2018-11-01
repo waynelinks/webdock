@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.8.3] - 2018-11-24
+
+### Added
+
+- Install PostgreSQL library inside `php-web-server-foundation` image.
+
+### Changed
+
+- Change `restart: on-failure` to `restart: always` for services that works continuously.
+- Rename `DOCKER_IMAGE_VERSION` to `VERSION`.
+- Use Selenium Hub instead of standalone drivers.
+
 ## [0.8.2] - 2018-10-22
 
 ### Added

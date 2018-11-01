@@ -18,7 +18,7 @@ services:
   minio:
     image: minio/minio:latest
     command: ["minio", "server", "/data"]
-    restart: on-failure
+    restart: always
     environment:
     - MINIO_ACCESS_KEY=${BACKING_SERVICES_USER}
     - MINIO_SECRET_KEY=${MINIO_PASSWORD}
@@ -28,7 +28,7 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   minio_constructor:
     depends_on:
@@ -41,16 +41,16 @@ services:
         /usr/bin/mc policy download myminioserver/myminiobucket;
         exit 0
       "
-    restart: on-failure
+    restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   mongo:
     image: mongo:latest
-    restart: on-failure
+    restart: always
     environment:
     - MONGO_INITDB_ROOT_USERNAME=${BACKING_SERVICES_USER}
     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
@@ -61,11 +61,11 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   mysql:
     image: mysql:5
-    restart: on-failure
+    restart: always
     environment:
     - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
     - MYSQL_USER=${BACKING_SERVICES_USER}
@@ -77,11 +77,11 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   postgres:
     image: postgres:latest
-    restart: on-failure
+    restart: always
     environment:
     - POSTGRES_USER=${BACKING_SERVICES_USER}
     - POSTGRES_PASSWORD
@@ -92,11 +92,11 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   rabbitmq:
     image: rabbitmq:latest
-    restart: on-failure
+    restart: always
     environment:
     - RABBITMQ_DEFAULT_USER=${BACKING_SERVICES_USER}
     - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
@@ -106,19 +106,19 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   redis:
     image: redis:latest
     command: ["--requirepass", "${REDIS_PASSWORD}"]
-    restart: on-failure
+    restart: always
     volumes:
     - redis_data:/data
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
 volumes:
   minio_data:

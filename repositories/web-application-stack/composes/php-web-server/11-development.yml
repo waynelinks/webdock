@@ -4,3 +4,7 @@ services:
     volumes:
     - global_composer_cache:/var/cache/composer/
     - ./../../images/php-web-server-tester/app/:/opt/app/
+
+volumes:
+  global_composer_cache:
+    external: true

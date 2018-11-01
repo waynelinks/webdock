@@ -4,3 +4,7 @@ services:
     volumes:
     - global_npm_cache:/var/cache/npm/
     - ./../../images/web-client-tester/app/:/opt/app/
+
+volumes:
+  global_npm_cache:
+    external: true

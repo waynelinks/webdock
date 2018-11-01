@@ -50,6 +50,7 @@ RUN apt-get install --yes \
 
 # `apt-get` is used here to install packages required by php libraries
 RUN apt-get install --yes \
+  libpq-dev \
   unzip \
   zip \
   zlib1g-dev \
@@ -60,6 +61,7 @@ RUN apt-get install --yes \
 && docker-php-ext-install \
   opcache \
   pdo_mysql \
+  pdo_pgsql \
   zip \
 && docker-php-ext-enable \
   redis

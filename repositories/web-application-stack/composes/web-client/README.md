@@ -44,7 +44,7 @@ $ make run-web-tests
 $ cp .env.example .env
 ```
 
-Set released version number in `DOCKER_IMAGE_VERSION` variable.
+Set released version number in `VERSION` variable.
 
 **Hey!** Do not use `*-development.yml` files outside of the local development environment!
 

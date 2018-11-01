@@ -8,7 +8,7 @@ services:
     depends_on:
     - mongo
     image: mongo-express:latest
-    restart: on-failure
+    restart: always
     environment:
     - ME_CONFIG_MONGODB_SERVER=mongo
     - ME_CONFIG_MONGODB_PORT=27017
@@ -22,7 +22,7 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   # pgAdmin and PostgreSQL connection have to be configured manually.
   # Open ${PGADMIN_PORT} in your browser, click RMB on the "Servers",
@@ -36,7 +36,7 @@ services:
     depends_on:
     - postgres
     image: dpage/pgadmin4:latest
-    restart: on-failure
+    restart: always
     environment:
     - PGADMIN_DEFAULT_EMAIL=${BACKING_SERVICES_USER}
     - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD}
@@ -48,13 +48,13 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   phpmyadmin:
     depends_on:
     - mysql
     image: phpmyadmin/phpmyadmin:latest
-    restart: on-failure
+    restart: always
     environment:
     - PMA_HOST=mysql
     - PMA_PORT=3306
@@ -64,7 +64,7 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
   rabbitmq:
     image: rabbitmq:management
@@ -75,7 +75,7 @@ services:
     depends_on:
     - redis
     image: rediscommander/redis-commander:latest
-    restart: on-failure
+    restart: always
     environment:
     - HTTP_USER=${BACKING_SERVICES_USER}
     - HTTP_PASSWORD=${REDIS_PASSWORD}
@@ -86,7 +86,7 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
 volumes:
   pgadmin_config:

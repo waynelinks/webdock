@@ -10,8 +10,8 @@ module.exports = {
   "test_settings": {
     "default": {
       "launch_url": process.env.WEBCLIENTTESTER_TESTS_TARGET_URL,
-      "selenium_host": process.env.WEBCLIENTTESTER_SELENIUM_CHROME_DRIVER_HOST,
-      "selenium_port": process.env.WEBCLIENTTESTER_SELENIUM_CHROME_DRIVER_PORT,
+      "selenium_host": process.env.WEBCLIENTTESTER_SELENIUM_HUB_HOST,
+      "selenium_port": process.env.WEBCLIENTTESTER_SELENIUM_HUB_PORT,
       "request_timeout_options": {
         "timeout": 5000,
         "retry_attempts": 3
@@ -29,10 +29,9 @@ module.exports = {
       "skip_testcases_on_fail": false
     },
     "firefox": {
-      "selenium_host": process.env.WEBCLIENTTESTER_SELENIUM_FIREFOX_DRIVER_HOST,
-      "selenium_port": process.env.WEBCLIENTTESTER_SELENIUM_FIREFOX_DRIVER_PORT,
       "desiredCapabilities": {
-        "browserName": "firefox"
+        "browserName": "firefox",
+        "marionette": true
       }
     }
   }

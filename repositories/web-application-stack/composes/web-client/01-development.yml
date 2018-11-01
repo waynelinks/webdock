@@ -12,7 +12,7 @@ services:
     - ./../../images/web-client/app/:/opt/app/
     working_dir: /opt/app/
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
 volumes:
   global_npm_cache:

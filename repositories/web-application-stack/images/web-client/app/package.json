@@ -1,6 +1,5 @@
 {
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "jest": "*"
   },

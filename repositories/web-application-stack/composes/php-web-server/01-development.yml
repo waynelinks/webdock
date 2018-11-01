@@ -18,7 +18,7 @@ services:
     command: ["sleep", "infinity"]
     working_dir: /opt/app/
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
 volumes:
   global_composer_cache:

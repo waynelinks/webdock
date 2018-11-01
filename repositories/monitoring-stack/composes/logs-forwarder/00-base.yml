@@ -1,7 +1,7 @@
 version: "2"
 services:
   fluent_forwarder:
-    image: ${DOCKER_IMAGE_PREFIX}fluent-forwarder:${DOCKER_IMAGE_VERSION}
+    image: ${DOCKER_IMAGE_PREFIX}fluent-forwarder:${VERSION}
     restart: always
     environment:
     - FF_SHARED_SECRET
@@ -16,7 +16,7 @@ services:
     mem_limit: 128mb
     memswap_limit: 0
     labels:
-    - version=${DOCKER_IMAGE_VERSION}
+    - version=${VERSION}
 
 networks:
   monitoring_tier:
