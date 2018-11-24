@@ -7,42 +7,20 @@ Docker image that contains web server application.
 
 ...
 
-### Build application
-
-```
-$ make build-application
-```
-
-### Run unit tests
-
-```
-$ make run-unit-tests
-```
-
-### Build image
+### Build
 
 ```
 $ make build
 ```
 
-### Release image
+### Test
+
+```
+$ make test
+```
+
+### Release
 
 ```
 $ make release version=0.0.1-example
 ```
-
-## Runtime configuration
-
-...
-
-### Environment variables
-
-`WEBSERVER_VERSION` - ...
-
-...
-
-### Entrypoint commands
-
-`--start-http-server` - ...
-
-...

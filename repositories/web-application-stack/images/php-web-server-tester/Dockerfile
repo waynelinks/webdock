@@ -14,6 +14,9 @@ COPY etc/php/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
 
 RUN chmod a+x /usr/local/bin/operation
 
-COPY app/ /opt/app/
-WORKDIR /opt/app/
-RUN composer install --no-dev --no-interaction
+COPY app/composer.json app/composer.lock /opt/app/
+WORKDIR /opt/app
+RUN composer install --no-interaction --no-ansi --no-autoloader --no-scripts --no-dev
+
+COPY app /opt/app
+RUN composer install --no-interaction --no-ansi

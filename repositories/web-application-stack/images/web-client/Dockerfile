@@ -2,9 +2,13 @@ ARG DOCKER_IMAGE_PREFIX="damlys/webdock-"
 
 FROM ${DOCKER_IMAGE_PREFIX}web-assets-builder:0.0.1-example AS assets_builder
 
-COPY app/ /opt/app/
-WORKDIR /opt/app/
-RUN npm install
+COPY app/package.json app/package-lock.json /opt/app/
+WORKDIR /opt/app
+RUN npm install --ignore-scripts
+
+COPY app /opt/app
+RUN npm install \
+&& npm run build
 
 FROM ${DOCKER_IMAGE_PREFIX}web-client-foundation:0.0.1-example
 # has user deploy:1000
@@ -33,5 +37,5 @@ ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
-COPY --from=assets_builder --chown=deploy:deploy /opt/app/public/ /opt/app/public/
-WORKDIR /opt/app/
+COPY --from=assets_builder --chown=deploy:deploy /opt/app/public /opt/app/public
+WORKDIR /opt/app

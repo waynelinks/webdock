@@ -1,19 +1,16 @@
-Monitoring Stack
+Monitoring stack
 ===
 
-This repository contains files required to collect logs from
-many Docker nodes into one place.
-
-The Logs Forwarder, which will run on every node, is prepared 
-to catch logs from Docker daemon and pass them to the Logs Collector.
+This repository contains files required to run monitoring
+platform.
 
 ## Getting started
 
 The `images` directory contains files required to build
 Docker images.
 
-The `composes` directory contains files required to run
-Docker Compose infrastructure with these images.
+The `stacks` directory contains files required to run
+Docker Swarm infrastructure with these images.
 
 ### Requirements
 
@@ -37,12 +34,6 @@ Login to Docker registry:
 
 ```
 $ docker login --username damlys
-```
-
-Create network for monitoring purposes:
-
-```
-$ docker network create monitoring_tier
 ```
 
 ## Versioning

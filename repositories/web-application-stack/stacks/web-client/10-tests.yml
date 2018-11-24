@@ -1,0 +1,84 @@
+version: "3.7"
+services:
+  web_tester:
+    image: ${DOCKER_IMAGE_PREFIX}web-client-tester:${VERSION}
+    command: ["sleep", "infinity"]
+    environment:
+      - WEBCLIENTTESTER_TESTS_TARGET_URL=http://http_server
+      - WEBCLIENTTESTER_SELENIUM_HUB_HOST=selenium_hub
+      - WEBCLIENTTESTER_SELENIUM_HUB_PORT=4444
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 64mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: "0"
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  selenium_hub:
+    image: selenium/hub:latest
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 128mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: "0"
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  selenium_chrome:
+    image: selenium/node-chrome:latest
+    environment:
+      - HUB_HOST=selenium_hub
+      - HUB_PORT=4444
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 128mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: "0"
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  selenium_firefox:
+    image: selenium/node-firefox:latest
+    environment:
+      - HUB_HOST=selenium_hub
+      - HUB_PORT=4444
+    deploy:
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 128mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: "0"
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}

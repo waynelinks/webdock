@@ -48,5 +48,6 @@ Automation stack:
 
 Browser drivers:
 
-- [Selenium Chrome](https://hub.docker.com/r/selenium/standalone-chrome/)
-- [Selenium Firefox](https://hub.docker.com/r/selenium/standalone-firefox/)
+- [Selenium Hub](https://hub.docker.com/r/selenium/hub/)
+- [Selenium Chrome](https://hub.docker.com/r/selenium/node-chrome/)
+- [Selenium Firefox](https://hub.docker.com/r/selenium/node-firefox/)

@@ -21,27 +21,26 @@ The general structure of this starter:
 └── repositories
     ├── automation-stack
     │   ├── composes
-    │   │   └── automation-server
+    │   │   └── automation
     │   └── images
     │       ├── jenkins-master
     │       └── jenkins-slave
     ├── monitoring-stack
-    │   ├── composes
-    │   │   ├── logs-collector
-    │   │   └── logs-forwarder
     │   └── images
     │       ├── fluent-collector
     │       └── fluent-forwarder
+    │   ├── stacks
+    │   │   └── monitoring
     ├── php-web-server-foundation
     ├── web-application-stack
-    │   ├── composes
-    │   │   ├── php-web-server
-    │   │   └── web-client
     │   └── images
     │       ├── php-web-server
     │       ├── php-web-server-tester
     │       ├── web-client
     │       └── web-client-tester
+    │   ├── stacks
+    │   │   ├── php-web-server
+    │   │   └── web-client
     ├── web-assets-builder
     └── web-client-foundation
 ```

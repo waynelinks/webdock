@@ -1,0 +1,122 @@
+version: "3.7"
+services:
+  fluent_forwarder:
+    image: ${DOCKER_IMAGE_PREFIX}fluent-forwarder:${VERSION}
+    environment:
+      - FF_SELF_HOSTNAME=fluent_forwarder
+      - FF_SHARED_SECRET=${FLUENT_SHARED_SECRET}
+      - FF_FLUENT_COLLECTOR_HOST=fluent_collector
+      - FF_FLUENT_COLLECTOR_PORT=24284
+    ports:
+      - mode: host
+        target: 24224
+        published: 24224
+        protocol: tcp
+    deploy:
+      mode: global
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 256mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: 1s
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  fluent_collector:
+    image: ${DOCKER_IMAGE_PREFIX}fluent-collector:${VERSION}
+    environment:
+      - FC_SELF_HOSTNAME=fluent_collector
+      - FC_SHARED_SECRET=${FLUENT_SHARED_SECRET}
+      - FC_MONGO_HOST=mongo
+      - FC_MONGO_PORT=27017
+      - FC_MONGO_USER=${BACKING_SERVICES_USER}
+      - FC_MONGO_PASSWORD=${MONGO_PASSWORD}
+      - FC_MONGO_DATABASE=admin
+      - FC_MONGO_COLLECTION=logs
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 256mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: 1s
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${BACKING_SERVICES_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - type: volume
+        source: mongo_config
+        target: /data/configdb
+      - type: volume
+        source: mongo_data
+        target: /data/db
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 256mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: 1s
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+  mongo_express:
+    image: mongo-express:latest
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${BACKING_SERVICES_USER}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_PASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${BACKING_SERVICES_USER}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${MONGO_PASSWORD}
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        reservations:
+          cpus: "0.10"
+          memory: 256mb
+        limits:
+          cpus: "1.00"
+          memory: 1gb
+      restart_policy:
+        condition: any
+        delay: 1s
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+volumes:
+  mongo_config:
+    driver: local
+  mongo_data:
+    driver: local

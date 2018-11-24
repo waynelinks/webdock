@@ -12,9 +12,10 @@ RUN apt-get install --yes \
 
 ENV COMPOSER_ALLOW_SUPERUSER="1"
 
-ADD https://getcomposer.org/installer /usr/local/bin/composer-installer
-RUN php /usr/local/bin/composer-installer --install-dir=/usr/local/bin/ --filename=composer \
-&& COMPOSER_CACHE_DIR="/var/cache/composer/" \
+RUN curl -fsSL https://getcomposer.org/installer -o /usr/local/bin/composer-installer \
+&& php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
+&& rm /usr/local/bin/composer-installer \
+&& COMPOSER_CACHE_DIR="/var/cache/composer" \
 && mkdir --parents ${COMPOSER_CACHE_DIR} \
 && chmod --recursive 766 ${COMPOSER_CACHE_DIR} \
 && composer config --global cache-dir ${COMPOSER_CACHE_DIR}
@@ -27,6 +28,11 @@ RUN apt-get install --yes \
   bamarni/symfony-console-autocomplete \
 && composer clear-cache \
 && echo "$(php ~/.composer/vendor/bin/symfony-autocomplete --shell bash composer)" > /etc/bash_completion.d/composer
+
+# `libfcgi0ldbl` package contains `cgi-fcgi` tool
+RUN apt-get install --yes \
+  libfcgi0ldbl \
+&& apt-get clean
 
 # `gettext` package contains `envsubst` tool
 RUN apt-get install --yes \

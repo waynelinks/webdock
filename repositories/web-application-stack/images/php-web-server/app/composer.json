@@ -16,12 +16,6 @@
         "phpunit/phpunit": "*"
     },
     "scripts": {
-        "post-install-cmd": [
-            "@build"
-        ],
-        "post-update-cmd": [
-            "@build"
-        ],
         "build": [
             "echo 'building...'"
         ],

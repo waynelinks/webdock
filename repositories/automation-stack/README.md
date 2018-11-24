@@ -1,4 +1,4 @@
-Automation Stack
+Automation stack
 ===
 
 This repository contains files required to build and run
@@ -13,7 +13,7 @@ with few pre-installed plugins:
 - [Matrix Authorization Strategy](https://plugins.jenkins.io/matrix-auth) (`matrix-auth`),
 - [Pipeline](https://plugins.jenkins.io/workflow-aggregator) (`workflow-aggregator`),
 - [Pipeline: Stage View](https://plugins.jenkins.io/pipeline-stage-view) (`pipeline-stage-view`),
-- [Simple Theme](https://plugins.jenkins.io/simple-theme-plugin) (`simple-theme-plugin`)
+- [SSH Agent](https://plugins.jenkins.io/ssh-agent) (`ssh-agent`)
 
 and few useful CLI scripts inside:
 
@@ -23,7 +23,7 @@ and few useful CLI scripts inside:
 - `docker-compose`,
 - `kubectl`,
 - `helm`,
-- `terraform`,
+- `notary`,
 - `vault`.
 
 ## Getting started

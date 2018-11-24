@@ -1,7 +1,6 @@
 # Package managers
-/app/node_modules/
+/app/node_modules
 /app/npm-debug.log
-/app/package-lock.json
 
 # Files generated during container startup
 /app/public/config.json

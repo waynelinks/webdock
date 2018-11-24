@@ -1,0 +1,43 @@
+version: "2.4"
+services:
+  jenkins:
+    image: ${DOCKER_IMAGE_PREFIX}jenkins-master:${VERSION}
+    environment:
+      DOCKER_HOST: tcp://dind:2375
+      CASC_SELF_URL: ${SELF_URL}
+      CASC_ADMIN_ADDRESS: ${ADMIN_ADDRESS}
+      CASC_SLAVE_IMAGE: ${DOCKER_IMAGE_PREFIX}jenkins-slave:${VERSION}
+      CASC_SLAVE_ENVIRONMENTS: |
+        DOCKER_HOST=tcp://127.0.0.1:2375
+      CASC_SLAVE_NETWORK: host
+    volumes:
+      - type: volume
+        source: jenkins_data
+        target: /var/jenkins_home
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 2gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  dind:
+    image: docker:18.09.0-dind
+    command: ["--storage-driver=overlay2"]
+    privileged: true # docker swarm deploy doesn't support that option!
+    volumes:
+      - type: volume
+        source: dind_data
+        target: /var/lib/docker
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 2gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+volumes:
+  dind_data:
+    driver: local
+  jenkins_data:
+    driver: local

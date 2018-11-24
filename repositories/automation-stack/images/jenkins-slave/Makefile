@@ -25,7 +25,7 @@ test:
 	$(call run,jq --version)
 	$(call run,kubectl version --client --short)
 	$(call run,make --version)
-	$(call run,terraform --version)
+	$(call run,notary version)
 	$(call run,vault --version)
 tag:
 	docker tag ${DOCKER_IMAGE_PREFIX}jenkins-slave:${draftVersion} ${DOCKER_IMAGE_PREFIX}jenkins-slave:${version}

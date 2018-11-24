@@ -45,7 +45,7 @@ http {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    root /opt/app/public/;
+    root /opt/app/public;
 
     # Define application's front controller
     index index.html;

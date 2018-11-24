@@ -1,4 +1,4 @@
-Web Application Stack
+Web Application stack
 ===
 
 This repository contains files required to build and run
@@ -9,8 +9,8 @@ web application.
 The `images` directory contains files required to build
 Docker images.
 
-The `composes` directory contains files required to run
-Docker Compose infrastructure with these images.
+The `stacks` directory contains files required to run
+Docker Swarm infrastructure with these images.
 
 ### Requirements
 

@@ -8,36 +8,20 @@ the [Web Client](../web-client/README.md) application's UI.
 
 ...
 
-### Build application
-
-```
-$ make build-application
-```
-
-### Run unit tests
-
-```
-$ make run-unit-tests
-```
-
-### Build image
+### Build
 
 ```
 $ make build
 ```
 
-### Release image
+### Test
+
+```
+$ make test
+```
+
+### Release
 
 ```
 $ make release version=0.0.1-example
 ```
-
-## Runtime configuration
-
-...
-
-### Environment variables
-
-`WEBCLIENTTESTER_TESTS_TARGET_URL` - ...
-
-...

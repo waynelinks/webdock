@@ -1,0 +1,35 @@
+version: "3.7"
+x-volumes:
+  &volumes
+  volumes:
+    - type: volume
+      source: global_composer_cache
+      target: /var/cache/composer
+    - type: bind
+      source: ../../images/php-web-server/app
+      target: /opt/app
+
+services:
+  cgi_server: *volumes
+  example_worker: *volumes
+  http_server: *volumes
+  migrator: *volumes
+  task_scheduler: *volumes
+
+  application_builder:
+    <<: *volumes
+    image: ${DOCKER_IMAGE_PREFIX}php-web-server-foundation:0.0.1-example
+    working_dir: /opt/app
+    command: ["sleep", "infinity"]
+    deploy:
+      restart_policy:
+        condition: any
+        delay: "0"
+      labels:
+        - version=${VERSION}
+    labels:
+      - version=${VERSION}
+
+volumes:
+  global_composer_cache:
+    external: true

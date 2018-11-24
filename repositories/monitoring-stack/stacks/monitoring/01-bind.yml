@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  fluent_forwarder:
+    volumes:
+      - type: bind
+        source: ../../images/fluent-forwarder/etc
+        target: /fluent-bit/etc
+
+  fluent_collector:
+    volumes:
+      - type: bind
+        source: ../../images/fluent-collector/etc
+        target: /fluentd/etc

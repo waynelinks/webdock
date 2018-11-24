@@ -9,7 +9,7 @@
 ### VCS
 #############################
 
-*/.git/
+*/.git
 */.gitignore
 */.gitkeep
 
@@ -18,6 +18,7 @@
 #############################
 
 # Package managers
+app/node_modules
 app/npm-debug.log
 
 # Nightwatch output

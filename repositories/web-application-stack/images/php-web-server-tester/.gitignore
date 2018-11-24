@@ -1,6 +1,5 @@
 # Package managers
-/app/vendor/
-/app/composer.lock
+/app/vendor
 
 # Xdebug output
 /app/xdebug/*

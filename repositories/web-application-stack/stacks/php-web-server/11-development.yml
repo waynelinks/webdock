@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  http_tester:
+    volumes:
+      - type: volume
+        source: global_composer_cache
+        target: /var/cache/composer
+      - type: bind
+        source: ../../images/php-web-server-tester/app
+        target: /opt/app
+
+volumes:
+  global_composer_cache:
+    external: true

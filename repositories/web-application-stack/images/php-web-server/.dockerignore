@@ -9,13 +9,16 @@
 ### VCS
 #############################
 
-*/.git/
+*/.git
 */.gitignore
 */.gitkeep
 
 #############################
 ### Application
 #############################
+
+# Package managers
+app/vendor
 
 # Xdebug output
 app/xdebug/*

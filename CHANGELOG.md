@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.9.0] - 2018-12-09
+
+### Added
+
+- Handle package managers cache with Docker build cache.
+- Docker Swarm stacks.
+- Health check with the `cgi-fcgi` tool.
+- Add `notary` client to Jenkins Slave image.
+
+### Changed
+
+- Use `docker:dind` image in automation stack.
+
+### Removed
+
+- Jenkins theme customization.
+- Delete `terraform` from Jenkins Slave image.
+
 ## [0.8.3] - 2018-11-24
 
 ### Added
