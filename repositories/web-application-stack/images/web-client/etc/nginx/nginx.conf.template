@@ -28,7 +28,7 @@ http {
 
   charset "${WEBCLIENT_DEFAULT_CHARSET}";
   server_tokens off;
-  add_header X-Version "${WEBCLIENT_VERSION}";
+  add_header X-Version "${WEBCLIENT_VERSION}" always;
   expires -1;
 
   include /etc/nginx/mime.types;

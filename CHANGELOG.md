@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+
+- Add `X-Version` header to HTTP responses regardless of the response code.
+
 ## [0.9.0] - 2018-12-09
 
 ### Added
