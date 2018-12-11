@@ -36,12 +36,13 @@ RUN /usr/local/bin/install-plugins.sh \
   workflow-aggregator
 
 ENV DOCKER_HOST="tcp://127.0.0.1:2376" \
+  REGISTRY_HOST="127.0.0.1:5000" \
   CASC_JENKINS_CONFIG="/etc/jenkins/casc" \
   CASC_SYSTEM_MESSAGE="This Jenkins is configured and managed \"as code\"." \
   CASC_SELF_URL="http://127.0.0.1:8080" \
   CASC_ADMIN_ADDRESS="undefined <undefined@dummy.tld>" \
-  CASC_SLAVE_IMAGE="jenkins-slave:undefined" \
-  CASC_SLAVE_ENVIRONMENTS="DOCKER_HOST=tcp://127.0.0.1:2376" \
+  CASC_SLAVE_IMAGE="jenkins/jnlp-slave:latest" \
+  CASC_SLAVE_ENVIRONMENTS="" \
   CASC_SLAVE_NETWORK="" \
   CASC_SLAVE_VOLUMES=""
 

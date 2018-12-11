@@ -53,3 +53,6 @@ RUN VAULT_VERSION="1.0.0" \
 && chmod a+rx /usr/local/bin/vault
 
 USER jenkins
+
+ENV DOCKER_HOST="tcp://127.0.0.1:2376" \
+  REGISTRY_HOST="127.0.0.1:5000"
