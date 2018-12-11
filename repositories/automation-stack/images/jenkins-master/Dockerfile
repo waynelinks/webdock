@@ -24,6 +24,7 @@ RUN DOCKER_VERSION="18.09.0" \
 USER jenkins
 
 RUN /usr/local/bin/install-plugins.sh \
+  ansicolor \
   configuration-as-code \
   docker-plugin \
   generic-webhook-trigger \

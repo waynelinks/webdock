@@ -5,6 +5,7 @@ This repository contains files required to build and run
 [Jenkins](https://jenkins.io/) automation server
 with few pre-installed plugins:
 
+- [AnsiColor](https://plugins.jenkins.io/ansicolor) (`ansicolor`),
 - [Configuration as Code](https://plugins.jenkins.io/configuration-as-code) (`configuration-as-code`),
 - [Docker](https://plugins.jenkins.io/docker-plugin) (`docker-plugin`),
 - [Generic Webhook Trigger](https://plugins.jenkins.io/generic-webhook-trigger) (`generic-webhook-trigger`),

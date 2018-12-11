@@ -46,9 +46,9 @@ HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
 COPY --chown=deploy:deploy app/composer.json app/composer.lock /opt/app/
 WORKDIR /opt/app
-RUN su --command "composer install --no-interaction --no-ansi --no-autoloader --no-scripts --no-dev" deploy
+RUN su --command "composer install --no-scripts --no-autoloader --no-dev" deploy
 
 COPY --chown=deploy:deploy app /opt/app
 RUN chmod a+x /opt/app/bin/* \
-&& su --command "composer install --no-interaction --no-ansi --no-dev" deploy \
+&& su --command "composer install --no-dev" deploy \
 && su --command "composer run-script build" deploy

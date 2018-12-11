@@ -16,7 +16,7 @@ RUN chmod a+x /usr/local/bin/operation
 
 COPY app/composer.json app/composer.lock /opt/app/
 WORKDIR /opt/app
-RUN composer install --no-interaction --no-ansi --no-autoloader --no-scripts --no-dev
+RUN composer install --no-scripts --no-autoloader --no-dev
 
 COPY app /opt/app
-RUN composer install --no-interaction --no-ansi
+RUN composer install

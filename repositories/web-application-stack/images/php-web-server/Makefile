@@ -9,7 +9,7 @@ define run
 		--rm \
 		--mount source=global_composer_cache,target=/var/cache/composer \
 		${DOCKER_IMAGE_PREFIX}php-web-server:${draftVersion} \
-		sh -c "composer install --no-interaction --no-ansi; $(1)"
+		sh -c "composer install; $(1)"
 endef
 
 default: shell
