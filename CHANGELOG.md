@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Jenkins AnsiColor plugin.
 - Add Docker Registry to automation stack.
+- Add Docker Hub mirror to automation stack.
 
 ### Fixed
 

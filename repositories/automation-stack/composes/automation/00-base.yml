@@ -25,7 +25,7 @@ services:
 
   docker:
     image: docker:18.09.0-dind
-    command: ["--storage-driver=overlay2", "--insecure-registry=registry:5000"]
+    command: ["--storage-driver=overlay2", "--registry-mirror=http://docker_hub_mirror:5000", "--insecure-registry=registry:5000"]
     privileged: true # docker swarm deploy doesn't support that option!
     volumes:
       - type: volume
@@ -38,8 +38,30 @@ services:
     labels:
       - version=${VERSION}
 
+  docker_hub_mirror:
+    image: registry:latest
+    environment:
+      REGISTRY_LOG_LEVEL: error
+      REGISTRY_LOG_FORMATTER: json
+      REGISTRY_LOG_ACCESSLOG_DISABLED: "true"
+      REGISTRY_PROXY_REMOTEURL: https://registry-1.docker.io
+    volumes:
+      - type: volume
+        source: docker_hub_mirror_data
+        target: /var/lib/registry
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
   registry:
     image: registry:latest
+    environment:
+      REGISTRY_LOG_LEVEL: error
+      REGISTRY_LOG_FORMATTER: json
+      REGISTRY_LOG_ACCESSLOG_DISABLED: "true"
     volumes:
       - type: volume
         source: registry_data
@@ -53,6 +75,8 @@ services:
 
 volumes:
   docker_data:
+    driver: local
+  docker_hub_mirror_data:
     driver: local
   jenkins_data:
     driver: local
