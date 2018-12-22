@@ -1,0 +1,10 @@
+# Docker Compose
+/.env
+/docker-compose.override.yml
+
+# Package managers
+/app/vendor
+
+# Xdebug output
+/app/xdebug/*
+!/app/xdebug/.gitkeep

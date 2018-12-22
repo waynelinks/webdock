@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-web-client-tester:${VERSION-unreleased}
+    command: ["bash"]
+    volumes:
+      - type: volume
+        source: global_npm_cache
+        target: /var/cache/npm
+#      - type: bind
+#        source: app
+#        target: /opt/app
+
+volumes:
+  global_npm_cache:
+    external: true

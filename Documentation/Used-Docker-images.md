@@ -4,8 +4,8 @@
 
 Runtime environment:
 
+- [Node.js](https://hub.docker.com/_/node/)
 - [PHP](https://hub.docker.com/_/php/)
-- [Node](https://hub.docker.com/_/node/)
 
 HTTP server:
 
@@ -36,12 +36,12 @@ SMTP catcher:
 
 - [MailHog](https://hub.docker.com/r/mailhog/mailhog/)
 
-Monitoring stack:
+Logging:
 
 - [Fluentd](https://hub.docker.com/r/fluent/fluentd/)
 - [Fluent Bit](https://hub.docker.com/r/fluent/fluent-bit/)
 
-Automation stack:
+Automation:
 
 - [Jenkins](https://hub.docker.com/r/jenkins/jenkins/)
 - [Jenkins JNLP Agent](https://hub.docker.com/r/jenkins/jnlp-slave/)

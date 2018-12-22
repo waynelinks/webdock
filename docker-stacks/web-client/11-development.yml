@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  web_tester:
+    volumes:
+      - type: volume
+        source: global_npm_cache
+        target: /var/cache/npm
+      - type: bind
+        source: ../../docker-images/web-client-tester/app
+        target: /opt/app
+
+volumes:
+  global_npm_cache:
+    external: true

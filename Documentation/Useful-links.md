@@ -24,23 +24,18 @@ Docker:
     - [Compose CLI environment variables](https://docs.docker.com/compose/reference/envvars/)
     - [Control startup order in Compose](https://docs.docker.com/compose/startup-order/)
     - [Environment variables in Compose](https://docs.docker.com/compose/environment-variables/)
-- [Docker Logging Design and Best Practices](https://success.docker.com/article/logging-best-practices)
-    - [Configure logging drivers](https://docs.docker.com/config/containers/logging/configure/)
-    - [Fluentd logging driver](https://docs.docker.com/config/containers/logging/fluentd/)
-
-PHP:
-
-- [Scripts - Composer](https://getcomposer.org/doc/articles/scripts.md)
-- [Flysystem - Abstraction for local and remote filesystems](https://github.com/thephpleague/flysystem)
-- [Plates - Native PHP template system](https://github.com/thephpleague/plates)
-
-JavaScript:
-
-- [Scripts - NPM](https://docs.npmjs.com/misc/scripts)
 
 Jenkins:
 
 - [Pipeline](https://jenkins.io/doc/book/pipeline/)
     - [Using a Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/)
-    - [Pipeline Syntax](https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline)
+    - [Scripted Pipeline Syntax](https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline)
 - [Groovy Language Specification](http://groovy-lang.org/documentation.html#languagespecification)
+
+JavaScript:
+
+- [Scripts - NPM](https://docs.npmjs.com/misc/scripts)
+
+PHP:
+
+- [Scripts - Composer](https://getcomposer.org/doc/articles/scripts.md)

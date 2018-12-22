@@ -8,8 +8,29 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.md]
-trim_trailing_whitespace = false
+[*.{css,less,scss}]
+
+[*.feature]
+
+[*.groovy]
+indent_size = 4
+
+[*.{html,xml}]
+
+[*.{js,json}]
+
+#[*.md]
+#trim_trailing_whitespace = false
+
+[*.php]
+indent_size = 4
+
+[*.ts]
+
+[*.{yaml,yml}]
+
+[composer.{json,lock}]
+indent_size = 4
 
 [Makefile]
 indent_style = tab

@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.10.0] - 2018-12-31
+
+### Added
+
+- Monorepo approach.
+- Use `*_XDEBUG_ENABLE` environment variables instead of `operation --install-xdebug` commands.
+
+### Changed
+
+- Use `docker-compose.yml` files instead of `Makefile` within Docker Images directories.
+
+### Fixed
+
+- Selenium Grid Hub and Selenium Nodes connection.
+
 ## [0.9.1] - 2018-12-19
 
 ### Added

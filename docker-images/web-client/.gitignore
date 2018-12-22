@@ -1,0 +1,11 @@
+# Docker Compose
+/.env
+/docker-compose.override.yml
+
+# Package managers
+/app/node_modules
+/app/npm-debug.log
+
+# Files generated during container startup
+/app/public/config.json
+/app/public/index.html

@@ -2,13 +2,6 @@
 
 # PHP Debugging
 
-[Xdebug](https://xdebug.org/) is not installed in the Docker images
-by default.
-
-To do it run `operation --install-xdebug` command inside given
-PHP container and restart it.
-This is required after each container recreation.
-
 ## PHPStorm configuration
 
 ![PHPStorm Xdebug port config](./assets/phpstorm-xdebug-port-config.png)

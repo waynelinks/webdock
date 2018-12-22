@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-web-assets-builder:${VERSION-unreleased}
+    command: ["bash"]
+    volumes:
+      - type: volume
+        source: global_npm_cache
+        target: /var/cache/npm
+
+volumes:
+  global_npm_cache:
+    external: true

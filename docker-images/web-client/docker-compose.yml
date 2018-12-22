@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-web-client:${VERSION-unreleased}
+    command: ["bash"]
+#    volumes:
+#      - type: bind
+#        source: app/public
+#        target: /opt/app/public
+
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: ["bash"]
+    volumes:
+      - type: volume
+        source: global_npm_cache
+        target: /var/cache/npm
+#      - type: bind
+#        source: app
+#        target: /opt/app
+
+volumes:
+  global_npm_cache:
+    external: true
