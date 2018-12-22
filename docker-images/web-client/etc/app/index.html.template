@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="${WEBCLIENT_DEFAULT_LOCALE}">
+<head>
+  <meta charset="${WEBCLIENT_DEFAULT_CHARSET}">
+  <title>Web Client</title>
+
+  <script src="/app.js?v=${WEBCLIENT_VERSION}"></script>
+</head>
+<body>
+<noscript>Your browser does not support JavaScript!</noscript>
+</body>
+</html>

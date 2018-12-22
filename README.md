@@ -1,10 +1,8 @@
 WebDock
 ===
 
-WebDock is a Docker starter for web applications.
-
-Project is designed to work with PHP micro services and SPA web clients,
-but it is also great to work with PHP MPA.
+WebDock is a monorepo Docker starter for PHP server
+and web client applications.
 
 ## Table of contents
 
@@ -15,71 +13,67 @@ but it is also great to work with PHP MPA.
 
 ## Getting started
 
-The general structure of this starter:
-
-```
-└── repositories
-    ├── automation-stack
-    │   ├── composes
-    │   │   └── automation
-    │   └── images
-    │       ├── jenkins-master
-    │       └── jenkins-slave
-    ├── monitoring-stack
-    │   └── images
-    │       ├── fluent-collector
-    │       └── fluent-forwarder
-    │   ├── stacks
-    │   │   └── monitoring
-    ├── php-web-server-foundation
-    ├── web-application-stack
-    │   └── images
-    │       ├── php-web-server
-    │       ├── php-web-server-tester
-    │       ├── web-client
-    │       └── web-client-tester
-    │   ├── stacks
-    │   │   ├── php-web-server
-    │   │   └── web-client
-    ├── web-assets-builder
-    └── web-client-foundation
-```
-
 ### Requirements
 
-To start working with WebDock repositories you have to install
-Docker and Docker Compose.
-This is how you can check if it is properly installed:
+Following software is required to work with this repository:
 
 ```
-$ docker --version; \
-  docker run --rm hello-world; \
-  docker-compose --version
+$ docker version
+Client:
+ Version:           18.09.0
+ API version:       1.39
+ Go version:        go1.10.4
+ Git commit:        4d60db4
+ Built:             Wed Nov  7 00:49:01 2018
+ OS/Arch:           linux/amd64
+ Experimental:      false
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          18.09.0
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.4
+  Git commit:       4d60db4
+  Built:            Wed Nov  7 00:16:44 2018
+  OS/Arch:          linux/amd64
+  Experimental:     false
+
+$ docker-compose version
+docker-compose version 1.23.1, build b02f1306
+docker-py version: 3.5.0
+CPython version: 3.6.7
+OpenSSL version: OpenSSL 1.1.0f  25 May 2017
 ```
 
-### Hosts
-
-Check Docker IP with `ifconfig docker0` command  
-(`docker-machine ip` if you are working with Docker Machine).
+Check if Docker daemon works correctly:
 
 ```
-$ ifconfig docker0
-docker0   Link encap:Ethernet  HWaddr 02:42:be:e6:83:00  
-          inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
-          UP BROADCAST MULTICAST  MTU:1500  Metric:1
-          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0 
-          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+$ docker container run --rm hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+...
 ```
 
-Add `172.17.0.1 docker.localhost` line to the `/etc/hosts` file  
-(`C:\Windows\System32\Drivers\etc\hosts` file for Windows).
+Check if Docker Swarm mode is enabled:
 
-### Copy files
+```
+$ docker info --format="{{.Swarm.LocalNodeState}}"
+active
+```
 
-Copy any [repository](./repositories/) from this project to your
-own Git repository and follow it's readme file.
+### Prerequisites
 
-**Tip:** search for the `DOCKER_IMAGE_PREFIX` variable to learn about
-connections between services in the project.
+Login to Docker registry:
+
+```
+$ docker login --username=damlys
+```
+
+Create volumes for package managers cache:
+
+```
+$ docker volume create --driver=local --name=global_composer_cache
+$ docker volume create --driver=local --name=global_npm_cache
+```

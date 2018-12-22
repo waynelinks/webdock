@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-php-web-server-foundation:${VERSION-unreleased}
+    command: ["bash"]
+    volumes:
+      - type: volume
+        source: global_composer_cache
+        target: /var/cache/composer
+
+volumes:
+  global_composer_cache:
+    external: true

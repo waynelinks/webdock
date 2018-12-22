@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-jenkins-master:${VERSION-unreleased}
+    command: ["bash"]

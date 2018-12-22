@@ -1,7 +1,0 @@
-version: "2.4"
-services:
-  jenkins:
-    volumes:
-      - type: bind
-        source: ../../images/jenkins-master/casc
-        target: /etc/jenkins/casc

@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: damlys/webdock-fluent-forwarder:${VERSION-unreleased}
+    command: ["bash"]
