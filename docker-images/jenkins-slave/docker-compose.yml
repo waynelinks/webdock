@@ -5,4 +5,4 @@ services:
       context: .
       dockerfile: Dockerfile
     image: damlys/webdock-jenkins-slave:${VERSION-unreleased}
-    command: ["bash"]
+    command: ["ash"]

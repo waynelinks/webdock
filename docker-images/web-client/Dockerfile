@@ -10,9 +10,6 @@ RUN npm install \
 
 
 FROM damlys/webdock-web-client-foundation:0.0.1-example
-# has user deploy:1000
-# has group deploy:1000
-# exposes port 80
 
 ENV WEBCLIENT_VERSION="undefined" \
   WEBCLIENT_HTTP_WORKERS_COUNT="1" \

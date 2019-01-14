@@ -1,6 +1,4 @@
 FROM node:latest
-# has user node:1000
-# has group node:1000
 
 RUN apt-get update
 

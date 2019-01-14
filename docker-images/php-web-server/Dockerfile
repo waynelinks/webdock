@@ -1,7 +1,4 @@
 FROM damlys/webdock-php-web-server-foundation:0.0.1-example
-# has user deploy:1000
-# has group deploy:1000
-# exposes port 80 and 9000
 
 ENV WEBSERVER_VERSION="undefined" \
   WEBSERVER_CGI_SERVER_HOST="127.0.0.1" \

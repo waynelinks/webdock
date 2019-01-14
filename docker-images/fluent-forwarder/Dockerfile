@@ -1,6 +1,4 @@
 FROM fluent/fluent-bit:latest
-# uses root user
-# exposes port 2020
 
 EXPOSE 24224
 

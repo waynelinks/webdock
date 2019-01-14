@@ -1,7 +1,4 @@
 FROM fluent/fluentd:latest
-# has user fluent:1000
-# has group fluent:1000
-# exposes port 5140 and 24224
 
 # https://github.com/fluent/fluentd-docker-image#3-customize-dockerfile-to-install-plugins-optional
 RUN apk add --update --virtual .build-deps sudo build-base ruby-dev \

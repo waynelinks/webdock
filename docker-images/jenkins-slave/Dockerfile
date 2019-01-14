@@ -1,14 +1,12 @@
-FROM jenkins/jnlp-slave:latest
-# has user jenkins:10000
-# has group jenkins:10000
+FROM jenkins/jnlp-slave:alpine
 
 USER root
 
-RUN apt-get update \
-&& apt-get install --yes \
+RUN apk update \
+&& apk add --no-cache \
+  curl \
   jq \
-  make \
-&& apt-get clean
+  make
 
 # docker (https://download.docker.com/linux/static/stable/x86_64/)
 RUN DOCKER_VERSION="18.09.0" \
@@ -21,8 +19,10 @@ RUN DOCKER_VERSION="18.09.0" \
 
 # docker-compose (https://github.com/docker/compose/releases)
 RUN COMPOSE_VERSION="1.23.2" \
-&& curl -fsSL https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose \
-&& chmod a+rx /usr/local/bin/docker-compose
+&& apk add --no-cache \
+  py-pip \
+&& pip install --no-cache-dir \
+  docker-compose==${COMPOSE_VERSION}
 
 # kubectl (https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 RUN KUBERNETES_VERSION="1.13.0" \

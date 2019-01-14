@@ -1,5 +1,4 @@
 FROM php:fpm
-# exposes port 9000
 
 RUN groupadd --gid 1000 deploy \
 && useradd --uid 1000 --gid deploy --shell /bin/bash --create-home deploy

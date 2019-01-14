@@ -1,16 +1,12 @@
-# https://github.com/jenkinsci/docker/blob/master/Dockerfile
-FROM jenkins/jenkins:latest
-# has user jenkins:1000
-# has group jenkins:1000
-# exposes port 8080 and 50000
+# https://github.com/jenkinsci/docker/blob/master/Dockerfile-alpine
+FROM jenkins/jenkins:alpine
 
 USER root
 
-RUN apt-get update \
-&& apt-get install --yes \
+RUN apk update \
+&& apk add --no-cache \
   jq \
-  make \
-&& apt-get clean
+  make
 
 # docker (https://download.docker.com/linux/static/stable/x86_64/)
 RUN DOCKER_VERSION="18.09.0" \

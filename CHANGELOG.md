@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.10.1] - 2019-01-14
+
+### Changed
+
+- Use Alpine Linux within Jenkins images.
+
 ## [0.10.0] - 2018-12-31
 
 ### Added
