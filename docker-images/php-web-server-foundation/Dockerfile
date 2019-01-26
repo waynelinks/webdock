@@ -30,7 +30,7 @@ RUN apt-get install --yes \
 
 # Xdebug is disabled by default. Run `docker-php-ext-enable xdebug` command to enable it
 RUN pecl install \
-  xdebug \
+  xdebug-2.7.0beta1 \
 && pecl clear-cache
 
 # `libfcgi0ldbl` package contains `cgi-fcgi` tool
@@ -61,7 +61,7 @@ RUN apt-get install --yes \
 # `apt-get` is used here to install packages required by php libraries
 RUN apt-get install --yes \
   libpq-dev \
-  zip \
+  libzip-dev \
   zlib1g-dev \
 && apt-get clean \
 && pecl install \
