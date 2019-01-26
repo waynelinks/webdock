@@ -11,27 +11,19 @@ $ docker-compose pull this
 ### Build
 
 ```
-$ docker-compose build this
+$ docker-compose build
 ```
 
 ### Shell
 
 ```
-$ docker-compose run this
+$ docker-compose run --rm this
 ```
 
 ### Test
 
-Run inside `this` container:
-
 ```
-$ node --version \
-  && npm --version \
-  && git --version \
-  && sass --version \
-  && tsc --version \
-  && webpack --version \
-  && webpack-cli --version
+$ make run-installation-tests
 ```
 
 ### Push

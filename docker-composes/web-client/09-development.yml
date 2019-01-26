@@ -1,0 +1,29 @@
+version: "2.4"
+services:
+  http_server:
+    volumes:
+      - type: bind
+        source: ../../docker-images/web-client/app/public
+        target: /opt/app/public
+
+  builder:
+    image: damlys/webdock-web-client:builder-${VERSION}
+    command: ["sleep", "infinity"]
+    volumes:
+      - type: volume
+        source: global_npm_cache
+        target: /var/cache/npm
+      - type: bind
+        source: ../../docker-images/web-client/app
+        target: /opt/app
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+volumes:
+  global_npm_cache:
+    external: true

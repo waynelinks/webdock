@@ -11,22 +11,19 @@ $ docker-compose pull this
 ### Build
 
 ```
-$ docker-compose build this
+$ docker-compose build
 ```
 
 ### Shell
 
 ```
-$ docker-compose run this
+$ docker-compose run --rm this
 ```
 
 ### Test
 
-Run inside `this` container:
-
 ```
-$ composer install \
-  && composer run-script unit-tests
+$ make run-unit-tests
 ```
 
 ### Push

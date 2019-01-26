@@ -1,0 +1,5 @@
+version: "2.4"
+services:
+  selenium_hub:
+    ports:
+      - ${SELENIUM_HUB_PORT}:4444

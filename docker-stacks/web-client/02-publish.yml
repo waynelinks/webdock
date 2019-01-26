@@ -1,8 +1,0 @@
-version: "3.7"
-services:
-  http_server:
-    ports:
-      - mode: ingress
-        target: 80
-        published: ${HTTP_SERVER_PORT}
-        protocol: tcp

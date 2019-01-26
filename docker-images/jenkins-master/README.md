@@ -11,25 +11,19 @@ $ docker-compose pull this
 ### Build
 
 ```
-$ docker-compose build this
+$ docker-compose build
 ```
 
 ### Shell
 
 ```
-$ docker-compose run this
+$ docker-compose run --rm this
 ```
 
 ### Test
 
-Run inside `this` container:
-
 ```
-$ docker --version \
-  && curl --version \
-  && git --version \
-  && jq --version \
-  && make --version
+$ make run-installation-tests
 ```
 
 ### Push

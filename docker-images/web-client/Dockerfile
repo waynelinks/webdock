@@ -1,5 +1,7 @@
 FROM damlys/webdock-web-assets-builder:0.0.1-example AS builder
 
+CMD ["exit", "0"]
+
 COPY app/package.json app/package-lock.json /opt/app/
 WORKDIR /opt/app
 RUN npm install --ignore-scripts

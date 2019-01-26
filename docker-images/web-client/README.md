@@ -11,23 +11,20 @@ $ docker-compose pull this
 ### Build
 
 ```
-$ docker-compose build this
+$ docker-compose build
 ```
 
 ### Shell
 
 ```
-$ docker-compose run this
-$ docker-compose run builder
+$ docker-compose run --rm this
+$ docker-compose run --rm builder
 ```
 
 ### Test
 
-Run inside `builder` container:
-
 ```
-$ npm install \
-  && npm run unit-tests
+$ make run-unit-tests
 ```
 
 ### Push

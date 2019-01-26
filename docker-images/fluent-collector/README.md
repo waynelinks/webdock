@@ -11,21 +11,19 @@ $ docker-compose pull this
 ### Build
 
 ```
-$ docker-compose build this
+$ docker-compose build
 ```
 
 ### Shell
 
 ```
-$ docker-compose run this
+$ docker-compose run --rm this
 ```
 
 ### Test
 
-Run inside `this` container:
-
 ```
-$ fluentd --version
+$ make run-installation-tests
 ```
 
 ### Push

@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  http_server:
+    image: damlys/webdock-web-client:${VERSION}
+    environment:
+      WEBCLIENT_VERSION: "${VERSION}"
+      WEBCLIENT_HTTP_WORKERS_COUNT: 5
+      WEBCLIENT_ENVIRONMENT: "${WEBCLIENT_ENVIRONMENT-prod}"
+      WEBCLIENT_DEBUG: "${WEBCLIENT_DEBUG-off}"
+      WEBCLIENT_API_GATEWAY_DSN: "${WEBCLIENT_API_GATEWAY_DSN}"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}

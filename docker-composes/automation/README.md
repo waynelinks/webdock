@@ -16,7 +16,7 @@ Set released version number in `VERSION` variable.
 $ make setup
 ```
 
-### Run integration tests
+### Test
 
 ```
 $ make run-integration-tests

@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     image: damlys/webdock-php-web-server:${VERSION-unreleased}
     command: ["bash"]
+    networks:
+      - none
     volumes:
       - type: volume
         source: global_composer_cache
@@ -13,6 +15,10 @@ services:
 #      - type: bind
 #        source: app
 #        target: /opt/app
+
+networks:
+  none:
+    external: true
 
 volumes:
   global_composer_cache:

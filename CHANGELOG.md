@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.11.0] - 2019-01-26
+
+### Added
+
+- Attach services defined inside `docker-images` directory to `none` network.
+- `scale` property for services inside `docker-composes` directory.
+
+### Changed
+
+- Revert Docker Swarm stacks.
+- Remove `env_file: .env` from Docker Compose files.
+
+### Fixed
+
+- PHP Xdebug installation tests.
+
 ## [0.10.1] - 2019-01-14
 
 ### Changed

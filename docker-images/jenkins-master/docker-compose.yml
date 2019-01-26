@@ -6,3 +6,17 @@ services:
       dockerfile: Dockerfile
     image: damlys/webdock-jenkins-master:${VERSION-unreleased}
     command: ["ash"]
+    networks:
+      - none
+    volumes:
+      - type: volume
+        source: data
+        target: /var/jenkins_home
+
+networks:
+  none:
+    external: true
+
+volumes:
+  data:
+    driver: local

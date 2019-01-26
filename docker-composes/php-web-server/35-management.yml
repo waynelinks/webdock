@@ -1,0 +1,85 @@
+version: "2.4"
+services:
+  mongo_express:
+    depends_on:
+      - mongo
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${BACKING_SERVICES_USER}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${MONGO_PASSWORD}"
+      ME_CONFIG_BASICAUTH_USERNAME: "${BACKING_SERVICES_USER}"
+      ME_CONFIG_BASICAUTH_PASSWORD: "${MONGO_PASSWORD}"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  # pgAdmin and PostgreSQL connection have to be configured manually.
+  # Open ${PGADMIN_PORT} in your browser, click RMB on the "Servers",
+  # hover "Create" and click "Server...".
+  # On the "Connection" tab use the following values:
+  # Host: postgres
+  # Port: 5432
+  # User: ${BACKING_SERVICES_USER}
+  # Password: ${POSTGRES_PASSWORD}
+  pgadmin:
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${BACKING_SERVICES_USER}"
+      PGADMIN_DEFAULT_PASSWORD: "${POSTGRES_PASSWORD}"
+    volumes:
+      - type: volume
+        source: pgadmin_data
+        target: /var/lib/pgadmin
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  rabbitmq:
+    image: rabbitmq:management #:latest
+
+  redis_commander:
+    depends_on:
+      - redis
+    image: rediscommander/redis-commander:latest
+    environment:
+      HTTP_USER: "${BACKING_SERVICES_USER}"
+      HTTP_PASSWORD: "${REDIS_PASSWORD}"
+      REDIS_HOSTS: "session:redis:6379:0:${REDIS_PASSWORD},cache:redis:6379:1:${REDIS_PASSWORD}"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+volumes:
+  pgadmin_data:
+    driver: local

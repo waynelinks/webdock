@@ -5,4 +5,24 @@ services:
       context: .
       dockerfile: Dockerfile
     image: damlys/webdock-jenkins-slave:${VERSION-unreleased}
+    entrypoint: []
     command: ["ash"]
+    networks:
+      - none
+    volumes:
+      - type: volume
+        source: data_1
+        target: /home/jenkins/.jenkins
+      - type: volume
+        source: data_2
+        target: /home/jenkins/agent
+
+networks:
+  none:
+    external: true
+
+volumes:
+  data_1:
+    driver: local
+  data_2:
+    driver: local

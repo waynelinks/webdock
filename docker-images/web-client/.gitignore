@@ -1,6 +1,13 @@
-# Docker Compose
+#############################
+### Docker Compose
+#############################
+
 /.env
 /docker-compose.override.yml
+
+#############################
+### Application
+#############################
 
 # Package managers
 /app/node_modules

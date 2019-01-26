@@ -1,0 +1,5 @@
+version: "2.4"
+services:
+  mailhog:
+    ports:
+      - ${MAILHOG_PORT}:8025

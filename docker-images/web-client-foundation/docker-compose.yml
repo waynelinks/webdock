@@ -6,3 +6,9 @@ services:
       dockerfile: Dockerfile
     image: damlys/webdock-web-client-foundation:${VERSION-unreleased}
     command: ["bash"]
+    networks:
+      - none
+
+networks:
+  none:
+    external: true

@@ -6,3 +6,9 @@ services:
       dockerfile: Dockerfile
     image: damlys/webdock-fluent-collector:${VERSION-unreleased}
     command: ["ash"]
+    networks:
+      - none
+
+networks:
+  none:
+    external: true

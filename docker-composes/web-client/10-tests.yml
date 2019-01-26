@@ -1,0 +1,67 @@
+version: "2.4"
+services:
+  web_tester:
+    depends_on:
+      - http_server
+      - selenium_hub
+    image: damlys/webdock-web-client-tester:${VERSION}
+    command: ["sleep", "infinity"]
+    environment:
+      WEBCLIENTTESTER_SELENIUM_HUB_HOST: selenium_hub
+      WEBCLIENTTESTER_SELENIUM_HUB_PORT: 4444
+      WEBCLIENTTESTER_TESTS_TARGET_URL: http://http_server
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  selenium_hub:
+    image: selenium/hub:latest
+    environment:
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60000
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  selenium_chrome:
+    depends_on:
+      - selenium_hub
+    image: selenium/node-chrome:latest
+    environment:
+      HUB_HOST: selenium_hub
+      HUB_PORT: 4444
+      NODE_MAX_INSTANCES: 1
+      NODE_MAX_SESSION: 1
+    entrypoint: bash -c "SE_OPTS=\"-host $$HOSTNAME\" /opt/bin/entry_point.sh"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  selenium_firefox:
+    depends_on:
+      - selenium_hub
+    image: selenium/node-firefox:latest
+    environment:
+      HUB_HOST: selenium_hub
+      HUB_PORT: 4444
+      NODE_MAX_INSTANCES: 1
+      NODE_MAX_SESSION: 1
+    entrypoint: bash -c "SE_OPTS=\"-host $$HOSTNAME\" /opt/bin/entry_point.sh"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}

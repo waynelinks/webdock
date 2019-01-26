@@ -1,0 +1,158 @@
+version: "2.4"
+x-dependencies:
+  &dependencies
+  depends_on:
+    - minio
+    - mongo
+    - mysql
+    - postgres
+    - rabbitmq
+    - redis
+
+services:
+  migrator: *dependencies
+  cgi_server: *dependencies
+  task_scheduler: *dependencies
+  example_worker: *dependencies
+
+  minio:
+    image: minio/minio:latest
+    command: ["minio", "server", "/data"]
+    environment:
+      MINIO_ACCESS_KEY: "${BACKING_SERVICES_USER}"
+      MINIO_SECRET_KEY: "${MINIO_PASSWORD}"
+    volumes:
+      - type: volume
+        source: minio_data
+        target: /data
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  minio_constructor:
+    depends_on:
+      - minio
+    image: minio/mc:latest
+    entrypoint: >
+      ash -c "
+        mc config host add minio_server http://minio:9000 '${BACKING_SERVICES_USER}' '${MINIO_PASSWORD}';
+        mc mb minio_server/bucket0;
+        mc policy download minio_server/bucket0;
+        exit 0
+      "
+    scale: 1
+    restart: on-failure
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${BACKING_SERVICES_USER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_PASSWORD}"
+    volumes:
+      - type: volume
+        source: mongo_config
+        target: /data/configdb
+      - type: volume
+        source: mongo_data
+        target: /data/db
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  mysql:
+    image: mysql:5 #:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_USER: "${BACKING_SERVICES_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: db0
+    volumes:
+      - type: volume
+        source: mysql_data
+        target: /var/lib/mysql
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "${BACKING_SERVICES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: db0
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  rabbitmq:
+    image: rabbitmq:latest
+    environment:
+      RABBITMQ_DEFAULT_USER: "${BACKING_SERVICES_USER}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_PASSWORD}"
+    volumes:
+      - type: volume
+        source: rabbitmq_data
+        target: /var/lib/rabbitmq
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+  redis:
+    image: redis:latest
+    command: ["--requirepass", "${REDIS_PASSWORD}"]
+    volumes:
+      - type: volume
+        source: redis_data
+        target: /data
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}
+
+volumes:
+  minio_data:
+    driver: local
+  mongo_config:
+    driver: local
+  mongo_data:
+    driver: local
+  mysql_data:
+    driver: local
+  postgres_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
+  redis_data:
+    driver: local
