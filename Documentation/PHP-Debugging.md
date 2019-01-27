@@ -4,15 +4,15 @@
 
 ## PHPStorm configuration
 
-![PHPStorm Xdebug port config](./assets/phpstorm-xdebug-port-config.png)
+![PHPStorm Xdebug port config](assets/phpstorm-xdebug-port-config.png)
 
-![PHPStorm Xdebug run config](./assets/phpstorm-xdebug-server-config.png)
+![PHPStorm Xdebug run config](assets/phpstorm-xdebug-server-config.png)
 
 ## Chrome plugin
 
 https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc
 
-![Chrome Xdebug helper](./assets/chrome-xdebug-helper.png)
+![Chrome Xdebug helper](assets/chrome-xdebug-helper.png)
 
 ## Callgrind application
 

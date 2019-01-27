@@ -7,11 +7,13 @@ and web client applications.
 ## Table of contents
 
 1. [Getting started](#getting-started)
-1. [Useful links](./Documentation/Useful-links.md)
-1. [Used Docker images](./Documentation/Used-Docker-images.md)
-1. [PHP Debugging](./Documentation/PHP-Debugging.md)
+1. [Useful links](Documentation/Useful-links.md)
+1. [Used Docker images](Documentation/Used-Docker-images.md)
+1. [PHP Debugging](Documentation/PHP-Debugging.md)
 
 ## Getting started
+
+![Repository structure diagram](Documentation/assets/repository-structure-diagram.png)
 
 ### Requirements
 
