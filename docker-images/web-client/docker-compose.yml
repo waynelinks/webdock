@@ -7,10 +7,10 @@ services:
     image: damlys/webdock-web-client:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
 #    volumes:
 #      - type: bind
-#        source: app/public
+#        source: ./app/public
 #        target: /opt/app/public
 
   builder:
@@ -21,17 +21,17 @@ services:
     image: damlys/webdock-web-client:builder-${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
     volumes:
       - type: volume
         source: global_npm_cache
         target: /var/cache/npm
 #      - type: bind
-#        source: app
+#        source: ./app
 #        target: /opt/app
 
 networks:
-  none:
+  host:
     external: true
 
 volumes:

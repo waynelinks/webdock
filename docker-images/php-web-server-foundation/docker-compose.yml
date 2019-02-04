@@ -7,14 +7,14 @@ services:
     image: damlys/webdock-php-web-server-foundation:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
     volumes:
       - type: volume
         source: global_composer_cache
         target: /var/cache/composer
 
 networks:
-  none:
+  host:
     external: true
 
 volumes:

@@ -7,14 +7,14 @@ services:
     image: damlys/webdock-web-assets-builder:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
     volumes:
       - type: volume
         source: global_npm_cache
         target: /var/cache/npm
 
 networks:
-  none:
+  host:
     external: true
 
 volumes:

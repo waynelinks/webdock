@@ -6,37 +6,9 @@ RUN groupadd --gid 1000 deploy \
 RUN apt-get update
 
 RUN apt-get install --yes \
-  git \
-&& apt-get clean
-
-ENV COMPOSER_ALLOW_SUPERUSER="1"
-
-RUN curl -fsSL https://getcomposer.org/installer -o /usr/local/bin/composer-installer \
-&& php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
-&& rm /usr/local/bin/composer-installer \
-&& COMPOSER_CACHE_DIR="/var/cache/composer" \
-&& mkdir --parents ${COMPOSER_CACHE_DIR} \
-&& chmod --recursive 766 ${COMPOSER_CACHE_DIR} \
-&& composer config --global cache-dir ${COMPOSER_CACHE_DIR}
-
-RUN apt-get install --yes \
-  bash-completion \
+  cron \
 && apt-get clean \
-&& echo ". /etc/bash_completion" >> ~/.bashrc \
-&& composer global require \
-  bamarni/symfony-console-autocomplete \
-&& composer clear-cache \
-&& echo "$(php ~/.composer/vendor/bin/symfony-autocomplete --shell bash composer)" > /etc/bash_completion.d/composer
-
-# Xdebug is disabled by default. Run `docker-php-ext-enable xdebug` command to enable it
-RUN pecl install \
-  xdebug-2.7.0beta1 \
-&& pecl clear-cache
-
-# `libfcgi0ldbl` package contains `cgi-fcgi` tool
-RUN apt-get install --yes \
-  libfcgi0ldbl \
-&& apt-get clean
+&& service cron stop
 
 # `gettext` package contains `envsubst` tool
 RUN apt-get install --yes \
@@ -53,10 +25,37 @@ RUN apt-get install --yes \
 && service nginx stop
 EXPOSE 80
 
+# `libfcgi0ldbl` package contains `cgi-fcgi` tool
 RUN apt-get install --yes \
-  cron \
+  libfcgi0ldbl \
+&& apt-get clean
+
+RUN apt-get install --yes \
+  git \
+&& apt-get clean
+
+RUN curl -fsSL https://getcomposer.org/installer -o /usr/local/bin/composer-installer \
+&& php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
+&& rm /usr/local/bin/composer-installer \
+&& COMPOSER_CACHE_DIR="/var/cache/composer" \
+&& mkdir --parents ${COMPOSER_CACHE_DIR} \
+&& chmod --recursive 766 ${COMPOSER_CACHE_DIR} \
+&& composer config --global cache-dir ${COMPOSER_CACHE_DIR}
+ENV COMPOSER_ALLOW_SUPERUSER="1"
+
+RUN apt-get install --yes \
+  bash-completion \
 && apt-get clean \
-&& service cron stop
+&& echo ". /etc/bash_completion" >> ~/.bashrc \
+&& composer global require \
+  bamarni/symfony-console-autocomplete \
+&& composer clear-cache \
+&& echo "$(php ~/.composer/vendor/bin/symfony-autocomplete --shell bash composer)" > /etc/bash_completion.d/composer
+
+# Xdebug is disabled by default. Run `docker-php-ext-enable xdebug` command to enable it
+RUN pecl install \
+  xdebug-2.7.0RC1 \
+&& pecl clear-cache
 
 # `apt-get` is used here to install packages required by php libraries
 RUN apt-get install --yes \

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.11.3] - 2019-02-04
+
+### Changed
+
+- Use many `ENV` instructions instead of one inside Dockerfiles.
+- Use RC Xdebug version instead of beta for PHP 7.3.
+
+### Fixed
+
+- Use `host` network instead of `none` inside `docker-images` Composes.
+
 ## [0.11.2] - 2019-01-27
 
 ### Added

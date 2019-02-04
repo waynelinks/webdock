@@ -7,8 +7,8 @@ services:
     image: damlys/webdock-fluent-forwarder:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
 
 networks:
-  none:
+  host:
     external: true

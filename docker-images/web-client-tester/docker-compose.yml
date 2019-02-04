@@ -7,17 +7,17 @@ services:
     image: damlys/webdock-web-client-tester:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
     volumes:
       - type: volume
         source: global_npm_cache
         target: /var/cache/npm
 #      - type: bind
-#        source: app
+#        source: ./app
 #        target: /opt/app
 
 networks:
-  none:
+  host:
     external: true
 
 volumes:

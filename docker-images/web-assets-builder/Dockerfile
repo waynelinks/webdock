@@ -1,4 +1,5 @@
 FROM node:latest
+CMD ["exit", "0"]
 
 RUN apt-get update
 
@@ -6,13 +7,14 @@ RUN apt-get install --yes \
   git \
 && apt-get clean
 
-RUN npm config set --global unsafe-perm true \
-&& npm config set --global update-notifier false
-
 RUN NPM_CACHE_DIR="/var/cache/npm" \
 && mkdir --parents ${NPM_CACHE_DIR} \
 && chmod --recursive 766 ${NPM_CACHE_DIR} \
-&& npm config set cache ${NPM_CACHE_DIR} --global
+&& npm config set --global \
+  cache=${NPM_CACHE_DIR} \
+  progress=false \
+  unsafe-perm=true \
+  update-notifier=false
 
 RUN apt-get install --yes \
   bash-completion \

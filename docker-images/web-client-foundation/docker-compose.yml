@@ -7,8 +7,8 @@ services:
     image: damlys/webdock-web-client-foundation:${VERSION-unreleased}
     command: ["bash"]
     networks:
-      - none
+      - host
 
 networks:
-  none:
+  host:
     external: true

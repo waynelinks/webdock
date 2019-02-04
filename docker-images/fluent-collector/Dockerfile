@@ -11,13 +11,13 @@ RUN apk add --update --virtual .build-deps sudo build-base ruby-dev \
 
 EXPOSE 24284
 
-ENV FC_SELF_HOSTNAME="fluentd.tld" \
-  FC_SHARED_SECRET="ThisTokenIsNotSoSecretChangeIt" \
-  FC_MONGO_HOST="127.0.0.1" \
-  FC_MONGO_PORT="27017" \
-  FC_MONGO_USER="" \
-  FC_MONGO_PASSWORD="" \
-  FC_MONGO_DATABASE="fluent" \
-  FC_MONGO_COLLECTION="logs"
+ENV FC_SELF_HOSTNAME="fluentd.tld"
+ENV FC_SHARED_SECRET="ThisTokenIsNotSoSecretChangeIt"
+ENV FC_MONGO_HOST="127.0.0.1"
+ENV FC_MONGO_PORT="27017"
+ENV FC_MONGO_USER=""
+ENV FC_MONGO_PASSWORD=""
+ENV FC_MONGO_DATABASE="fluent"
+ENV FC_MONGO_COLLECTION="logs"
 
 COPY etc /fluentd/etc

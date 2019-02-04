@@ -7,14 +7,14 @@ services:
     image: damlys/webdock-jenkins-master:${VERSION-unreleased}
     command: ["ash"]
     networks:
-      - none
+      - host
     volumes:
       - type: volume
         source: data
         target: /var/jenkins_home
 
 networks:
-  none:
+  host:
     external: true
 
 volumes:

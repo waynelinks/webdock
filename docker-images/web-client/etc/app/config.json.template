@@ -1,6 +1,8 @@
 {
   "apiGatewayDsn": "${WEBCLIENT_API_GATEWAY_DSN}",
   "debug": "${WEBCLIENT_DEBUG}",
+  "defaultCharset": "${WEBCLIENT_DEFAULT_CHARSET}",
+  "defaultLocale": "${WEBCLIENT_DEFAULT_LOCALE}",
   "defaultTimezone": "${WEBCLIENT_DEFAULT_TIMEZONE}",
   "environment": "${WEBCLIENT_ENVIRONMENT}",
   "version": "${WEBCLIENT_VERSION}"
