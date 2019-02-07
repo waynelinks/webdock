@@ -17,8 +17,8 @@ ENTRYPOINT ["entrypoint"]
 
 COPY app/composer.json app/composer.lock /opt/app/
 WORKDIR /opt/app
-RUN composer install --no-scripts --no-autoloader --no-dev
+RUN composer install --no-dev
 
 COPY app /opt/app
 RUN chmod a+w /opt/app/xdebug \
-&& composer install --no-dev
+&& composer run-script build

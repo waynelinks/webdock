@@ -16,6 +16,9 @@
     "require-dev": {
     },
     "scripts": {
+        "build": [
+            "echo 'building...'"
+        ],
         "http-tests": [
             "vendor/bin/phpunit --testsuite 'HTTP Tests Suite'"
         ],

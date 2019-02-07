@@ -2,11 +2,10 @@ FROM damlys/webdock-web-assets-builder:0.0.1-example AS builder
 
 COPY app/package.json app/package-lock.json /opt/app/
 WORKDIR /opt/app
-RUN npm install --ignore-scripts
+RUN npm install
 
 COPY app /opt/app
-RUN npm install \
-&& npm run build
+RUN npm run build
 
 
 FROM damlys/webdock-web-client-foundation:0.0.1-example

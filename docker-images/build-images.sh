@@ -13,5 +13,5 @@ for directory in \
   "web-client" \
   "web-client-tester"
 do
-  cd $directory && docker-compose build && VERSION="0.0.1-example" docker-compose build && cd ..
+  cd $directory && docker-compose build && VERSION="0.0.1-example" docker-compose build && make && cd ..
 done

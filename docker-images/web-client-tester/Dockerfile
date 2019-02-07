@@ -6,7 +6,7 @@ ENV WEBCLIENTTESTER_TESTS_TARGET_URL="http://127.0.0.1:80"
 
 COPY app/package.json app/package-lock.json /opt/app/
 WORKDIR /opt/app
-RUN npm install --ignore-scripts --production
+RUN npm install --production
 
 COPY app /opt/app
-RUN npm install --production
+RUN npm run build
