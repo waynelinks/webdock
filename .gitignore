@@ -4,13 +4,15 @@
 
 /**/*~
 /**/.DS_Store
+/**/desktop.ini
+/**/thumbs.db
 
 #############################
 ### IDE
 #############################
 
-/.idea
-/.vscode
 /*.code-workspace
 /*.sublime-project
 /*.sublime-workspace
+/.idea
+/.vscode

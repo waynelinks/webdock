@@ -2,25 +2,27 @@
 ### System files
 #############################
 
-*/*~
-*/.DS_Store
+/**/*~
+/**/.DS_Store
+/**/desktop.ini
+/**/thumbs.db
 
 #############################
 ### VCS
 #############################
 
-*/.git
-*/.gitignore
-*/.gitkeep
+/**/.git
+/**/.gitignore
+/**/.gitkeep
 
 #############################
 ### Application
 #############################
 
 # Package managers
-app/node_modules
-app/npm-debug.log
+/app/node_modules
+/app/npm-debug.log
 
-# Files generated during container startup
-app/public/config.json
-app/public/index.html
+# Files generated on container startup
+/app/public/config.json
+/app/public/index.html

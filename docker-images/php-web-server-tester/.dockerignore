@@ -2,23 +2,25 @@
 ### System files
 #############################
 
-*/*~
-*/.DS_Store
+/**/*~
+/**/.DS_Store
+/**/desktop.ini
+/**/thumbs.db
 
 #############################
 ### VCS
 #############################
 
-*/.git
-*/.gitignore
-*/.gitkeep
+/**/.git
+/**/.gitignore
+/**/.gitkeep
 
 #############################
 ### Application
 #############################
 
 # Package managers
-app/vendor
+/app/vendor
 
 # Xdebug output
-app/xdebug/*
+/app/xdebug/*

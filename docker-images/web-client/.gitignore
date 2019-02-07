@@ -13,6 +13,6 @@
 /app/node_modules
 /app/npm-debug.log
 
-# Files generated during container startup
+# Files generated on container startup
 /app/public/config.json
 /app/public/index.html

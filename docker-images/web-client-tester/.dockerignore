@@ -2,24 +2,26 @@
 ### System files
 #############################
 
-*/*~
-*/.DS_Store
+/**/*~
+/**/.DS_Store
+/**/desktop.ini
+/**/thumbs.db
 
 #############################
 ### VCS
 #############################
 
-*/.git
-*/.gitignore
-*/.gitkeep
+/**/.git
+/**/.gitignore
+/**/.gitkeep
 
 #############################
 ### Application
 #############################
 
 # Package managers
-app/node_modules
-app/npm-debug.log
+/app/node_modules
+/app/npm-debug.log
 
 # Nightwatch output
-app/var/nightwatch_output/*
+/app/var/nightwatch_output/*

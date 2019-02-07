@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+
+- Refactor `.gitignore` and `.dockerignore` files.
+
 ## [0.11.4] - 2019-02-07
 
 ### Changed

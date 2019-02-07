@@ -12,6 +12,11 @@ Software versioning:
 - [Software release life cycle: Stages of development - Wikipedia](https://en.wikipedia.org/wiki/Software_release_life_cycle#Stages_of_development)
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+Ignoring files:
+
+- [.dockerignore](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
+- [.gitignore](https://git-scm.com/docs/gitignore)
+
 Docker:
 
 - [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
