@@ -1,17 +1,17 @@
 #!/usr/bin/env make
 
-stackName=monitoring
+include .env
 
 default: state
 
 stack:
-	(export COMPOSE_PROJECT_NAME=${stackName} && docker-compose --project-name=${stackName} --log-level=ERROR config)
+	docker-compose --log-level=ERROR config
 create-local-volumes:
-	docker volume create --driver=local --name=${stackName}_mongo_config
-	docker volume create --driver=local --name=${stackName}_mongo_data
+	docker volume create --driver=local --name=${COMPOSE_PROJECT_NAME}_mongo_config
+	docker volume create --driver=local --name=${COMPOSE_PROJECT_NAME}_mongo_data
 setup:
-	(export COMPOSE_PROJECT_NAME=${stackName} && docker-compose --project-name=${stackName} --log-level=ERROR config) \
-	| docker stack deploy --compose-file - --prune --with-registry-auth ${stackName}
+	docker-compose --log-level=ERROR config \
+	| docker stack deploy --with-registry-auth --compose-file - --prune ${COMPOSE_PROJECT_NAME}
 state:
-	docker stack services ${stackName}
-	docker stack ps ${stackName}
+	docker stack services ${COMPOSE_PROJECT_NAME}
+	docker stack ps ${COMPOSE_PROJECT_NAME}

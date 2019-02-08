@@ -1,0 +1,23 @@
+version: "2.4"
+services:
+  http_tester:
+    depends_on:
+      - http_server
+    image: damlys/webdock-php-web-server-tester:${VERSION}
+    command: ["sleep", "infinity"]
+    environment:
+      WEBSERVERTESTER_OPCACHE_ENABLE: "${WEBSERVERTESTER_OPCACHE_ENABLE-on}"
+      WEBSERVERTESTER_XDEBUG_ENABLE: "${WEBSERVERTESTER_XDEBUG_ENABLE-off}"
+      WEBSERVERTESTER_XDEBUG_REMOTE_AUTOSTART: "${WEBSERVERTESTER_XDEBUG_REMOTE_AUTOSTART}"
+      WEBSERVERTESTER_XDEBUG_REMOTE_CONNECT_BACK: "${WEBSERVERTESTER_XDEBUG_REMOTE_CONNECT_BACK}"
+      WEBSERVERTESTER_XDEBUG_REMOTE_HOST: "${WEBSERVERTESTER_XDEBUG_REMOTE_HOST}"
+      WEBSERVERTESTER_XDEBUG_REMOTE_PORT: "${WEBSERVERTESTER_XDEBUG_REMOTE_PORT}"
+      WEBSERVERTESTER_XDEBUG_IDE_KEY: "${WEBSERVERTESTER_XDEBUG_IDE_KEY}"
+      WEBSERVERTESTER_TESTS_TARGET_URL: http://http_server:80
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    labels:
+      - version=${VERSION}

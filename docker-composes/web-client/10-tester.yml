@@ -9,7 +9,7 @@ services:
     environment:
       WEBCLIENTTESTER_SELENIUM_HUB_HOST: selenium_hub
       WEBCLIENTTESTER_SELENIUM_HUB_PORT: 4444
-      WEBCLIENTTESTER_TESTS_TARGET_URL: http://http_server
+      WEBCLIENTTESTER_TESTS_TARGET_URL: http://http_server:80
     scale: 1
     restart: always
     cpu_shares: 1024

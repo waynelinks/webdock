@@ -9,8 +9,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 $version = $_ENV['WEBSERVER_VERSION'] ?: 'undefined';
 /** @var string $env */
 $env = $_ENV['WEBSERVER_ENVIRONMENT'] ?: 'prod';
-/** @var boolean $debug */
-$debug = ($_ENV['WEBSERVER_DEBUG'] ?: 'off') === 'on' && $env !== 'prod';
 
 /*
  * Some log

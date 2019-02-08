@@ -13,11 +13,10 @@ FROM damlys/webdock-web-client-foundation:0.0.1-example
 ENV WEBCLIENT_VERSION="undefined"
 ENV WEBCLIENT_HTTP_WORKERS_COUNT="1"
 ENV WEBCLIENT_ENVIRONMENT="prod"
-ENV WEBCLIENT_DEBUG="off"
 ENV WEBCLIENT_DEFAULT_CHARSET="UTF-8"
 ENV WEBCLIENT_DEFAULT_LOCALE="en-US"
 ENV WEBCLIENT_DEFAULT_TIMEZONE="UTC"
-ENV WEBCLIENT_API_GATEWAY_DSN="http://username:password@127.0.0.1:80"
+ENV WEBCLIENT_API_GATEWAY_DSN="http://127.0.0.1:80"
 
 COPY bin/entrypoint.bash /usr/local/bin/entrypoint
 COPY bin/healthcheck.bash /usr/local/bin/healthcheck

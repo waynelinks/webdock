@@ -7,9 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+
+- `*_OPCACHE_ENABLE` environment variables.
+- `COMPOSE_PROJECT_NAME` environment variable to `docker-stacks/*/.env`.
+
 ### Changed
 
 - Refactor `.gitignore` and `.dockerignore` files.
+
+### Removed
+
+- `*_DEBUG` environment variables.
 
 ## [0.11.4] - 2019-02-07
 
