@@ -10,11 +10,10 @@ RUN apt-get install --yes \
 RUN NPM_CACHE_DIR="/var/cache/npm" \
 && mkdir --parents ${NPM_CACHE_DIR} \
 && chmod --recursive 766 ${NPM_CACHE_DIR} \
-&& npm config set --global \
-  cache=${NPM_CACHE_DIR} \
-  progress=false \
-  unsafe-perm=true \
-  update-notifier=false
+&& npm config set --global cache=${NPM_CACHE_DIR} \
+&& npm config set --global progress=false \
+&& npm config set --global unsafe-perm=true \
+&& npm config set --global update-notifier=false
 
 RUN apt-get install --yes \
   bash-completion \

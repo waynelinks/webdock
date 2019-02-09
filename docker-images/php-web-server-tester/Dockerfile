@@ -21,5 +21,6 @@ WORKDIR /opt/app
 RUN composer install --no-dev
 
 COPY app /opt/app
-RUN chmod a+w /opt/app/xdebug \
-&& composer run-script build
+RUN composer run-script build \
+&& chmod --recursive a+r /opt/app \
+&& chmod --recursive a+w /opt/app/xdebug

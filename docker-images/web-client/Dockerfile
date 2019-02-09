@@ -31,5 +31,6 @@ ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
-COPY --from=builder --chown=deploy:deploy /opt/app/public /opt/app/public
-WORKDIR /opt/app
+COPY --from=builder /opt/app/public /opt/app/public
+WORKDIR /opt/app/public
+RUN chmod --recursive a+r /opt/app/public

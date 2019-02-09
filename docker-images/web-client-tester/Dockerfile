@@ -9,4 +9,6 @@ WORKDIR /opt/app
 RUN npm install --production
 
 COPY app /opt/app
-RUN npm run build
+RUN npm run build \
+&& chmod --recursive a+r /opt/app \
+&& chmod --recursive a+w /opt/app/var

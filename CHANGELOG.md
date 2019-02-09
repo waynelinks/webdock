@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.11.5] - 2019-02-10
+
 ### Added
 
 - `*_OPCACHE_ENABLE` environment variables.
@@ -19,6 +21,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - `*_DEBUG` environment variables.
+
+### Fixed
+
+- NPM config rules.
+
+### Security
+
+- Do not use `deploy` as owner of application codebase and set right permissions.
 
 ## [0.11.4] - 2019-02-07
 

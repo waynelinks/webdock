@@ -38,11 +38,12 @@ ENTRYPOINT ["entrypoint"]
 CMD ["--start-http-server"]
 HEALTHCHECK --timeout=3s CMD ["healthcheck"]
 
-COPY --chown=deploy:deploy app/composer.json app/composer.lock /opt/app/
+COPY app/composer.json app/composer.lock /opt/app/
 WORKDIR /opt/app
-RUN su --command "composer install --no-dev" deploy
+RUN composer install --no-dev
 
-COPY --chown=deploy:deploy app /opt/app
-RUN chmod a+x /opt/app/bin/* \
-&& chmod a+w /opt/app/xdebug \
-&& su --command "composer run-script build" deploy
+COPY app /opt/app
+RUN composer run-script build \
+&& chmod --recursive a+r /opt/app \
+&& chmod --recursive a+x /opt/app/bin/* \
+&& chmod --recursive a+w /opt/app/xdebug
