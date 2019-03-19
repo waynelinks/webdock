@@ -3,12 +3,13 @@ services:
   web_tester:
     volumes:
       - type: volume
-        source: global_npm_cache
-        target: /var/cache/npm
+        source: npm_cache
+        target: /root/.npm
       - type: bind
         source: ../../docker-images/web-client-tester/app
-        target: /opt/app
+        target: /app
 
 volumes:
-  global_npm_cache:
-    external: true
+  npm_cache:
+    driver: local
+    name: global_npm_cache

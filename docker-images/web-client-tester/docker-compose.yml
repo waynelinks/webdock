@@ -1,25 +1,17 @@
-version: "3.7"
+version: "2.4"
 services:
   this:
     build:
       context: .
       dockerfile: Dockerfile
-    image: damlys/webdock-web-client-tester:${VERSION-unreleased}
+    image: 127.0.0.1:5000/webdock/web-client-tester:${VERSION:-unreleased}
     command: ["bash"]
-    networks:
-      - host
     volumes:
       - type: volume
-        source: global_npm_cache
-        target: /var/cache/npm
-#      - type: bind
-#        source: ./app
-#        target: /opt/app
-
-networks:
-  host:
-    external: true
+        source: npm_cache
+        target: /root/.npm
 
 volumes:
-  global_npm_cache:
-    external: true
+  npm_cache:
+    driver: local
+    name: global_npm_cache

@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.12.0] - 2019-03-31
+
+### Added
+
+- Node.js web server images and infrastructure.
+
+### Changes
+
+- Move example backing services from PHP infrastructure to separate Compose project.
+- Use shell scripts instead of Makefiles.
+- Name example images with `127.0.0.1:5000/webdock/` prefix.
+
+### Removed
+
+- Logging and automation services.
+
 ## [0.11.5] - 2019-02-10
 
 ### Added

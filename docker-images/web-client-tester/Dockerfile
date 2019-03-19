@@ -1,14 +1,14 @@
-FROM damlys/webdock-web-assets-builder:0.0.1-example
+FROM 127.0.0.1:5000/webdock/nodejs-foundation:0.0.1-example
 
-ENV WEBCLIENTTESTER_SELENIUM_HUB_HOST="127.0.0.1"
-ENV WEBCLIENTTESTER_SELENIUM_HUB_PORT="4444"
-ENV WEBCLIENTTESTER_TESTS_TARGET_URL="http://127.0.0.1:80"
+COPY app/package.json app/package-lock.json /app/
+RUN npm install --production \
+&& npm cache clean --force
 
-COPY app/package.json app/package-lock.json /opt/app/
-WORKDIR /opt/app
-RUN npm install --production
+ENV TESTER_SELENIUM_HUB_HOST="127.0.0.1"
+ENV TESTER_SELENIUM_HUB_PORT="4444"
+ENV TESTER_TARGET_ENTRYPOINT="http://127.0.0.1:80"
 
-COPY app /opt/app
+COPY app /app
 RUN npm run build \
-&& chmod --recursive a+r /opt/app \
-&& chmod --recursive a+w /opt/app/var
+&& chmod --recursive a+r /app \
+&& chmod --recursive a+w /app/var

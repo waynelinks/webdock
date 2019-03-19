@@ -1,22 +1,17 @@
-version: "3.7"
+version: "2.4"
 services:
   this:
     build:
       context: .
       dockerfile: Dockerfile
-    image: damlys/webdock-php-web-server-foundation:${VERSION-unreleased}
+    image: 127.0.0.1:5000/webdock/php-web-server-foundation:${VERSION:-unreleased}
     command: ["bash"]
-    networks:
-      - host
     volumes:
       - type: volume
-        source: global_composer_cache
-        target: /var/cache/composer
-
-networks:
-  host:
-    external: true
+        source: composer_cache
+        target: /root/.composer/cache
 
 volumes:
-  global_composer_cache:
-    external: true
+  composer_cache:
+    driver: local
+    name: global_composer_cache

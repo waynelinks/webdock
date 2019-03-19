@@ -1,16 +1,18 @@
 version: "2.4"
 services:
   http_server:
-    image: damlys/webdock-web-client:${VERSION}
+    image: 127.0.0.1:5000/webdock/web-client-app:${VERSION:-unreleased}
+    user: root
+    command: ["nginx"]
+    healthcheck:
+      test: ["CMD", "nginx-healthcheck.bash"]
     environment:
-      WEBCLIENT_VERSION: "${VERSION}"
-      WEBCLIENT_HTTP_WORKERS_COUNT: 5
-      WEBCLIENT_ENVIRONMENT: "${WEBCLIENT_ENVIRONMENT-prod}"
-      WEBCLIENT_API_GATEWAY_DSN: "${WEBCLIENT_API_GATEWAY_DSN}"
+      APP_API_GATEWAY_ENDPOINT: "${APP_API_GATEWAY_ENDPOINT}"
+      APP_ENV: "${APP_ENV:-production}"
+      NGINX_WORKERS_COUNT: 1
+      VERSION: "${VERSION:-unreleased}"
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}

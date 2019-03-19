@@ -1,33 +1,22 @@
-# Web Assets Builder
+# Web assets builder
 
-## Development
-
-### Pull
+Pipeline hooks
 
 ```
-$ docker-compose pull this
+$ hooks/build.sh
+$ hooks/test.sh
+$ hooks/push.sh
 ```
 
-### Build
+Bind codebase
 
 ```
-$ docker-compose build
+$ cp .dist/docker-compose.override.yml .
 ```
 
-### Shell
+Shell
 
 ```
 $ docker-compose run --rm this
-```
-
-### Test
-
-```
-$ make run-installation-tests
-```
-
-### Push
-
-```
-$ docker-compose push this
+$ docker-compose run --rm builder
 ```

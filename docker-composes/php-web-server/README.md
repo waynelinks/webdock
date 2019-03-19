@@ -1,43 +1,33 @@
-# PHP Web Server
+# PHP web server
 
-## Development
-
-### Prerequisites
+Runtime configuration for local usage
 
 ```
-$ ln --symbolic .env.example .env
+$ cp .dist/.env .
+# or
+$ ln -s .dist/.env .
 ```
 
-**Tip:** `*-development.yml` files will help you use this infrastructure
-during application development.
-
-### Setup
+Pipeline hooks
 
 ```
-$ make setup
+$ hooks/deploy.sh
+$ hooks/test.sh
+$ hooks/destroy.sh
 ```
 
-### Test
+Shell
 
 ```
-$ make run-unit-tests
-$ make run-http-tests
+$ docker-compose exec cgi_server bash
+$ docker-compose exec http_tester bash
 ```
 
-## Deployment
-
-### Prerequisites
+Helpers
 
 ```
-$ cp .env.example .env
-```
-
-Set released version number in `VERSION` variable.
-
-**Hey!** Do not use `*-development.yml` files outside of the local development environment!
-
-### Setup
-
-```
-$ make setup
+$ helpers/init-codebase.sh
+$ helpers/reset-files-permissions.sh
+$ helpers/run-unit-tests.sh
+$ helpers/watch-logs.sh
 ```

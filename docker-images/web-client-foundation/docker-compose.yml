@@ -1,14 +1,8 @@
-version: "3.7"
+version: "2.4"
 services:
   this:
     build:
       context: .
       dockerfile: Dockerfile
-    image: damlys/webdock-web-client-foundation:${VERSION-unreleased}
+    image: 127.0.0.1:5000/webdock/web-client-foundation:${VERSION:-unreleased}
     command: ["bash"]
-    networks:
-      - host
-
-networks:
-  host:
-    external: true

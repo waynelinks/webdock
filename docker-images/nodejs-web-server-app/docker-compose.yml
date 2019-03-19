@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  this:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 127.0.0.1:5000/webdock/nodejs-web-server-app:${VERSION:-unreleased}
+    command: ["bash"]
+    volumes:
+      - type: volume
+        source: npm_cache
+        target: /root/.npm
+
+volumes:
+  npm_cache:
+    driver: local
+    name: global_npm_cache

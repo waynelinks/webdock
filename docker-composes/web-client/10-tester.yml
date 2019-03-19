@@ -4,19 +4,20 @@ services:
     depends_on:
       - http_server
       - selenium_hub
-    image: damlys/webdock-web-client-tester:${VERSION}
+    image: 127.0.0.1:5000/webdock/web-client-tester:${VERSION:-unreleased}
+    user: root
     command: ["sleep", "infinity"]
     environment:
-      WEBCLIENTTESTER_SELENIUM_HUB_HOST: selenium_hub
-      WEBCLIENTTESTER_SELENIUM_HUB_PORT: 4444
-      WEBCLIENTTESTER_TESTS_TARGET_URL: http://http_server:80
+      NODE_ENV: "${NODE_ENV:-production}"
+      TESTER_SELENIUM_HUB_HOST: selenium_hub
+      TESTER_SELENIUM_HUB_PORT: 4444
+      TESTER_TARGET_ENTRYPOINT: http://http_server:80
+      VERSION: "${VERSION:-unreleased}"
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   selenium_hub:
     image: selenium/hub:latest
@@ -27,8 +28,6 @@ services:
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   selenium_chrome:
     depends_on:
@@ -45,8 +44,6 @@ services:
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   selenium_firefox:
     depends_on:
@@ -63,5 +60,3 @@ services:
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}

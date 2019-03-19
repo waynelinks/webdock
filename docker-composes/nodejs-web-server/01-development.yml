@@ -1,0 +1,20 @@
+version: "2.4"
+x-volumes:
+  &volumes
+  volumes:
+    - type: volume
+      source: npm_cache
+      target: /root/.npm
+    - type: bind
+      source: ../../docker-images/nodejs-web-server-app/app
+      target: /app
+
+services:
+  example_worker: *volumes
+  http_server: *volumes
+  migrator: *volumes
+
+volumes:
+  npm_cache:
+    driver: local
+    name: global_npm_cache

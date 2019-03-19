@@ -1,0 +1,7 @@
+{
+  "apiGatewayEndpoint": "${APP_API_GATEWAY_ENDPOINT}",
+  "defaultLocale": "${APP_DEFAULT_LOCALE}",
+  "defaultTimezone": "${APP_DEFAULT_TIMEZONE}",
+  "env": "${APP_ENV}",
+  "version": "${VERSION}"
+}

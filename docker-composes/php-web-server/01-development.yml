@@ -3,19 +3,19 @@ x-volumes:
   &volumes
   volumes:
     - type: volume
-      source: global_composer_cache
-      target: /var/cache/composer
+      source: composer_cache
+      target: /root/.composer/cache
     - type: bind
-      source: ../../docker-images/php-web-server/app
-      target: /opt/app
+      source: ../../docker-images/php-web-server-app/app
+      target: /app
 
 services:
   cgi_server: *volumes
   example_worker: *volumes
   http_server: *volumes
   migrator: *volumes
-  task_scheduler: *volumes
 
 volumes:
-  global_composer_cache:
-    external: true
+  composer_cache:
+    driver: local
+    name: global_composer_cache

@@ -3,12 +3,13 @@ services:
   http_tester:
     volumes:
       - type: volume
-        source: global_composer_cache
-        target: /var/cache/composer
+        source: composer_cache
+        target: /root/.composer/cache
       - type: bind
         source: ../../docker-images/php-web-server-tester/app
-        target: /opt/app
+        target: /app
 
 volumes:
-  global_composer_cache:
-    external: true
+  composer_cache:
+    driver: local
+    name: global_composer_cache

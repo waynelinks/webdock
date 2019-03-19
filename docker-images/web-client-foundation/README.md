@@ -1,33 +1,15 @@
-# Web Client Foundation
+# Web client foundation
 
-## Development
-
-### Pull
+Pipeline hooks
 
 ```
-$ docker-compose pull this
+$ hooks/build.sh
+$ hooks/test.sh
+$ hooks/push.sh
 ```
 
-### Build
-
-```
-$ docker-compose build
-```
-
-### Shell
+Shell
 
 ```
 $ docker-compose run --rm this
-```
-
-### Test
-
-```
-$ make run-installation-tests
-```
-
-### Push
-
-```
-$ docker-compose push this
 ```

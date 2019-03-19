@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "sync-request": "*"
+  },
+  "devDependencies": {
+    "jest": "*"
+  },
+  "scripts": {
+    "build": "echo 'building...'",
+    "unit-tests": "jest --config=jest.unit-tests-suite.js"
+  }
+}

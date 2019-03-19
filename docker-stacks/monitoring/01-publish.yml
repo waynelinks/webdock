@@ -1,8 +1,0 @@
-version: "3.7"
-services:
-  mongo_express:
-    ports:
-      - mode: ingress
-        target: 8081
-        published: ${MONGO_EXPRESS_PORT}
-        protocol: tcp

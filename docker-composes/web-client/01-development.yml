@@ -3,27 +3,32 @@ services:
   http_server:
     volumes:
       - type: bind
-        source: ../../docker-images/web-client/app/public
-        target: /opt/app/public
+        source: ../../docker-images/web-client-app/app/build
+        target: /app/build
+      - type: bind
+        source: ../../docker-images/web-client-app/app/templates
+        target: /app/templates
 
   builder:
-    image: damlys/webdock-web-client:builder-${VERSION}
+    image: 127.0.0.1:5000/webdock/web-client-app:builder-${VERSION:-unreleased}
+    user: root
     command: ["sleep", "infinity"]
+    environment:
+      NODE_ENV: "${NODE_ENV:-production}"
     volumes:
       - type: volume
-        source: global_npm_cache
-        target: /var/cache/npm
+        source: npm_cache
+        target: /root/.npm
       - type: bind
-        source: ../../docker-images/web-client/app
-        target: /opt/app
+        source: ../../docker-images/web-client-app/app
+        target: /app
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
 volumes:
-  global_npm_cache:
-    external: true
+  npm_cache:
+    driver: local
+    name: global_npm_cache

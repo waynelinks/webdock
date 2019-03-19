@@ -1,0 +1,18 @@
+#############################
+### Docker Compose
+#############################
+
+/.env
+/docker-compose.override.yml
+
+#############################
+### Application
+#############################
+
+# Package managers
+/app/node_modules
+/app/npm-debug.log
+
+# Runtime configuration generated on container startup
+/app/build/config.json
+/app/build/index.html

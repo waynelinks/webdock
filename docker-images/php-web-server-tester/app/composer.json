@@ -19,7 +19,7 @@
         "build": [
             "echo 'building...'"
         ],
-        "http-tests": [
+        "target-http-api-tests": [
             "vendor/bin/phpunit --testsuite 'HTTP Tests Suite'"
         ],
         "unit-tests": [

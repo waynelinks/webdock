@@ -5,20 +5,17 @@ namespace HttpTests;
 
 class HomepageTest extends \PHPUnit\Framework\TestCase
 {
-    public function getTestsTargetUrl(): string
+    public function getTestsTargetEntrypoint(): string
     {
-        return $_ENV['WEBSERVERTESTER_TESTS_TARGET_URL'];
+        return $_ENV['TESTER_TARGET_ENTRYPOINT'];
     }
 
     public function testWelcomeMessage(): void
     {
-        // Arrange
         $client = new \GuzzleHttp\Client();
 
-        // Act
-        $response = $client->request('GET', $this->getTestsTargetUrl());
+        $response = $client->request('GET', $this->getTestsTargetEntrypoint());
 
-        // Assert
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/json', array_shift($response->getHeader('Content-Type')));
         $payload = json_decode($response->getBody()->getContents(), true);

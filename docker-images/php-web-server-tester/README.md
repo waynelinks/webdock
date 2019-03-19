@@ -1,33 +1,21 @@
-# PHP Web Server Tester
+# PHP web server tester
 
-## Development
-
-### Pull
+Pipeline hooks
 
 ```
-$ docker-compose pull this
+$ hooks/build.sh
+$ hooks/test.sh
+$ hooks/push.sh
 ```
 
-### Build
+Bind codebase
 
 ```
-$ docker-compose build
+$ cp .dist/docker-compose.override.yml .
 ```
 
-### Shell
+Shell
 
 ```
 $ docker-compose run --rm this
-```
-
-### Test
-
-```
-$ make run-unit-tests
-```
-
-### Push
-
-```
-$ docker-compose push this
 ```

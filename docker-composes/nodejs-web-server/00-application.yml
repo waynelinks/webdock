@@ -1,0 +1,45 @@
+version: "2.4"
+x-environments:
+  &environments
+  NODE_ENV: "${NODE_ENV:-production}"
+  VERSION: "${VERSION:-unreleased}"
+
+services:
+  migrator:
+    image: 127.0.0.1:5000/webdock/nodejs-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["bin/console.js"]
+    environment: *environments
+    scale: 1
+    restart: on-failure
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+
+  http_server:
+    depends_on:
+      - migrator
+    image: 127.0.0.1:5000/webdock/nodejs-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["bin/start-http-server.js"]
+    healthcheck:
+      test: ["CMD", "bin/http-server-healthcheck.js"]
+    environment: *environments
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+
+  example_worker:
+    depends_on:
+      - migrator
+    image: 127.0.0.1:5000/webdock/nodejs-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["bin/console.js"]
+    environment: *environments
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0

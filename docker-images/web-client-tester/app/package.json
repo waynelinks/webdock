@@ -7,8 +7,8 @@
   },
   "scripts": {
     "build": "echo 'building...'",
-    "unit-tests": "jest --config=jest.unit-tests-suite.js",
-    "web-tests-with-chrome": "nightwatch --config=nightwatch.web-tests-suite.js --env=chrome",
-    "web-tests-with-firefox": "nightwatch --config=nightwatch.web-tests-suite.js"
+    "target-gui-tests-with-chrome": "nightwatch --config=nightwatch.web-tests-suite.js --env=chrome",
+    "target-gui-tests-with-firefox": "nightwatch --config=nightwatch.web-tests-suite.js",
+    "unit-tests": "jest --config=jest.unit-tests-suite.js"
   }
 }

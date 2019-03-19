@@ -1,0 +1,39 @@
+version: "2.4"
+services:
+  minio:
+    image: minio/minio:latest
+    command: ["minio", "server", "/data"]
+    environment:
+      MINIO_ACCESS_KEY: "${BACKING_SERVICES_USER}"
+      MINIO_SECRET_KEY: "${MINIO_PASSWORD}"
+    volumes:
+      - type: volume
+        source: minio_data
+        target: /data
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+    ports:
+      - ${MINIO_PORT}:9000
+
+  minio_constructor:
+    depends_on:
+      - minio
+    image: minio/mc:latest
+    entrypoint: >
+      ash -c "
+        mc config host add minio_server http://minio:9000 '${BACKING_SERVICES_USER}' '${MINIO_PASSWORD}' \
+        && mc mb --ignore-existing minio_server/bucket0 \
+        && mc policy download minio_server/bucket0
+      "
+    scale: 1
+    restart: on-failure
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
+
+volumes:
+  minio_data:
+    driver: local

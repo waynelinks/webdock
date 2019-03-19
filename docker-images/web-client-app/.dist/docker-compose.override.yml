@@ -1,0 +1,13 @@
+version: "2.4"
+services:
+  this:
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+
+  builder:
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app

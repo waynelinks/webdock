@@ -1,95 +1,71 @@
 version: "2.4"
 x-environments:
   &environments
-  WEBSERVER_VERSION: "${VERSION}"
-  WEBSERVER_OPCACHE_ENABLE: "${WEBSERVER_OPCACHE_ENABLE-on}"
-  WEBSERVER_XDEBUG_ENABLE: "${WEBSERVER_XDEBUG_ENABLE-off}"
-  WEBSERVER_XDEBUG_REMOTE_AUTOSTART: "${WEBSERVER_XDEBUG_REMOTE_AUTOSTART}"
-  WEBSERVER_XDEBUG_REMOTE_CONNECT_BACK: "${WEBSERVER_XDEBUG_REMOTE_CONNECT_BACK}"
-  WEBSERVER_XDEBUG_REMOTE_HOST: "${WEBSERVER_XDEBUG_REMOTE_HOST}"
-  WEBSERVER_XDEBUG_REMOTE_PORT: "${WEBSERVER_XDEBUG_REMOTE_PORT}"
-  WEBSERVER_XDEBUG_IDE_KEY: "${WEBSERVER_XDEBUG_IDE_KEY}"
-  WEBSERVER_ENVIRONMENT: "${WEBSERVER_ENVIRONMENT-prod}"
-  WEBSERVER_CACHE_STORAGE_DSN: "${WEBSERVER_CACHE_STORAGE_DSN}"
-  WEBSERVER_DATA_STORAGE_DSN: "${WEBSERVER_DATA_STORAGE_DSN}"
-  WEBSERVER_FILE_STORAGE_DSN: "${WEBSERVER_FILE_STORAGE_DSN}"
-  WEBSERVER_MAIL_SENDER_URL: "${WEBSERVER_MAIL_SENDER_URL}"
-  WEBSERVER_MESSAGE_QUEUE_DSN: "${WEBSERVER_MESSAGE_QUEUE_DSN}"
-  WEBSERVER_SESSION_STORAGE_DSN: "${WEBSERVER_SESSION_STORAGE_DSN}"
+  APP_ENV: "${APP_ENV:-production}"
+  FPM_WORKERS_COUNT: 2
+  NGINX_CGI_SERVER_HOST: cgi_server
+  NGINX_CGI_SERVER_PORT: 9000
+  NGINX_WORKERS_COUNT: 1
+  OPCACHE_ENABLE: "${OPCACHE_ENABLE:-on}"
+  VERSION: "${VERSION:-unreleased}"
+  XDEBUG_ENABLE: "${XDEBUG_ENABLE:-off}"
+  XDEBUG_IDE_KEY: "${XDEBUG_IDE_KEY}"
+  XDEBUG_REMOTE_AUTOSTART: "${XDEBUG_REMOTE_AUTOSTART}"
+  XDEBUG_REMOTE_CONNECT_BACK: "${XDEBUG_REMOTE_CONNECT_BACK}"
+  XDEBUG_REMOTE_HOST: "${XDEBUG_REMOTE_HOST}"
+  XDEBUG_REMOTE_PORT: "${XDEBUG_REMOTE_PORT}"
 
 services:
   migrator:
-    image: damlys/webdock-php-web-server:${VERSION}
-    command: ["--start-migrator"]
-    environment:
-      <<: *environments
+    image: 127.0.0.1:5000/webdock/php-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["bin/console.php"]
+    environment: *environments
     scale: 1
     restart: on-failure
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   cgi_server:
     depends_on:
       - migrator
-    image: damlys/webdock-php-web-server:${VERSION}
-    command: ["--start-cgi-server"]
-    environment:
-      <<: *environments
-      WEBSERVER_CGI_WORKERS_COUNT: 5
+    image: 127.0.0.1:5000/webdock/php-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["php-fpm"]
+    healthcheck:
+      test: ["CMD", "php-fpm-healtcheck.bash"]
+    environment: *environments
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   http_server:
     depends_on:
       - cgi_server
-    image: damlys/webdock-php-web-server:${VERSION}
-    environment:
-      <<: *environments
-      WEBSERVER_CGI_SERVER_HOST: cgi_server
-      WEBSERVER_CGI_SERVER_PORT: 9000
-      WEBSERVER_HTTP_WORKERS_COUNT: 5
+    image: 127.0.0.1:5000/webdock/php-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["nginx"]
+    healthcheck:
+      test: ["CMD", "nginx-healthcheck.bash"]
+    environment: *environments
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}
-
-  task_scheduler:
-    depends_on:
-      - migrator
-    image: damlys/webdock-php-web-server:${VERSION}
-    command: ["--start-task-scheduler"]
-    environment:
-      <<: *environments
-    scale: 1
-    restart: always
-    cpu_shares: 1024
-    mem_limit: 1gb
-    memswap_limit: 0
-    labels:
-      - version=${VERSION}
 
   example_worker:
     depends_on:
       - migrator
-    image: damlys/webdock-php-web-server:${VERSION}
-    command: ["--start-example-worker"]
-    environment:
-      <<: *environments
+    image: 127.0.0.1:5000/webdock/php-web-server-app:${VERSION:-unreleased}
+    user: root
+    command: ["bin/console.php"]
+    environment: *environments
     scale: 1
     restart: always
     cpu_shares: 1024
     mem_limit: 1gb
     memswap_limit: 0
-    labels:
-      - version=${VERSION}

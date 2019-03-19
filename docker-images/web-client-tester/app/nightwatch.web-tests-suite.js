@@ -4,9 +4,9 @@ module.exports = {
   ],
   "test_settings": {
     "default": {
-      "selenium_host": process.env.WEBCLIENTTESTER_SELENIUM_HUB_HOST,
-      "selenium_port": process.env.WEBCLIENTTESTER_SELENIUM_HUB_PORT,
-      "launch_url": process.env.WEBCLIENTTESTER_TESTS_TARGET_URL,
+      "selenium_host": process.env.TESTER_SELENIUM_HUB_HOST,
+      "selenium_port": process.env.TESTER_SELENIUM_HUB_PORT,
+      "launch_url": process.env.TESTER_TARGET_ENTRYPOINT,
       "request_timeout_options": {
         "timeout": 5000,
         "retry_attempts": 0

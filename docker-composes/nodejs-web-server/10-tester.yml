@@ -1,0 +1,17 @@
+version: "2.4"
+services:
+  http_tester:
+    depends_on:
+      - http_server
+    image: 127.0.0.1:5000/webdock/nodejs-web-server-tester:${VERSION:-unreleased}
+    user: root
+    command: ["sleep", "infinity"]
+    environment:
+      NODE_ENV: "${NODE_ENV:-production}"
+      TESTER_TARGET_ENTRYPOINT: http://http_server:80
+      VERSION: "${VERSION:-unreleased}"
+    scale: 1
+    restart: always
+    cpu_shares: 1024
+    mem_limit: 1gb
+    memswap_limit: 0
