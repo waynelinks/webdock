@@ -1,4 +1,4 @@
-# Node.js web server
+# Node.js web server compose
 
 Runtime configuration for local usage
 

@@ -1,13 +1,14 @@
 WebDock
 ===
 
-Monorepo Docker starter for web applications.
+Monorepo Docker starter for web applications
 
 ![Repository structure diagram](docs/assets/repository-structure-diagram.png)
 
 ## Table of contents
 
 1. [Requirements](#requirements)
+1. [Getting started](#getting-started)
 1. [Useful links](docs/Useful-links.md)
 1. [Used Docker images](docs/Used-Docker-images.md)
 1. [PHP debugging tools](docs/PHP-debugging-tools.md)
@@ -63,3 +64,45 @@ Docker Swarm mode:
 $ docker info --format="{{.Swarm.LocalNodeState}}"
 inactive
 ```
+
+## Getting started
+
+Go to your workspace:
+
+```
+$ cd ~/workspace
+```
+
+Export few envs:
+
+```
+$ export TLD="org" ORGANIZATION_NAME="my-organization" PROJECT_NAME="my-project"
+```
+
+And create new project with WebDock:
+
+```
+$ git clone git@github.com:damlys/webdock.git ${PROJECT_NAME} \
+  && cd ${PROJECT_NAME} \
+  && rm -rfv \
+    .git \
+    CHANGELOG.md \
+    LICENSE.md \
+  && mkdir -p ${TLD}/${ORGANIZATION_NAME} \
+  && cp -rv dev/webdock/* ${TLD}/${ORGANIZATION_NAME} \
+  && grep -rl webdock ${TLD}/${ORGANIZATION_NAME} \
+    | xargs sed -i "s/webdock/${PROJECT_NAME}/g" \
+  && echo "Delete ./dev/webdock/*? (y/n)" \
+  && rm -rfIv \
+    dev/webdock \
+    init-webdock.sh \
+  && echo "Delete top-level documentation? (y/n)" \
+  && rm -rfIv \
+    docs \
+    README.md \
+  && git init \
+  && git add . \
+  && git commit -m "Initial commit (WebDock v0.13 <https://github.com/damlys/webdock>)"
+```
+
+Now push your new codebase somewhere :-)

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.13.0] - 2019-04-02
+
+### Changes
+
+- Move modules to `./dev/webdock/` and group them by purpose.
+
 ## [0.12.0] - 2019-03-31
 
 ### Added

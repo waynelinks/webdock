@@ -1,12 +1,12 @@
 version: "2.4"
 services:
-  web_tester:
+  http_tester:
     volumes:
       - type: volume
         source: npm_cache
         target: /root/.npm
       - type: bind
-        source: ../../docker-images/web-client-tester/app
+        source: ../nodejs-web-server-tester/app
         target: /app
 
 volumes:

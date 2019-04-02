@@ -3,10 +3,10 @@ services:
   http_server:
     volumes:
       - type: bind
-        source: ../../docker-images/web-client-app/app/build
+        source: ../web-client-app/app/build
         target: /app/build
       - type: bind
-        source: ../../docker-images/web-client-app/app/templates
+        source: ../web-client-app/app/templates
         target: /app/templates
 
   builder:
@@ -20,7 +20,7 @@ services:
         source: npm_cache
         target: /root/.npm
       - type: bind
-        source: ../../docker-images/web-client-app/app
+        source: ../web-client-app/app
         target: /app
     scale: 1
     restart: always

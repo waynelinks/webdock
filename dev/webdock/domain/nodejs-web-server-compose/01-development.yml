@@ -3,19 +3,18 @@ x-volumes:
   &volumes
   volumes:
     - type: volume
-      source: composer_cache
-      target: /root/.composer/cache
+      source: npm_cache
+      target: /root/.npm
     - type: bind
-      source: ../../docker-images/php-web-server-app/app
+      source: ../nodejs-web-server-app/app
       target: /app
 
 services:
-  cgi_server: *volumes
   example_worker: *volumes
   http_server: *volumes
   migrator: *volumes
 
 volumes:
-  composer_cache:
+  npm_cache:
     driver: local
-    name: global_composer_cache
+    name: global_npm_cache

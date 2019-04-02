@@ -6,7 +6,7 @@ services:
         source: composer_cache
         target: /root/.composer/cache
       - type: bind
-        source: ../../docker-images/php-web-server-tester/app
+        source: ../php-web-server-tester/app
         target: /app
 
 volumes:

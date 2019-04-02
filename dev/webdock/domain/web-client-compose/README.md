@@ -1,4 +1,4 @@
-# PHP web server
+# Web client compose
 
 Runtime configuration for local usage
 
@@ -19,8 +19,9 @@ $ hooks/destroy.sh
 Shell
 
 ```
-$ docker-compose exec cgi_server bash
-$ docker-compose exec http_tester bash
+$ docker-compose exec http_server bash
+$ docker-compose exec builder bash
+$ docker-compose exec web_tester bash
 ```
 
 Helpers
