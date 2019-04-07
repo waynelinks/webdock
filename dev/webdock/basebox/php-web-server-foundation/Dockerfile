@@ -71,8 +71,12 @@ RUN apt-get install --yes \
 COPY etc/php.ini /usr/local/etc/php/conf.d/zzz-php.ini
 COPY etc/php-fpm.conf /usr/local/etc/php-fpm.d/zzz-php-fpm.conf
 COPY etc/xdebug.ini /usr/local/etc/php/conf.d/zzz-xdebug.ini
+# debug|notice|warning|error|alert (https://www.php.net/manual/en/install.fpm.configuration.php#log-level)
+ENV FPM_LOG_LEVEL="error"
 ENV FPM_WORKERS_COUNT="1"
 ENV OPCACHE_ENABLE="on"
+# E_ALL|E_STRICT|E_NOTICE|E_WARNING|E_ERROR|E_CORE_ERROR (https://www.php.net/manual/en/errorfunc.constants.php)
+ENV PHP_LOG_LEVEL="E_ERROR"
 ENV XDEBUG_ENABLE="off"
 ENV XDEBUG_IDE_KEY="DOCKER"
 ENV XDEBUG_REMOTE_AUTOSTART="off"
@@ -83,6 +87,8 @@ ENV XDEBUG_REMOTE_PORT="9000"
 COPY etc/nginx.template.conf /etc/nginx/nginx.template.conf
 ENV NGINX_CGI_SERVER_HOST="127.0.0.1"
 ENV NGINX_CGI_SERVER_PORT="9000"
+# debug|info|notice|warn|error|crit|alert|emerg (http://nginx.org/en/docs/ngx_core_module.html#error_log)
+ENV NGINX_LOG_LEVEL="error"
 ENV NGINX_WORKERS_COUNT="1"
 
 COPY bin/*.bash /usr/local/bin/

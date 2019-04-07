@@ -12,6 +12,8 @@ RUN apt-get update \
 && apt-get clean
 
 COPY etc/nginx.template.conf /etc/nginx/nginx.template.conf
+# debug|info|notice|warn|error|crit|alert|emerg (http://nginx.org/en/docs/ngx_core_module.html#error_log)
+ENV NGINX_LOG_LEVEL="error"
 ENV NGINX_WORKERS_COUNT="1"
 
 COPY bin/*.bash /usr/local/bin/
