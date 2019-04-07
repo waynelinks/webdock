@@ -11,12 +11,6 @@ HTTP server:
 
 - [Nginx](https://hub.docker.com/_/nginx/)
 
-Browser automation:
-
-- [Selenium Hub](https://hub.docker.com/r/selenium/hub/)
-- [Selenium Chrome](https://hub.docker.com/r/selenium/node-chrome/)
-- [Selenium Firefox](https://hub.docker.com/r/selenium/node-firefox/)
-
 Data storage:
 
 - [MongoDB](https://hub.docker.com/_/mongo/)

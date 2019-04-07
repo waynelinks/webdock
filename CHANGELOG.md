@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changes
+
+- Run browser tests with WebDriverIO.
+- Replace Selenium Grid with own standalone Firefox container.
+
 ## [0.13.0] - 2019-04-02
 
 ### Changes

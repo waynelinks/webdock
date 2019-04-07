@@ -12,9 +12,12 @@ Software versioning:
 - [Software release life cycle: Stages of development - Wikipedia](https://en.wikipedia.org/wiki/Software_release_life_cycle#Stages_of_development)
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
-Multi / Micro / Mono repo:
+Multi / Microplatform / Mono repo:
 
-- ...
+- [Go Monorepo](https://gomonorepo.org/)
+- [Advantages of monorepos](https://danluu.com/monorepo/)
+- [On Monolithic Repositories](https://gregoryszorc.com/blog/2014/09/09/on-monolithic-repositories/)
+- [Microservices: From a monorepo to a microplatform - JAXenter](https://jaxenter.com/microservices-monorepo-microplatform-137920.html)
 
 Clean codebase:
 

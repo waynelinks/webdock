@@ -3,15 +3,16 @@ services:
   web_tester:
     depends_on:
       - http_server
-      - selenium_hub
+      - gecko_driver
     image: 127.0.0.1:5000/webdock/web-client-tester:${VERSION:-unreleased}
     user: root
     command: ["sleep", "infinity"]
     environment:
       NODE_ENV: "${NODE_ENV:-production}"
-      TESTER_SELENIUM_HUB_HOST: selenium_hub
-      TESTER_SELENIUM_HUB_PORT: 4444
       TESTER_TARGET_ENTRYPOINT: http://http_server:80
+      TESTER_WD_HOST: gecko_driver
+      TESTER_WD_PORT: 4444
+      TESTER_WD_PATH: /
       VERSION: "${VERSION:-unreleased}"
     scale: 1
     restart: always
@@ -19,42 +20,8 @@ services:
     mem_limit: 1gb
     memswap_limit: 0
 
-  selenium_hub:
-    image: selenium/hub:latest
-    environment:
-      GRID_NEW_SESSION_WAIT_TIMEOUT: 60000
-    scale: 1
-    restart: always
-    cpu_shares: 1024
-    mem_limit: 1gb
-    memswap_limit: 0
-
-  selenium_chrome:
-    depends_on:
-      - selenium_hub
-    image: selenium/node-chrome:latest
-    environment:
-      HUB_HOST: selenium_hub
-      HUB_PORT: 4444
-      NODE_MAX_INSTANCES: 1
-      NODE_MAX_SESSION: 1
-    entrypoint: bash -c "SE_OPTS=\"-host $$HOSTNAME\" /opt/bin/entry_point.sh"
-    scale: 1
-    restart: always
-    cpu_shares: 1024
-    mem_limit: 1gb
-    memswap_limit: 0
-
-  selenium_firefox:
-    depends_on:
-      - selenium_hub
-    image: selenium/node-firefox:latest
-    environment:
-      HUB_HOST: selenium_hub
-      HUB_PORT: 4444
-      NODE_MAX_INSTANCES: 1
-      NODE_MAX_SESSION: 1
-    entrypoint: bash -c "SE_OPTS=\"-host $$HOSTNAME\" /opt/bin/entry_point.sh"
+  gecko_driver:
+    image: 127.0.0.1:5000/webdock/standalone-firefox:${VERSION:-unreleased}
     scale: 1
     restart: always
     cpu_shares: 1024

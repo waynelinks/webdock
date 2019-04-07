@@ -1,14 +1,16 @@
 {
   "dependencies": {
-    "nightwatch": "*"
+    "@wdio/cli": "*",
+    "@wdio/local-runner": "*",
+    "@wdio/mocha-framework": "*",
+    "@wdio/spec-reporter": "*",
+    "jest": "*",
+    "webdriverio": "*"
   },
-  "devDependencies": {
-    "jest": "*"
-  },
+  "devDependencies": {},
   "scripts": {
     "build": "echo 'building...'",
-    "target-gui-tests-with-chrome": "nightwatch --config=nightwatch.web-tests-suite.js --env=chrome",
-    "target-gui-tests-with-firefox": "nightwatch --config=nightwatch.web-tests-suite.js",
+    "target-gui-tests": "wdio wdio.web-tests-suite.js",
     "unit-tests": "jest --config=jest.unit-tests-suite.js"
   }
 }

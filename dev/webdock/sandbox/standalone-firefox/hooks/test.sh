@@ -3,9 +3,8 @@ set -e
 
 echo '[Hook] Running installation tests...'
 docker-compose run --rm this bash -c '
-  node --version \
-  && npm --version \
-  && git --version
+  firefox --version \
+  && geckodriver --version
 '
 
 echo '[Hook] Done.'

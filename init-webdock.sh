@@ -4,6 +4,7 @@ set -e
 echo '[WebDock] Initialising...'
 
 for module in \
+  'dev/webdock/sandbox/standalone-firefox' \
   'dev/webdock/basebox/nodejs-foundation' \
   'dev/webdock/basebox/nodejs-web-server-foundation' \
   'dev/webdock/basebox/php-web-server-foundation' \

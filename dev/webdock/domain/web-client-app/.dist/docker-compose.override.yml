@@ -3,8 +3,11 @@ services:
   this:
     volumes:
       - type: bind
-        source: ./app
-        target: /app
+        source: ./app/build
+        target: /app/build
+      - type: bind
+        source: ./app/templates
+        target: /app/templates
 
   builder:
     volumes:
