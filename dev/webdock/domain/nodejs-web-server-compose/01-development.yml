@@ -4,7 +4,10 @@ x-volumes:
   volumes:
     - type: volume
       source: npm_cache
-      target: /root/.npm
+      target: /var/cache/npm
+    - type: volume
+      source: yarn_cache
+      target: /var/cache/yarn
     - type: bind
       source: ../nodejs-web-server-app/app
       target: /app
@@ -16,5 +19,8 @@ services:
 
 volumes:
   npm_cache:
-    driver: local
+    external: true
     name: global_npm_cache
+  yarn_cache:
+    external: true
+    name: global_yarn_cache

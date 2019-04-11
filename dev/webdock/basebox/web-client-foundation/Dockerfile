@@ -4,7 +4,7 @@ WORKDIR /app
 ENV VERSION="undefined"
 
 RUN groupadd --gid 1000 deploy \
-&& useradd --uid 1000 --gid deploy --shell /bin/sh --create-home deploy
+&& useradd --uid 1000 --gid deploy --shell /bin/bash --create-home deploy
 
 RUN apt-get update \
 && apt-get install --yes \

@@ -2,10 +2,10 @@ version: "2.4"
 services:
   mailhog:
     image: mailhog/mailhog:latest
-    entrypoint: >
-      ash -c "
-        echo \"${BACKING_SERVICES_USER}:$$(MailHog bcrypt '${MAILHOG_PASSWORD}')\" > /home/mailhog/htpasswd \
-        && MailHog -auth-file=/home/mailhog/htpasswd
+    entrypoint: |
+      ash -ce "
+        echo \"${BACKING_SERVICES_USER}:$$(MailHog bcrypt '${MAILHOG_PASSWORD}')\" > /home/mailhog/htpasswd
+        exec MailHog -auth-file=/home/mailhog/htpasswd
       "
     scale: 1
     restart: always

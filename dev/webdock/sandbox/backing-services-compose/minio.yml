@@ -22,11 +22,12 @@ services:
     depends_on:
       - minio
     image: minio/mc:latest
-    entrypoint: >
-      ash -c "
-        mc config host add minio_server http://minio:9000 '${BACKING_SERVICES_USER}' '${MINIO_PASSWORD}' \
-        && mc mb --ignore-existing minio_server/bucket0 \
-        && mc policy download minio_server/bucket0
+    entrypoint: |
+      ash -ce "
+        mc config host add minio_server http://minio:9000 '${BACKING_SERVICES_USER}' '${MINIO_PASSWORD}'
+        mc mb --ignore-existing minio_server/bucket0
+        mc policy download minio_server/bucket0
+        exit 0
       "
     scale: 1
     restart: on-failure

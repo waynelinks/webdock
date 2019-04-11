@@ -4,6 +4,7 @@ set -e
 echo '[WebDock] Initialising...'
 
 docker volume create global_npm_cache
+docker volume create global_yarn_cache
 docker volume create global_composer_cache
 
 for module in \

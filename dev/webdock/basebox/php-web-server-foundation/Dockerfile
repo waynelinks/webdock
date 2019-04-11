@@ -5,22 +5,27 @@ WORKDIR /app
 ENV VERSION="undefined"
 
 RUN groupadd --gid 1000 deploy \
-&& useradd --uid 1000 --gid deploy --shell /bin/sh --create-home deploy
+&& useradd --uid 1000 --gid deploy --shell /bin/bash --create-home deploy
+
+RUN apt-get update
 
 RUN curl -fsSL https://getcomposer.org/installer -o /usr/local/bin/composer-installer \
 && php /usr/local/bin/composer-installer --install-dir=/usr/local/bin --filename=composer \
 && rm /usr/local/bin/composer-installer
 ENV COMPOSER_ALLOW_SUPERUSER="1"
 
-RUN apt-get update
+RUN rm -rf /var/cache/composer \
+&& mkdir --parents /var/cache/composer \
+&& chmod --recursive a+rw /var/cache/composer \
+&& composer config --global cache-dir /var/cache/composer \
+&& su --command "composer config --global cache-dir /var/cache/composer" deploy
 
 RUN apt-get install --yes \
   bash-completion \
   git \
 && apt-get clean \
-&& echo ". /etc/bash_completion" >> ~/.bashrc
-
-RUN composer global require \
+&& echo ". /etc/bash_completion" >> ~/.bashrc \
+&& composer global require \
   bamarni/symfony-console-autocomplete \
 && composer clear-cache \
 && echo "$(php ~/.composer/vendor/bin/symfony-autocomplete --shell bash composer)" > /etc/bash_completion.d/composer

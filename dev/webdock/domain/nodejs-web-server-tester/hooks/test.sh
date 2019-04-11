@@ -5,8 +5,9 @@ set -e
 echo 'Running unit tests...'
 docker run \
   --rm \
-  --mount="type=volume,volume-driver=local,src=global_npm_cache,dst=/root/.npm" \
-"${IMAGE}:${VERSION}" bash -c '
-  NODE_ENV="development" npm install --loglevel error > /dev/null \
-  && npm run unit-tests
+  --mount="type=volume,source=global_npm_cache,destination=/var/cache/npm" \
+  --mount="type=volume,source=global_yarn_cache,destination=/var/cache/yarn" \
+"${IMAGE}:${VERSION}" bash -ce '
+  NODE_ENV="development" npm install --loglevel error > /dev/null
+  npm run unit-tests
 '

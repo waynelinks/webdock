@@ -4,7 +4,7 @@ x-volumes:
   volumes:
     - type: volume
       source: composer_cache
-      target: /root/.composer/cache
+      target: /var/cache/composer
     - type: bind
       source: ../php-web-server-app/app
       target: /app
@@ -17,5 +17,5 @@ services:
 
 volumes:
   composer_cache:
-    driver: local
+    external: true
     name: global_composer_cache
