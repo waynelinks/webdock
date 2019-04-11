@@ -1,6 +1,0 @@
-#############################
-### Docker Compose
-#############################
-
-/.env
-/docker-compose.override.yml

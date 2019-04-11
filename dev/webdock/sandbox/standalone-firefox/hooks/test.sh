@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
 set -e
+. "$(dirname "$0")/_variables.sh"
 
-echo '[Hook] Running installation tests...'
-docker-compose run --rm this bash -c '
+echo 'Running installation tests...'
+docker run --rm "${IMAGE}:${VERSION}" bash -c '
   firefox --version \
   && geckodriver --version
 '
-
-echo '[Hook] Done.'

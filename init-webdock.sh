@@ -3,6 +3,9 @@ set -e
 
 echo '[WebDock] Initialising...'
 
+docker volume create global_npm_cache
+docker volume create global_composer_cache
+
 for module in \
   'dev/webdock/sandbox/standalone-firefox' \
   'dev/webdock/basebox/nodejs-foundation' \
@@ -23,10 +26,6 @@ for module in \
 do
   cd $module
 
-  if [ -e .dist/docker-compose.override.yml ]
-  then
-    rm -f docker-compose.override.yml
-  fi
   if [ -e .dist/.env ]
   then
     ln -sf .dist/.env .env

@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 set -e
 
-echo '[Hook] Removing containers...'
+echo 'Removing containers...'
 docker-compose down --remove-orphans
-
-echo '[Hook] Done.'

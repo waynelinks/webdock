@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 set -e
+. "$(dirname "$0")/_variables.sh"
 
-echo '[Hook] Pushing Docker image...'
-docker-compose push this
-
-echo '[Hook] Done.'
+echo 'Pushing Docker image...'
+docker push "${IMAGE}:${VERSION}"

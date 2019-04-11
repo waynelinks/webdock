@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changes
 
+- Do not use Docker Compose tool within modules which produce Docker images.
 - Run browser tests with WebDriverIO.
 - Replace Selenium Grid with own standalone Firefox container.
 - Control PHP, FPM and Nginx logging level with environment variables.

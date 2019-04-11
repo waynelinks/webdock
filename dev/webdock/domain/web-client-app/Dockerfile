@@ -16,5 +16,5 @@ ENV APP_DEFAULT_TIMEZONE="UTC"
 ENV APP_ENV="production"
 
 COPY --from=builder /app/build /app/build
-COPY --from=builder /app/templates /app/templates
+COPY --from=builder /app/build-templates /app/build-templates
 RUN chmod --recursive a+r /app

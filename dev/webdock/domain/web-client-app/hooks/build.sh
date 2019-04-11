@@ -1,7 +1,8 @@
 #!/usr/bin/env sh
 set -e
+. "$(dirname "$0")/_variables.sh"
 
-echo '[Hook] Building Docker image...'
-docker-compose build
-
-echo '[Hook] Done.'
+echo 'Building Docker image...'
+docker build --target=builder --tag="${IMAGE}:builder-${VERSION}" .
+echo "\n\n"
+docker build --tag="${IMAGE}:${VERSION}" .

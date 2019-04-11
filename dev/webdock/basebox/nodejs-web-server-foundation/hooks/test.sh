@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 set -e
+. "$(dirname "$0")/_variables.sh"
 
-echo '[Hook] No tests specified.'
+echo 'No tests specified.'

@@ -6,8 +6,8 @@ services:
         source: ../web-client-app/app/build
         target: /app/build
       - type: bind
-        source: ../web-client-app/app/templates
-        target: /app/templates
+        source: ../web-client-app/app/build-templates
+        target: /app/build-templates
 
   builder:
     image: 127.0.0.1:5000/webdock/web-client-app:builder-${VERSION:-unreleased}
