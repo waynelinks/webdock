@@ -3,10 +3,20 @@ set -e
 
 echo '[WebDock] Initialising...'
 
+docker volume create registry_data
+docker start registry || docker run \
+  --detach \
+  --restart always \
+  --publish 5000:5000 \
+  --mount type=volume,source=registry_data,destination=/var/lib/registry \
+  --name registry \
+registry:latest
+
 docker volume create global_npm_cache
 docker volume create global_yarn_cache
 docker volume create global_composer_cache
 
+export VERSION=0.0.1-example
 for module in \
   'dev/webdock/sandbox/standalone-firefox' \
   'dev/webdock/basebox/nodejs-foundation' \
@@ -22,20 +32,19 @@ for module in \
   'dev/webdock/domain/web-client-tester' \
   'dev/webdock/domain/nodejs-web-server-compose' \
   'dev/webdock/domain/php-web-server-compose' \
-  'dev/webdock/domain/web-client-compose' \
-  'dev/webdock/sandbox/backing-services-compose'
+  'dev/webdock/domain/web-client-compose'
+# Apps do not use backing services out of the box.
+# 'dev/webdock/sandbox/backing-services-compose'
 do
   cd $module
-
-  if [ -e .dist/.env ]
-  then
-    ln -sf .dist/.env .env
-  fi
 
   if [ -x hooks/build.sh ]
   then
     hooks/build.sh
-    VERSION='0.0.1-example' hooks/build.sh
+  fi
+  if [ -e .dist/.env ]
+  then
+    ln -sf .dist/.env .env
   fi
   if [ -x hooks/deploy.sh ]
   then
@@ -49,6 +58,10 @@ do
   then
     helpers/reset-files-permissions.sh
   fi
+  if [ -x helpers/run-unit-tests.sh ]
+  then
+    helpers/run-unit-tests.sh
+  fi
   if [ -x hooks/test.sh ]
   then
     hooks/test.sh
@@ -56,6 +69,10 @@ do
   if [ -x hooks/destroy.sh ]
   then
     hooks/destroy.sh
+  fi
+  if [ -x hooks/publish.sh ]
+  then
+    hooks/publish.sh
   fi
 
   cd ../../../..

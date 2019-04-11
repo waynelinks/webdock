@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Handle Yarn cache.
+- Deploy local Docker registry with init script.
 
 ### Changes
 
