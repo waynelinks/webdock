@@ -95,7 +95,7 @@ $ git clone git@github.com:damlys/webdock.git ${PROJECT_NAME} \
   && echo "Delete ./dev/webdock/*? (y/n)" \
   && rm -rfIv \
     dev/webdock \
-    init-webdock.sh \
+    init-webdock.bash \
   && echo "Delete top-level documentation? (y/n)" \
   && rm -rfIv \
     docs \
