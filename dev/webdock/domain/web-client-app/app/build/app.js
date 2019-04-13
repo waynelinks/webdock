@@ -12,6 +12,6 @@ let env = runtimeConfiguration.env || "production";
 /** @type {string} */
 let version = runtimeConfiguration.version || "undefined";
 
-console.error("App logs some stuff.");
+console.error("App logs some dummy error.");
 
 document.write("<p>Hello world!</p>");

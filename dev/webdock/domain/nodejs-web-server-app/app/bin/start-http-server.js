@@ -10,7 +10,7 @@ let version = process.env.VERSION || "undefined";
 http.createServer(function (request, response) {
   response.setHeader("X-Version", version);
 
-  console.error("App logs some stuff.");
+  console.error("App logs some dummy error.");
 
   response.setHeader("Content-Type", "application/json");
   response.write(JSON.stringify({
