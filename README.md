@@ -90,8 +90,7 @@ $ git clone git@github.com:damlys/webdock.git ${PROJECT_NAME} \
     LICENSE.md \
   && mkdir -p ${TLD}/${ORGANIZATION_NAME} \
   && cp -rv dev/webdock/* ${TLD}/${ORGANIZATION_NAME} \
-  && grep -rl webdock ${TLD}/${ORGANIZATION_NAME} \
-    | xargs sed -i "s/webdock/${PROJECT_NAME}/g" \
+  && grep -rl webdock ${TLD}/${ORGANIZATION_NAME} | xargs sed -i "s/webdock/${PROJECT_NAME}/g" \
   && echo "Delete ./dev/webdock/*? (y/n)" \
   && rm -rfIv \
     dev/webdock \
@@ -102,7 +101,5 @@ $ git clone git@github.com:damlys/webdock.git ${PROJECT_NAME} \
     README.md \
   && git init \
   && git add . \
-  && git commit -m "Initial commit (WebDock v0.13 <https://github.com/damlys/webdock>)"
+  && git commit -m "Initial commit (WebDock v0.14 <https://github.com/damlys/webdock>)"
 ```
-
-Now push your new codebase somewhere :-)

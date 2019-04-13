@@ -7,18 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.14.0] - 2019-04-13
+
 ### Added
 
 - Handle Yarn cache.
 - Deploy local Docker registry with init script.
 
-### Changes
+### Changed
 
-- Do not use Docker Compose tool within modules which produce Docker images.
 - Run browser tests with WebDriverIO.
 - Replace Selenium Grid with own standalone Firefox container.
 - Control PHP, FPM and Nginx logging level with environment variables.
 - Store cache in `/var/cache/{npm,yarn,composer}` directories.
+
+### Removed
+
+- Remove Docker Compose tool from components which produce Docker images.
 
 ## [0.13.0] - 2019-04-02
 
