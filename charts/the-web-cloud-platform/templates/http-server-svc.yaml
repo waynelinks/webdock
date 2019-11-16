@@ -1,0 +1,31 @@
+{{- with .Values.httpServer }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ $.Release.Name }}-http-server"
+  namespace: "{{ $.Release.Namespace }}"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-server"
+    app.kubernetes.io/component: "http-server"
+spec:
+  type: {{ .service.type }}
+  {{- if and (eq .service.type "ClusterIP") (.service.clusterIP) }}
+  clusterIP: {{ .service.clusterIP }}
+  {{- end }}
+  {{- if and (eq .service.type "LoadBalancer") (.service.loadBalancerIP) }}
+  loadBalancerIP: {{ .service.loadBalancerIP }}
+  {{- end }}
+  ports:
+  - name: http
+    targetPort: http
+    port: 80
+    {{- if and (eq .service.type "NodePort") (.service.nodePort) }}
+    nodePort: {{ .service.nodePort }}
+    {{- end }}
+    protocol: TCP
+  selector:
+    {{- include "the-web-cloud-platform.matchLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-server"
+    app.kubernetes.io/component: "http-server"
+{{- end }}

@@ -1,0 +1,15 @@
+#############################
+### Docker
+#############################
+
+/.env
+/docker-compose.override.yml
+
+#############################
+### Node.js
+#############################
+
+/coverage
+/dist
+/node_modules
+/npm-debug.log

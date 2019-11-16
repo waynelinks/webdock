@@ -1,0 +1,161 @@
+httpServer:
+  image:
+    name: 127.0.0.1:55000/webdock/the-web-cloud-server
+    tag: dist-0.0.0
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
+  environmentVariables:
+    decoded: {}
+    #  USERNAME: ""
+    encoded: {}
+    #  PASSWORD: ""
+
+  minReplicas: 2
+  maxReplicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  progressDeadlineSeconds: 600
+  minReadySeconds: 0
+  readinessProbe: {}
+  #  initialDelaySeconds: 30
+  #  periodSeconds: 10
+  #  timeoutSeconds: 1
+  #  failureThreshold: 3
+  #  successThreshold: 1
+  livenessProbe: {}
+  #  initialDelaySeconds: 30
+  #  periodSeconds: 10
+  #  timeoutSeconds: 1
+  #  failureThreshold: 3
+  #  successThreshold: 1
+  terminationGracePeriodSeconds: 30
+  terminationMessagePath: /dev/termination-log
+  scrapeMetrics: true
+
+  securityContext:
+    pod: {}
+    #  fsGroup: 1000
+    container: {}
+    #  capabilities:
+    #    drop:
+    #      - ALL
+    #  readOnlyRootFilesystem: true
+    #  runAsNonRoot: true
+    #  runAsUser: 1000
+    #  runAsGroup: 1000
+
+  resources: {}
+  #  requests:
+  #    cpu: 100m
+  #    memory: 128M
+  #  limits:
+  #    cpu: 1000m
+  #    memory: 1G
+
+  nodeSelector: {}
+
+  affinity: {}
+
+  tolerations: []
+
+  extraPorts: []
+  #- name: debugger
+  #  containerPort: 9229
+  #  hostPort: 9229
+  #  protocol: TCP
+
+  service:
+    type: ClusterIP
+    clusterIP: ""
+    loadBalancerIP: ""
+    nodePort: 0
+
+  ingress:
+    host: www.example.tld
+    tls:
+      enabled: false
+      crt: |
+        -----BEGIN CERTIFICATE-----
+        -----END CERTIFICATE-----
+      key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        -----END RSA PRIVATE KEY-----
+    basicAuth:
+      enabled: false
+      # demo:demo
+      htpasswd: |
+        demo:$apr1$7ro2Bhr4$tUwuO./RWT1tddtu3gPk6.
+
+  volumes:
+    sources: []
+    #- name: app-code
+    #  hostPath:
+    #    type: Directory
+    #    path: /home/<user>/workspace/webdock/images/the-web-cloud-server
+    mounts: []
+    #- name: app-code
+    #  mountPath: /app
+
+tester:
+  image:
+    name: 127.0.0.1:55000/webdock/the-web-cloud-tester
+    tag: dist-0.0.0
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+
+  environmentVariables:
+    decoded: {}
+    #  USERNAME: ""
+    encoded: {}
+    #  PASSWORD: ""
+
+  replicas: 0
+
+  securityContext:
+    pod: {}
+    #  fsGroup: 1000
+    container: {}
+    #  capabilities:
+    #    drop:
+    #      - ALL
+    #  readOnlyRootFilesystem: true
+    #  runAsNonRoot: true
+    #  runAsUser: 1000
+    #  runAsGroup: 1000
+
+  resources: {}
+  #  requests:
+  #    cpu: 100m
+  #    memory: 128M
+  #  limits:
+  #    cpu: 1000m
+  #    memory: 1G
+
+  nodeSelector: {}
+
+  affinity: {}
+
+  tolerations: []
+
+  ports: []
+  #- name: debugger
+  #  containerPort: 9229
+  #  hostPort: 9229
+  #  protocol: TCP
+
+  volumes:
+    sources: []
+    #- name: app-code
+    #  hostPath:
+    #    type: Directory
+    #    path: /home/<user>/workspace/webdock/images/the-web-cloud-tester
+    mounts: []
+    #- name: app-code
+    #  mountPath: /app
+
+mongodb:
+  enabled: false

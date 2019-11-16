@@ -1,0 +1,23 @@
+version: "3.7"
+x-common-services-config:
+  &common-services-config
+  entrypoint: []
+  command: ["bash"]
+  env_file:
+  - .env
+  networks:
+  - host
+  volumes:
+  - type: volume
+    source: npm_cache
+    target: /var/cache/npm
+services:
+  rte: *common-services-config
+  sdk: *common-services-config
+networks:
+  host:
+    external: true
+volumes:
+  npm_cache:
+    driver: local
+    name: global_npm_cache

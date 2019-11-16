@@ -1,0 +1,93 @@
+{{- with .Values.httpServer }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ $.Release.Name }}-http-server"
+  namespace: "{{ $.Release.Namespace }}"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-server"
+    app.kubernetes.io/component: "http-server"
+spec:
+  replicas: {{ .minReplicas }}
+  strategy:
+    {{- toYaml .strategy | nindent 4 }}
+  progressDeadlineSeconds: {{ .progressDeadlineSeconds }}
+  minReadySeconds: {{ .minReadySeconds }}
+  selector:
+    matchLabels:
+      {{- include "the-web-cloud-platform.matchLabels" $ | nindent 6 }}
+      app.kubernetes.io/name: "the-web-cloud-server"
+      app.kubernetes.io/component: "http-server"
+  template:
+    metadata:
+      labels:
+        {{- include "the-web-cloud-platform.metaLabels" $ | nindent 8 }}
+        app.kubernetes.io/name: "the-web-cloud-server"
+        app.kubernetes.io/component: "http-server"
+      annotations:
+        {{- if .scrapeMetrics }}
+        # Prometheus (https://developer.ibm.com/tutorials/monitoring-kubernetes-prometheus/)
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "http"
+        prometheus.io/path: "/-/metrics"
+        {{- end }}
+        checksum/config: >
+          {{ include (print $.Template.BasePath "/http-server-cm.yaml") $ | sha256sum }}
+          {{ include (print $.Template.BasePath "/http-server-secret.yaml") $ | sha256sum }}
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}
+      imagePullSecrets:
+        {{- toYaml .image.pullSecrets | nindent 8 }}
+      securityContext:
+        {{- toYaml .securityContext.pod | nindent 8 }}
+      containers:
+      - name: "{{ $.Release.Name }}-http-server"
+        image: "{{ .image.name }}:{{ .image.tag }}"
+        imagePullPolicy: "{{ .image.pullPolicy }}"
+        args:
+        - run-http-server
+        envFrom:
+        - configMapRef:
+            name: "{{ $.Release.Name }}-http-server"
+        - secretRef:
+            name: "{{ $.Release.Name }}-http-server"
+        securityContext:
+          {{- toYaml .securityContext.container | nindent 10 }}
+        resources:
+          {{- toYaml .resources | nindent 10 }}
+        readinessProbe:
+          httpGet:
+            port: http
+            path: /-/ready
+          {{- if .readinessProbe }}
+          {{- toYaml .readinessProbe | nindent 10 }}
+          {{- end }}
+        livenessProbe:
+          httpGet:
+            port: http
+            path: /-/healthy
+          {{- if .livenessProbe }}
+          {{- toYaml .livenessProbe | nindent 10 }}
+          {{- end }}
+        terminationMessagePolicy: File
+        terminationMessagePath: "{{ .terminationMessagePath }}"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        {{- if .extraPorts }}
+        {{- toYaml .extraPorts | nindent 8 }}
+        {{- end }}
+        volumeMounts:
+          {{- toYaml .volumes.mounts | nindent 10 }}
+      volumes:
+        {{- toYaml .volumes.sources | nindent 8 }}
+      nodeSelector:
+        {{- toYaml .nodeSelector | nindent 8 }}
+      affinity:
+        {{- toYaml .affinity | nindent 8 }}
+      tolerations:
+        {{- toYaml .tolerations | nindent 8 }}
+{{- end }}

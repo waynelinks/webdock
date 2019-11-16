@@ -1,0 +1,19 @@
+{
+  "include": [
+    "./src/bin/cli.ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ],
+  "compilerOptions": {
+    "lib": ["es2018"],
+    "target": "es2018",
+    "strict": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "declaration": false,
+    "sourceMap": true
+  }
+}

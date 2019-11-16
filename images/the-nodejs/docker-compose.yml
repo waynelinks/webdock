@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  rte:
+    image: "127.0.0.1:55000/webdock/the-nodejs:rte-0.0.0"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: rte
+  sdk:
+    image: "127.0.0.1:55000/webdock/the-nodejs:sdk-0.0.0"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: sdk

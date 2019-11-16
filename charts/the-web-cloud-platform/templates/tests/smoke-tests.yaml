@@ -1,0 +1,73 @@
+{{- with .Values.tester }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ $.Release.Name }}-smoke-tests"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-tester"
+    app.kubernetes.io/component: "smoke-tests"
+  annotations:
+    helm.sh/hook: "test-success"
+    checksum/config: >
+      {{ include (print $.Template.BasePath "/tester-cm.yaml") $ | sha256sum }}
+      {{ include (print $.Template.BasePath "/tester-secret.yaml") $ | sha256sum }}
+spec:
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0
+  imagePullSecrets:
+    {{- toYaml .image.pullSecrets | nindent 4 }}
+  securityContext:
+    {{- toYaml .securityContext.pod | nindent 4 }}
+  initContainers:
+  - name: "{{ $.Release.Name }}-wait-for-http-server"
+    image: nicolaka/netshoot:latest
+    imagePullPolicy: IfNotPresent
+    command:
+    - sh
+    args:
+    - -ce
+    - |
+      until nc -vz "{{ $.Release.Name }}-http-server" 80
+      do
+        echo "Waiting for {{ $.Release.Name }}-http-server:80"
+        sleep 1
+      done
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 65534
+      runAsGroup: 65534
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32M
+      limits:
+        cpu: 100m
+        memory: 128M
+  containers:
+  - name: "{{ $.Release.Name }}-smoke-tests"
+    image: "{{ .image.name }}:{{ .image.tag }}"
+    imagePullPolicy: "{{ .image.pullPolicy }}"
+    args:
+    - run
+    - target-smoke-tests
+    envFrom:
+    - configMapRef:
+        name: "{{ $.Release.Name }}-tester"
+    - secretRef:
+        name: "{{ $.Release.Name }}-tester"
+    securityContext:
+      {{- toYaml .securityContext.container | nindent 6 }}
+    resources:
+      {{- toYaml .resources | nindent 6 }}
+    volumeMounts:
+      {{- toYaml .volumes.mounts | nindent 6 }}
+  volumes:
+    {{- toYaml .volumes.sources | nindent 4 }}
+  nodeSelector:
+    {{- toYaml .nodeSelector | nindent 4 }}
+  affinity:
+    {{- toYaml .affinity | nindent 4 }}
+  tolerations:
+    {{- toYaml .tolerations | nindent 4 }}
+{{- end }}

@@ -1,0 +1,16 @@
+{{- with .Values.tester }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "{{ $.Release.Name }}-tester"
+  namespace: "{{ $.Release.Namespace }}"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-tester"
+    app.kubernetes.io/component: "tester"
+data:
+  WEBDOCK_TARGET_ENDPOINT: "http://{{ $.Release.Name }}-http-server:80"
+  {{- range $key, $val := .environmentVariables.decoded }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
+{{- end }}

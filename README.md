@@ -1,105 +1,79 @@
 WebDock
 ===
 
-Monorepo Docker starter for web applications
+Cloud native and framework agnostic boilerplate with Docker & Kubernetes for TypeScript projects
 
-![Repository structure diagram](docs/assets/repository-structure-diagram.png)
-
-## Table of contents
-
-1. [Requirements](#requirements)
-1. [Getting started](#getting-started)
-1. [Useful links](docs/Useful-links.md)
-1. [Used Docker images](docs/Used-Docker-images.md)
-1. [PHP debugging tools](docs/PHP-debugging-tools.md)
+<p align="center">
+  <img alt="Project structure diagram" src="docs/project-structure-diagram.svg?sanitize=true">
+</p>
 
 ## Requirements
 
-Following software is required to work with this repository:
+Docker client and server
 
-```
-$ docker version 
-Client:
- Version:           18.09.3
- API version:       1.39
- Go version:        go1.10.8
- Git commit:        774a1f4
- Built:             Thu Feb 28 06:53:11 2019
- OS/Arch:           linux/amd64
- Experimental:      false
-
+```console
+$ docker version
+Client: Docker Engine - Community
+ Version:           19.03.4
 Server: Docker Engine - Community
  Engine:
-  Version:          18.09.3
-  API version:      1.39 (minimum version 1.12)
-  Go version:       go1.10.8
-  Git commit:       774a1f4
-  Built:            Thu Feb 28 05:59:55 2019
-  OS/Arch:          linux/amd64
-  Experimental:     false
-
-$ docker-compose version
-docker-compose version 1.23.2, build 1110ad0
-docker-py version: 3.7.0
-CPython version: 2.7.15rc1
-OpenSSL version: OpenSSL 1.1.0g  2 Nov 2017
+  Version:          19.03.4
 ```
 
-Check if Docker daemon works correctly:
+(Docker Swarm mode is not required)
 
-```
-$ docker container run --rm hello-world
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-...
-```
-
-Note: `docker-compose` command operates on
-standalone Docker Engine. It does not require
-Docker Swarm mode:
-
-```
+```console
 $ docker info --format="{{.Swarm.LocalNodeState}}"
 inactive
 ```
 
-## Getting started
+Docker Compose tool
 
-Go to your workspace:
-
-```
-$ cd ~/workspace
-```
-
-Export few envs:
-
-```
-$ export TLD="org" ORGANIZATION_NAME="my-organization" PROJECT_NAME="my-project"
+```console
+$ docker-compose version --short
+1.24.1
 ```
 
-And create new project with WebDock:
+Kubectl tool and Kubernetes cluster
 
+```console
+$ kubectl version --short
+Client Version: v1.16.2
+Server Version: v1.16.2
 ```
-$ git clone git@github.com:damlys/webdock.git ${PROJECT_NAME} \
-  && cd ${PROJECT_NAME} \
-  && rm -rfv \
-    .git \
-    CHANGELOG.md \
-    LICENSE.md \
-  && mkdir -p ${TLD}/${ORGANIZATION_NAME} \
-  && cp -rv dev/webdock/* ${TLD}/${ORGANIZATION_NAME} \
-  && grep -rl webdock ${TLD}/${ORGANIZATION_NAME} | xargs sed -i "s/webdock/${PROJECT_NAME}/g" \
-  && echo "Delete ./dev/webdock/*? (y/n)" \
-  && rm -rfIv \
-    dev/webdock \
-    init-webdock.bash \
-  && echo "Delete top-level documentation? (y/n)" \
-  && rm -rfIv \
-    docs \
-    README.md \
-  && git init \
-  && git add . \
-  && git commit -m "Initial commit (WebDock v0.14 <https://github.com/damlys/webdock>)"
+
+Helm tool
+
+```console
+$ helm version --short
+v3.0.0+ge29ce2a
 ```
+
+Helm Push plugin
+
+```console
+$ helm plugin list
+NAME	VERSION	DESCRIPTION
+push	0.7.1  	Push chart package to ChartMuseum
+```
+
+## Development
+
+Setup globally used stuff...
+
+```console
+$ ./setup.bash
+```
+
+...and follow the pipeline
+
+```console
+$ ./pipeline.bash
+...
+
+*** 17:48:28 *** END ***
+
+Success!
+```
+
+Note: `.examples` are adjusted to my private machine

@@ -10,7 +10,7 @@ insert_final_newline = true
 
 [*.{ash,bash,sh}]
 
-[*.{css,less,scss}]
+[*.{css,scss}]
 
 [*.feature]
 
@@ -21,11 +21,7 @@ insert_final_newline = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.php]
-indent_size = 4
-[composer.{json,lock}]
-indent_size = 4
-
 [*.ts]
+indent_size = 4
 
 [*.{yaml,yml}]

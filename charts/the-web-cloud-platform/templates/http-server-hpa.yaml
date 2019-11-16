@@ -1,0 +1,19 @@
+{{- with .Values.httpServer }}
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: "{{ $.Release.Name }}-http-server"
+  namespace: "{{ $.Release.Namespace }}"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-server"
+    app.kubernetes.io/component: "http-server"
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: "{{ $.Release.Name }}-http-server"
+  minReplicas: {{ .minReplicas }}
+  maxReplicas: {{ .maxReplicas }}
+  targetCPUUtilizationPercentage: 50
+{{- end }}

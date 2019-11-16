@@ -1,0 +1,16 @@
+#############################
+### Docker
+#############################
+
+/.env
+/docker-compose.override.yml
+
+#############################
+### Node.js
+#############################
+
+/*.tgz
+/coverage
+/dist
+/node_modules
+/npm-debug.log

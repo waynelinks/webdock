@@ -1,0 +1,30 @@
+{
+  "name": "@webdock/the-web-cloud-server",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "prom-client": "*"
+  },
+  "devDependencies": {
+    "@types/jest": "*",
+    "@types/node": "*",
+    "jest": "*",
+    "ts-jest": "*",
+    "ts-node-dev": "*",
+    "tslint": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "lint": "tslint --exclude './{coverage,dist,node_modules}/**/*' './**/*.{ts,js}'",
+    "lint-fix": "tslint --exclude './{coverage,dist,node_modules}/**/*' './**/*.{ts,js}' --fix",
+    "test": "jest",
+    "test-coverage": "rm -rf ./coverage && jest --coverage",
+    "test-watch": "jest --watchAll",
+    "unit-tests": "jest ./tests/unit-tests",
+    "integration-tests": "jest ./tests/integration-tests"
+  }
+}

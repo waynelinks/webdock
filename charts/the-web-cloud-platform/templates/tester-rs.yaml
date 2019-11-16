@@ -1,0 +1,65 @@
+{{- with .Values.tester }}
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: "{{ $.Release.Name }}-tester"
+  namespace: "{{ $.Release.Namespace }}"
+  labels:
+    {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
+    app.kubernetes.io/name: "the-web-cloud-tester"
+    app.kubernetes.io/component: "tester"
+spec:
+  replicas: {{ .replicas }}
+  minReadySeconds: 0
+  selector:
+    matchLabels:
+      {{- include "the-web-cloud-platform.matchLabels" $ | nindent 6 }}
+      app.kubernetes.io/name: "the-web-cloud-tester"
+      app.kubernetes.io/component: "tester"
+  template:
+    metadata:
+      labels:
+        {{- include "the-web-cloud-platform.metaLabels" $ | nindent 8 }}
+        app.kubernetes.io/name: "the-web-cloud-tester"
+        app.kubernetes.io/component: "tester"
+      annotations:
+        checksum/config: >
+          {{ include (print $.Template.BasePath "/tester-cm.yaml") $ | sha256sum }}
+          {{ include (print $.Template.BasePath "/tester-secret.yaml") $ | sha256sum }}
+    spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0
+      imagePullSecrets:
+        {{- toYaml .image.pullSecrets | nindent 8 }}
+      securityContext:
+        {{- toYaml .securityContext.pod | nindent 8 }}
+      containers:
+      - name: "{{ $.Release.Name }}-tester"
+        image: "{{ .image.name }}:{{ .image.tag }}"
+        imagePullPolicy: "{{ .image.pullPolicy }}"
+        command:
+        - sleep
+        args:
+        - infinity
+        envFrom:
+        - configMapRef:
+            name: "{{ $.Release.Name }}-tester"
+        - secretRef:
+            name: "{{ $.Release.Name }}-tester"
+        securityContext:
+          {{- toYaml .securityContext.container | nindent 10 }}
+        resources:
+          {{- toYaml .resources | nindent 10 }}
+        ports:
+          {{- toYaml .ports | nindent 10 }}
+        volumeMounts:
+          {{- toYaml .volumes.mounts | nindent 10 }}
+      volumes:
+        {{- toYaml .volumes.sources | nindent 8 }}
+      nodeSelector:
+        {{- toYaml .nodeSelector | nindent 8 }}
+      affinity:
+        {{- toYaml .affinity | nindent 8 }}
+      tolerations:
+        {{- toYaml .tolerations | nindent 8 }}
+{{- end }}
