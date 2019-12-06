@@ -59,13 +59,7 @@ push	0.7.1  	Push chart package to ChartMuseum
 
 ## Development
 
-Setup globally used stuff...
-
-```console
-$ ./setup.bash
-```
-
-...and follow the pipeline
+Follow the pipeline
 
 ```console
 $ ./pipeline.bash
@@ -76,4 +70,4 @@ $ ./pipeline.bash
 Success!
 ```
 
-Note: `.examples` are adjusted to my private machine
+Note: `.examples/` are adjusted to my private machine

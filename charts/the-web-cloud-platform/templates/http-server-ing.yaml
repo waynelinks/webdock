@@ -1,4 +1,5 @@
 {{- with .Values.httpServer }}
+{{- if .ingress.enabled }}
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -9,24 +10,20 @@ metadata:
     app.kubernetes.io/name: "the-web-cloud-server"
     app.kubernetes.io/component: "http-server"
   annotations:
-    {{- if .ingress.basicAuth.enabled }}
-    # NGINX Ingress Controller (https://kubernetes.github.io/ingress-nginx/examples/auth/basic/)
-    nginx.ingress.kubernetes.io/auth-type: "basic"
-    nginx.ingress.kubernetes.io/auth-secret: "{{ $.Release.Name }}-http-server-htpasswd"
-    {{- end }}
+    {{- toYaml .ingress.annotations | nindent 4 }}
 spec:
-  {{- if .ingress.tls.enabled }}
-  tls:
-  - hosts:
-    - "{{ .ingress.host }}"
-    secretName: "{{ $.Release.Name }}-http-server-tls"
-  {{- end }}
   rules:
-  - host: "{{ .ingress.host }}"
+  {{- range .ingress.hosts }}
+  {{- $host := splitList "/" . }}
+  - host: "{{ first $host }}"
     http:
       paths:
-      - path: /
+      - path: "/{{ rest $host | join "/" }}"
         backend:
           serviceName: "{{ $.Release.Name }}-http-server"
           servicePort: http
+  {{- end }}
+  tls:
+    {{- toYaml .ingress.tls | nindent 4 }}
+{{- end }}
 {{- end }}

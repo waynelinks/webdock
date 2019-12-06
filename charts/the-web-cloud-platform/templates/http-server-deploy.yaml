@@ -26,15 +26,14 @@ spec:
         app.kubernetes.io/name: "the-web-cloud-server"
         app.kubernetes.io/component: "http-server"
       annotations:
-        {{- if .scrapeMetrics }}
-        # Prometheus (https://developer.ibm.com/tutorials/monitoring-kubernetes-prometheus/)
-        prometheus.io/scrape: "true"
-        prometheus.io/port: "http"
-        prometheus.io/path: "/-/metrics"
-        {{- end }}
         checksum/config: >
           {{ include (print $.Template.BasePath "/http-server-cm.yaml") $ | sha256sum }}
           {{ include (print $.Template.BasePath "/http-server-secret.yaml") $ | sha256sum }}
+        prometheus.io/port: "http"
+        prometheus.io/path: "/-/metrics"
+        {{- if .podAnnotations }}
+        {{- toYaml .podAnnotations | nindent 8 }}
+        {{- end }}
     spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: {{ .terminationGracePeriodSeconds }}

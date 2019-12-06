@@ -8,10 +8,13 @@ metadata:
     app.kubernetes.io/name: "the-web-cloud-tester"
     app.kubernetes.io/component: "smoke-tests"
   annotations:
-    helm.sh/hook: "test-success"
     checksum/config: >
       {{ include (print $.Template.BasePath "/tester-cm.yaml") $ | sha256sum }}
       {{ include (print $.Template.BasePath "/tester-secret.yaml") $ | sha256sum }}
+    helm.sh/hook: "test-success"
+    {{- if .podAnnotations }}
+    {{- toYaml .podAnnotations | nindent 8 }}
+    {{- end }}
 spec:
   restartPolicy: Never
   terminationGracePeriodSeconds: 0

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.15.1] - 2019-12-06
+
+### Added
+
+- Deployments components.
+
+### Changed
+
+- Do not create TLS and htpasswd secrets for k8s ingress.
+
 ## [0.15.0] - 2019-11-16
 
 ### Added

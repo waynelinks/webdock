@@ -1,0 +1,78 @@
+httpServer:
+  image:
+    tag: builder-0.0.0
+
+  environmentVariables:
+    #decoded:
+    #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
+    encoded:
+      NPM_TOKEN: ""
+      REGISTRY_TOKEN: ""
+
+  minReplicas: 1
+  maxReplicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+
+  extraPorts:
+  - name: debugger
+    containerPort: 9229
+    hostPort: 19229
+    protocol: TCP
+
+  service:
+    type: NodePort
+    nodePort: 30080
+
+  ingress:
+    enabled: true
+    hosts:
+    - k8s.local
+
+  volumes:
+    sources:
+    - name: app-code
+      hostPath:
+        type: Directory
+        path: /home/damlys/workspace/webdock/images/the-web-cloud-server
+    - name: npm-cache
+      persistentVolumeClaim:
+        claimName: global-npm-cache
+    mounts:
+    - name: app-code
+      mountPath: /app
+    - name: npm-cache
+      mountPath: /var/cache/npm
+
+tester:
+  environmentVariables:
+    #decoded:
+    #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
+    encoded:
+      NPM_TOKEN: ""
+      REGISTRY_TOKEN: ""
+
+  replicas: 1
+
+  ports:
+  - name: debugger
+    containerPort: 9229
+    hostPort: 29229
+    protocol: TCP
+
+  volumes:
+    sources:
+    - name: app-code
+      hostPath:
+        type: Directory
+        path: /home/damlys/workspace/webdock/images/the-web-cloud-tester
+    - name: npm-cache
+      persistentVolumeClaim:
+        claimName: global-npm-cache
+    mounts:
+    - name: app-code
+      mountPath: /app
+    - name: npm-cache
+      mountPath: /var/cache/npm

@@ -26,6 +26,9 @@ spec:
         checksum/config: >
           {{ include (print $.Template.BasePath "/tester-cm.yaml") $ | sha256sum }}
           {{ include (print $.Template.BasePath "/tester-secret.yaml") $ | sha256sum }}
+        {{- if .podAnnotations }}
+        {{- toYaml .podAnnotations | nindent 8 }}
+        {{- end }}
     spec:
       restartPolicy: Always
       terminationGracePeriodSeconds: 0

@@ -9,7 +9,6 @@
 ### Node.js
 #############################
 
-/*.tgz
 /coverage
 /dist
 /node_modules

@@ -22,7 +22,7 @@ pipelinePauseMessage="Press a key...
 function pausePipeline() {
   if [ "$pipelineWatch" == "1" ]
   then
-    printPipelineHeader "Paused"
+    printPipelineHeader "Pause"
     printf "$pipelinePauseMessage"
     read -s -n1 keyPressed
     case "$keyPressed" in
@@ -36,6 +36,97 @@ function pausePipeline() {
 }
 
 printPipelineHeader "START"
+git clean -d -X -f -e '!/.idea'
+pausePipeline
+
+printPipelineHeader "Deploying local packages registry (Verdaccio)"
+docker volume create --driver=local npm_registry_data
+docker start npm_registry || docker run \
+  --detach \
+  --restart=always \
+  --publish=54873:4873 \
+  --mount=type=volume,source=npm_registry_data,destination=/verdaccio/storage \
+  --name=npm_registry \
+verdaccio/verdaccio:latest
+echo "
+Dashboard:          http://127.0.0.1:54873
+"
+pausePipeline
+
+printPipelineHeader "Deploying local images registry (Docker Registy)"
+docker volume create --driver=local docker_registry_data
+docker start docker_registry || docker run \
+  --detach \
+  --restart=always \
+  --publish=55000:5000 \
+  --mount=type=volume,source=docker_registry_data,destination=/var/lib/registry \
+  --name=docker_registry \
+registry:latest
+echo "
+Images list:        http://127.0.0.1:55000/v2/_catalog
+Image tags:         http://127.0.0.1:55000/v2/<name>/tags/list
+"
+pausePipeline
+
+printPipelineHeader "Deploying local charts registry (ChartMuseum)"
+docker volume create --driver=local helm_registry_data
+docker start helm_registry || docker run \
+  --detach \
+  --restart=always \
+  --publish=58080:8080 \
+  --mount=type=volume,source=helm_registry_data,destination=/charts \
+  --env=ALLOW_OVERWRITE=true \
+  --env=STORAGE=local \
+  --env=STORAGE_LOCAL_ROOTDIR=/charts \
+  --user=0 \
+  --name=helm_registry \
+chartmuseum/chartmuseum:latest
+helm repo add webdock http://127.0.0.1:58080
+echo "
+Charts list:        http://127.0.0.1:58080/api/charts
+Chart details:      http://127.0.0.1:58080/api/charts/<name>/<version>
+"
+pausePipeline
+
+printPipelineHeader "Creating Docker cache volumes"
+docker volume create --driver=local global_npm_cache
+pausePipeline
+
+printPipelineHeader "Creating Kubernetes cache volumes"
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: global-npm-cache
+  labels:
+    volume: global-npm-cache
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1G
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    type: Directory
+    path: "$(docker volume inspect global_npm_cache --format="{{ .Mountpoint }}")"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: global-npm-cache
+  labels:
+    volume: global-npm-cache
+spec:
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 1G
+  accessModes:
+    - ReadWriteOnce
+  selector:
+    matchLabels:
+      volume: global-npm-cache
+EOF
 pausePipeline
 
 for projectComponent in \
@@ -46,71 +137,34 @@ for projectComponent in \
   'images/the-web-browser-client' \
   'images/the-web-browser-tester' \
   'charts/the-web-cloud-platform' \
-  'charts/the-web-browser-platform'
+  'charts/the-web-browser-platform' \
+  'deployments/the-web-cloud-platform-1' \
+  'deployments/the-web-browser-platform-1'
 do
   printPipelineHeader "Entering project component *** $projectComponent"
   cd "$projectComponent"
   pwd
   pausePipeline
 
-  for generatedFile in \
-    '.env' \
-    'build' \
-    'build.yaml' \
-    'coverage' \
-    'dist' \
-    'docker-compose.override.yml' \
-    'node_modules' \
-    'values.local.yaml'
-  do
-    if [[ -d "$generatedFile" ]]
-    then
-      printPipelineHeader "Deleting generated directory *** $PWD/$generatedFile"
-      rm --recursive --verbose "$generatedFile"
-      pausePipeline
-    fi
-    if [[ -f "$generatedFile" ]]
-    then
-      printPipelineHeader "Deleting generated file *** $PWD/$generatedFile"
-      rm --verbose "$generatedFile"
-      pausePipeline
-    fi
-  done
-
+  printPipelineHeader "Linking example config *** $PWD/.examples"
   for exampleConfig in \
     '.env' \
     'docker-compose.override.yml' \
-    'values.local.yaml'
+    'values.override.yaml'
   do
     if [[ -f ".examples/$exampleConfig" ]]
     then
-      printPipelineHeader "Linking example config *** $PWD/.examples/$exampleConfig"
       ln --symbolic --verbose ".examples/$exampleConfig" .
-      pausePipeline
     fi
   done
+  pausePipeline
 
-  for pipelineScript in \
-    'build' \
-    '.reset' \
-    'run-vulnerabilities-scanning' \
-    'lint' \
-    'deploy' \
-    'run-installation-tests' \
-    'run-implementation-tests' \
-    'run-unit-tests' \
-    'run-integration-tests' \
-    'run-system-tests' \
-    'publish' \
-    'destroy'
-  do
-    if [[ -x "pipeline/$pipelineScript.bash" ]]
-    then
-      printPipelineHeader "Executing pipeline script *** $PWD/pipeline/$pipelineScript.bash"
-      "pipeline/$pipelineScript.bash"
-      pausePipeline
-    fi
-  done
+  printPipelineHeader "Executing script *** $PWD/pipeline.sh"
+  if [[ -x "./pipeline.sh" ]]
+  then
+    ./pipeline.sh
+  fi
+  pausePipeline
 
   printPipelineHeader "Leaving project component *** $projectComponent"
   cd ../..

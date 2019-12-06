@@ -8,3 +8,5 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com
   version: 7.4.5
   condition: mongodb.enabled
+sources:
+- https://github.com/helm/charts/tree/master/stable/mongodb

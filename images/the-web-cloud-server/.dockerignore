@@ -4,6 +4,7 @@
 
 /.examples
 /pipeline
+/pipeline.sh
 
 #############################
 ### System

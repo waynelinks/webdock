@@ -4,6 +4,7 @@ httpServer:
     tag: dist-0.0.0
     pullPolicy: IfNotPresent
     pullSecrets: []
+    #- name: "image-pull-secret"
 
   environmentVariables:
     decoded: {}
@@ -12,12 +13,12 @@ httpServer:
     #  PASSWORD: ""
 
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 5
   strategy:
     type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
+    #rollingUpdate:
+    #  maxSurge: 25%
+    #  maxUnavailable: 25%
   progressDeadlineSeconds: 600
   minReadySeconds: 0
   readinessProbe: {}
@@ -34,7 +35,9 @@ httpServer:
   #  successThreshold: 1
   terminationGracePeriodSeconds: 30
   terminationMessagePath: /dev/termination-log
-  scrapeMetrics: true
+
+  podAnnotations: {}
+  #  prometheus.io/scrape: "true"
 
   securityContext:
     pod: {}
@@ -69,26 +72,26 @@ httpServer:
   #  protocol: TCP
 
   service:
+    annotations: {}
+    #  foo: "bar"
     type: ClusterIP
     clusterIP: ""
     loadBalancerIP: ""
     nodePort: 0
 
   ingress:
-    host: www.example.tld
-    tls:
-      enabled: false
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        -----END CERTIFICATE-----
-      key: |
-        -----BEGIN RSA PRIVATE KEY-----
-        -----END RSA PRIVATE KEY-----
-    basicAuth:
-      enabled: false
-      # demo:demo
-      htpasswd: |
-        demo:$apr1$7ro2Bhr4$tUwuO./RWT1tddtu3gPk6.
+    enabled: false
+    annotations: {}
+    #  ingress.kubernetes.io/auth-type: "basic"
+    #  ingress.kubernetes.io/auth-secret: "htpasswd-secret"
+    #  nginx.ingress.kubernetes.io/auth-type: "basic"
+    #  nginx.ingress.kubernetes.io/auth-secret: "htpasswd-secret"
+    hosts: []
+    #- www.example.tld/api/v1
+    tls: []
+    #- hosts:
+    #  - www.example.tld
+    #  secretName: "tls-secret"
 
   volumes:
     sources: []
@@ -96,9 +99,14 @@ httpServer:
     #  hostPath:
     #    type: Directory
     #    path: /home/<user>/workspace/webdock/images/the-web-cloud-server
+    #- name: npm-cache
+    #  persistentVolumeClaim:
+    #    claimName: global-npm-cache
     mounts: []
     #- name: app-code
     #  mountPath: /app
+    #- name: npm-cache
+    #  mountPath: /var/cache/npm
 
 tester:
   image:
@@ -106,6 +114,7 @@ tester:
     tag: dist-0.0.0
     pullPolicy: IfNotPresent
     pullSecrets: []
+    #- name: "image-pull-secret"
 
   environmentVariables:
     decoded: {}
@@ -114,6 +123,9 @@ tester:
     #  PASSWORD: ""
 
   replicas: 0
+
+  podAnnotations: {}
+  #  foo: "bar"
 
   securityContext:
     pod: {}
@@ -153,9 +165,14 @@ tester:
     #  hostPath:
     #    type: Directory
     #    path: /home/<user>/workspace/webdock/images/the-web-cloud-tester
+    #- name: npm-cache
+    #  persistentVolumeClaim:
+    #    claimName: global-npm-cache
     mounts: []
     #- name: app-code
     #  mountPath: /app
+    #- name: npm-cache
+    #  mountPath: /var/cache/npm
 
 mongodb:
   enabled: false

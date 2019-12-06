@@ -1,0 +1,5 @@
+httpServer:
+  ingress:
+    enabled: true
+    hosts:
+    - webdock.local
