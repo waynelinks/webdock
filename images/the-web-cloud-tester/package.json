@@ -8,16 +8,18 @@
   "dependencies": {
     "@types/jest": "*",
     "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
     "axios": "*",
+    "eslint": "*",
     "jest": "*",
     "ts-jest": "*",
-    "tslint": "*",
     "typescript": "*"
   },
   "devDependencies": {},
   "scripts": {
-    "lint": "tslint --exclude './{coverage,node_modules}/**/*' './**/*.{ts,js}'",
-    "lint-fix": "tslint --exclude './{coverage,node_modules}/**/*' './**/*.{ts,js}' --fix",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}' && tsc --noEmit",
+    "lint-fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
     "test": "jest",
     "test-coverage": "rm -rf ./coverage && jest --coverage",
     "test-watch": "jest --watchAll",

@@ -10,16 +10,16 @@ ENTRYPOINT ["node"]
 CMD ["-e", "process.stderr.write(\"Node.js command not defined.\");process.exit(127);"]
 
 # Configure NPM registries
-ARG REGISTRY_SCHEME="http"
-ARG REGISTRY_HOST="127.0.0.1"
-ARG REGISTRY_PORT="54873"
-ARG REGISTRY_SCOPE="webdock"
+ARG WEBDOCK_REGISTRY_SCHEME="http"
+ARG WEBDOCK_REGISTRY_HOST="127.0.0.1"
+ARG WEBDOCK_REGISTRY_PORT="54873"
+ARG WEBDOCK_REGISTRY_SCOPE="webdock"
 ENV NPM_TOKEN=""
-ENV REGISTRY_TOKEN=""
-RUN npm config set "@${REGISTRY_SCOPE}:registry" "${REGISTRY_SCHEME}://${REGISTRY_HOST}:${REGISTRY_PORT}" --global \
+ENV WEBDOCK_REGISTRY_TOKEN=""
+RUN npm config set "@${WEBDOCK_REGISTRY_SCOPE}:registry" "${WEBDOCK_REGISTRY_SCHEME}://${WEBDOCK_REGISTRY_HOST}:${WEBDOCK_REGISTRY_PORT}" --global \
 && rm -f /root/.npmrc \
 && touch /root/.npmrc \
-&& echo "//${REGISTRY_HOST}:${REGISTRY_PORT}/:_authToken=\${REGISTRY_TOKEN}" >> /root/.npmrc \
+&& echo "//${WEBDOCK_REGISTRY_HOST}:${WEBDOCK_REGISTRY_PORT}/:_authToken=\${WEBDOCK_REGISTRY_TOKEN}" >> /root/.npmrc \
 && echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> /root/.npmrc
 
 # Set NPM cache directory

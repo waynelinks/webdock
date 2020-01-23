@@ -46,49 +46,39 @@ export class HttpServer {
     private processHttpRequest(req: IncomingMessage, res: ServerResponse): void {
         this.logger.info(`Processing ${req.method} ${req.url}`);
 
-        switch (req.url) {
-            case "/favicon.ico":
-                res.writeHead(404);
-                res.end();
-                break;
-
-            case "/-/healthy":
-                res.writeHead(200);
-                res.end("Healthy.");
-                break;
-
-            case "/-/ready":
-                res.writeHead(200);
-                res.end("Ready.");
-                break;
-
-            case "/-/metrics":
-                const metrics: string = promClient.register.metrics();
-                res.writeHead(200, {
-                    "Content-Length": Buffer.byteLength(metrics),
-                    "Content-Type": promClient.register.contentType,
-                });
-                res.end(metrics);
-                break;
-
-            default:
-                const body: string = JSON.stringify({
-                    method: req.method,
-                    url: req.url,
-                    message: "Hello world!",
-                });
-                res.writeHead(200, {
-                    "Content-Length": Buffer.byteLength(body),
-                    "Content-Type": "application/json",
-                });
-                res.end(body);
-                break;
+        if (req.url === "/favicon.ico") {
+            res.writeHead(404);
+            res.end();
+        } else if (req.url === "/-/healthy") {
+            res.writeHead(200);
+            res.end("Healthy.");
+        } else if (req.url === "/-/ready") {
+            res.writeHead(200);
+            res.end("Ready.");
+        } else if (req.url === "/-/metrics") {
+            const metrics: string = promClient.register.metrics();
+            res.writeHead(200, {
+                "Content-Length": Buffer.byteLength(metrics),
+                "Content-Type": promClient.register.contentType,
+            });
+            res.end(metrics);
+        } else {
+            const body: string = JSON.stringify({
+                method: req.method,
+                url: req.url,
+                message: "Hello world!",
+            });
+            res.writeHead(200, {
+                "Content-Length": Buffer.byteLength(body),
+                "Content-Type": "application/json",
+            });
+            res.end(body);
         }
 
         this.httpRequestsCounter.inc();
     }
 
-    private shutdownGracefully(signal: NodeJS.Signals): void {
+    private shutdownGracefully(): void {
         this.httpServer.close((): void => {
             process.exit(0);
         });

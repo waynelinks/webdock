@@ -7,7 +7,7 @@ httpServer:
     #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
     encoded:
       NPM_TOKEN: ""
-      REGISTRY_TOKEN: ""
+      WEBDOCK_REGISTRY_TOKEN: ""
 
   minReplicas: 1
   maxReplicas: 1
@@ -52,7 +52,7 @@ tester:
     #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
     encoded:
       NPM_TOKEN: ""
-      REGISTRY_TOKEN: ""
+      WEBDOCK_REGISTRY_TOKEN: ""
 
   replicas: 1
 

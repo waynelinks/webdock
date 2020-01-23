@@ -8,7 +8,7 @@ services:
       target: dist
       args:
       - NPM_TOKEN
-      - REGISTRY_TOKEN
+      - WEBDOCK_REGISTRY_TOKEN
   builder:
     image: "127.0.0.1:55000/webdock/the-web-cloud-server:builder-0.0.0"
     build:
@@ -17,4 +17,4 @@ services:
       target: builder
       args:
       - NPM_TOKEN
-      - REGISTRY_TOKEN
+      - WEBDOCK_REGISTRY_TOKEN

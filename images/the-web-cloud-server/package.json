@@ -11,16 +11,18 @@
   "devDependencies": {
     "@types/jest": "*",
     "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
     "jest": "*",
     "ts-jest": "*",
     "ts-node-dev": "*",
-    "tslint": "*",
     "typescript": "*"
   },
   "scripts": {
-    "build": "rm -rf ./dist && tsc",
-    "lint": "tslint --exclude './{coverage,dist,node_modules}/**/*' './**/*.{ts,js}'",
-    "lint-fix": "tslint --exclude './{coverage,dist,node_modules}/**/*' './**/*.{ts,js}' --fix",
+    "build": "rm -rf ./build && tsc",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}' && tsc --noEmit",
+    "lint-fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
     "test": "jest",
     "test-coverage": "rm -rf ./coverage && jest --coverage",
     "test-watch": "jest --watchAll",

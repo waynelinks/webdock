@@ -16,12 +16,12 @@ insert_final_newline = true
 
 [*.{html,xml}]
 
-[*.{js,json}]
+[*.{js,jsx,json}]
 
 [*.md]
 trim_trailing_whitespace = false
 
-[*.ts]
+[*.{ts,tsx}]
 indent_size = 4
 
 [*.{yaml,yml}]

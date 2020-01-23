@@ -1,5 +1,5 @@
 import "jest";
 
-test("test nothing", () => {
+test("test nothing", (): void => {
     expect(true).toBe(true);
 });

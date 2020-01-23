@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.15.2] - 2019-01-26
+
+### Changed
+
+- Use ESLint instead of TSLint.
+
 ## [0.15.1] - 2019-12-06
 
 ### Added

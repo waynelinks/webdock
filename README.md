@@ -31,7 +31,7 @@ Docker Compose tool
 
 ```console
 $ docker-compose version --short
-1.24.1
+1.25.2
 ```
 
 Kubectl tool and Kubernetes cluster
@@ -46,7 +46,7 @@ Helm tool
 
 ```console
 $ helm version --short
-v3.0.0+ge29ce2a
+v3.0.2+g19e47ee
 ```
 
 Helm Push plugin
@@ -54,7 +54,7 @@ Helm Push plugin
 ```console
 $ helm plugin list
 NAME	VERSION	DESCRIPTION
-push	0.7.1  	Push chart package to ChartMuseum
+push	0.8.1  	Push chart package to ChartMuseum
 ```
 
 ## Development

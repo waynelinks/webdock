@@ -8,4 +8,4 @@ services:
       target: dist
       args:
       - NPM_TOKEN
-      - REGISTRY_TOKEN
+      - WEBDOCK_REGISTRY_TOKEN
