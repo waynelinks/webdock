@@ -9,30 +9,44 @@
     "jest": true,
     "node": true
   },
-  "extends": "eslint:recommended",
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "impliedStrict": true,
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "plugins": [
     "@typescript-eslint"
   ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
-    "max-len": "off",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      {
-        "args": "after-used",
-        "caughtErrors": "all",
-        "ignoreRestSiblings": false,
-        "vars": "all"
+    "@typescript-eslint/explicit-function-return-type": ["error"],
+    "@typescript-eslint/explicit-member-accessibility": ["error", {"accessibility": "explicit"}],
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-parameter-properties": ["error"],
+    "@typescript-eslint/no-require-imports": ["error"],
+    "@typescript-eslint/no-this-alias": ["error"],
+    "@typescript-eslint/quotes": ["error", "double", {"avoidEscape": true}],
+    "@typescript-eslint/semi": ["error", "always", {"omitLastInOneLineBlock": false}],
+    "@typescript-eslint/typedef": ["error", {"arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true}],
+    "comma-dangle": ["error", "always-multiline"],
+    "max-len": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/typedef": "off"
       }
-    ]
-  }
+    }
+  ]
 }
