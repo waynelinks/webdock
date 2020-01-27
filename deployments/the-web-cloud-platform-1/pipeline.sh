@@ -12,12 +12,19 @@ helm \
   --install \
   --wait
 
-helm \
+if helm \
   --kube-context="minikube" \
   --namespace="default" \
   test "the-web-cloud-platform-1"
-
-#helm \
-#  --kube-context="minikube" \
-#  --namespace="default" \
-#  uninstall "the-web-cloud-platform-1"
+then
+  echo "Deployment passes the tests."
+  exit 0
+else
+  echo "Error! Rolling back the deployment..."
+  helm \
+    --kube-context="minikube" \
+    --namespace="default" \
+    rollback "the-web-cloud-platform-1" \
+    --wait
+  exit 1
+fi
