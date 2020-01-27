@@ -8,11 +8,12 @@
   "dependencies": {
     "@types/jest": "*",
     "@types/node": "*",
+    "@types/node-fetch": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
-    "axios": "*",
     "eslint": "*",
     "jest": "*",
+    "node-fetch": "*",
     "ts-jest": "*",
     "typescript": "*"
   },
