@@ -6,8 +6,8 @@ httpServer:
     #decoded:
     #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
     encoded:
+      GITHUB_PACKAGES_TOKEN: ""
       NPM_TOKEN: ""
-      WEBDOCK_REGISTRY_TOKEN: ""
 
   minReplicas: 1
   maxReplicas: 1
@@ -51,8 +51,8 @@ tester:
     #decoded:
     #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
     encoded:
+      GITHUB_PACKAGES_TOKEN: ""
       NPM_TOKEN: ""
-      WEBDOCK_REGISTRY_TOKEN: ""
 
   replicas: 1
 

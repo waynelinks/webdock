@@ -10,17 +10,15 @@ ENTRYPOINT ["node"]
 CMD ["-e", "process.stderr.write(\"Node.js command not defined.\");process.exit(127);"]
 
 # Configure NPM registries
-ARG WEBDOCK_REGISTRY_SCHEME="http"
-ARG WEBDOCK_REGISTRY_HOST="localhost"
-ARG WEBDOCK_REGISTRY_PORT="54873"
-ARG WEBDOCK_REGISTRY_SCOPE="webdock"
+ENV GITHUB_PACKAGES_TOKEN=""
 ENV NPM_TOKEN=""
-ENV WEBDOCK_REGISTRY_TOKEN=""
-RUN npm config set "@${WEBDOCK_REGISTRY_SCOPE}:registry" "${WEBDOCK_REGISTRY_SCHEME}://${WEBDOCK_REGISTRY_HOST}:${WEBDOCK_REGISTRY_PORT}" --global \
+RUN npm config set "@damlys:registry" "https://npm.pkg.github.com" --global \
 && rm -f /root/.npmrc \
 && touch /root/.npmrc \
-&& echo "//${WEBDOCK_REGISTRY_HOST}:${WEBDOCK_REGISTRY_PORT}/:_authToken=\${WEBDOCK_REGISTRY_TOKEN}" >> /root/.npmrc \
-&& echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> /root/.npmrc
+&& echo "//npm.pkg.github.com/:_authToken=\${GITHUB_PACKAGES_TOKEN}" >> /root/.npmrc \
+&& echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> /root/.npmrc \
+&& cp /root/.npmrc /home/node/.npmrc \
+&& chown 1000:1000 /home/node/.npmrc
 
 # Set NPM cache directory
 RUN rm -rf /var/cache/npm \

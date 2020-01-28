@@ -39,39 +39,6 @@ printPipelineHeader "START"
 git clean -d -X -f -e '!/.idea'
 pausePipeline
 
-printPipelineHeader "Deploying local NPM registry (Verdaccio)"
-docker volume create --driver=local npm_registry_data
-docker start npm_registry || docker run \
-  --detach \
-  --restart=always \
-  --publish=54873:4873 \
-  --mount=type=volume,source=npm_registry_data,destination=/verdaccio/storage \
-  --name=npm_registry \
-verdaccio/verdaccio:latest
-echo "
-Dashboard:          http://localhost:54873
-"
-pausePipeline
-
-printPipelineHeader "Deploying local OCI registry (Docker Registy)"
-docker volume create --driver=local oci_registry_data
-docker start oci_registry || docker run \
-  --detach \
-  --restart=always \
-  --publish=55000:5000 \
-  --mount=type=volume,source=oci_registry_data,destination=/var/lib/registry \
-  --name=oci_registry \
-registry:latest
-echo "
-Artifacts list:     http://localhost:55000/v2/_catalog
-Artifacts tags:     http://localhost:55000/v2/<name>/tags/list
-"
-pausePipeline
-
-printPipelineHeader "Login to local OCI registry"
-docker login --username="whatever" --password="whatever" "localhost:55000"
-helm registry login "localhost:55000" --username="whatever" --password="whatever"
-
 printPipelineHeader "Creating Docker cache volumes"
 docker volume create --driver=local global_npm_cache
 pausePipeline

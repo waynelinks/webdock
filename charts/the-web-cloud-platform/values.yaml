@@ -1,6 +1,6 @@
 httpServer:
   image:
-    name: "localhost:55000/webdock/the-web-cloud-server"
+    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-server"
     tag: "dist-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []
@@ -110,7 +110,7 @@ httpServer:
 
 tester:
   image:
-    name: "localhost:55000/webdock/the-web-cloud-tester"
+    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-tester"
     tag: "dist-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []

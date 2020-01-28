@@ -67,6 +67,14 @@ Helm OCI support
 $ export HELM_EXPERIMENTAL_OCI="1"
 ```
 
+GitHub Packages access
+
+```console
+$ export GITHUB_PACKAGES_TOKEN="<TOKEN>"
+$ docker login --username="damlys" --password="<TOKEN>" "docker.pkg.github.com"
+$ helm registry login "docker.pkg.github.com" --username="damlys" --password="<TOKEN>"
+```
+
 ## Development
 
 Follow the pipeline

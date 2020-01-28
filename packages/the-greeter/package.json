@@ -1,9 +1,12 @@
 {
-  "name": "@webdock/the-greeter",
+  "name": "@damlys/the-greeter",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/damlys/webdock.git"
+  },
   "publishConfig": {
-    "registry": "http://localhost:54873",
-    "access": "restricted"
+    "registry": "https://npm.pkg.github.com"
   },
   "files": [
     "build"

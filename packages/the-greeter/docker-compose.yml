@@ -6,9 +6,9 @@ services:
       source: .
       target: /workspace
     working_dir: /workspace
-    image: "localhost:55000/webdock/the-nodejs:sdk-0.0.0"
+    image: "docker.pkg.github.com/damlys/webdock/the-nodejs:sdk-0.0.0"
     entrypoint: []
     command: ["bash"]
     environment:
+    - GITHUB_PACKAGES_TOKEN
     - NPM_TOKEN
-    - WEBDOCK_REGISTRY_TOKEN

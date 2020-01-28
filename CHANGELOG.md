@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Store Helm charts within OCI registry.
+- Store build artifacts within GitHub Packages.
 - Use `node-fetch` instead of `Axios`.
 
 ### Fixed
