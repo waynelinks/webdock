@@ -1,5 +1,5 @@
 class Config {
-    public readonly targetEndpoint: string = "http://127.0.0.1:8080";
+    public readonly targetEndpoint: string = "http://localhost:8080";
 
     public constructor() {
         if (undefined !== process.env.WEBDOCK_TARGET_ENDPOINT) {

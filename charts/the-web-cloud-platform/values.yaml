@@ -1,7 +1,7 @@
 httpServer:
   image:
-    name: 127.0.0.1:55000/webdock/the-web-cloud-server
-    tag: dist-0.0.0
+    name: "localhost:55000/webdock/the-web-cloud-server"
+    tag: "dist-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []
     #- name: "image-pull-secret"
@@ -110,8 +110,8 @@ httpServer:
 
 tester:
   image:
-    name: 127.0.0.1:55000/webdock/the-web-cloud-tester
-    tag: dist-0.0.0
+    name: "localhost:55000/webdock/the-web-cloud-tester"
+    tag: "dist-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []
     #- name: "image-pull-secret"

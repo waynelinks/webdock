@@ -1,6 +1,6 @@
 httpServer:
   image:
-    tag: builder-0.0.0
+    tag: "builder-0.0.0"
 
   environmentVariables:
     #decoded:

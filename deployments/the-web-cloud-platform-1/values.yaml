@@ -1,5 +1,11 @@
 httpServer:
+  image:
+    tag: "dist-0.0.0"
   ingress:
     enabled: true
     hosts:
     - webdock.local
+
+tester:
+  image:
+    tag: "dist-0.0.0"

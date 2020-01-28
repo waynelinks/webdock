@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   dist:
-    image: "127.0.0.1:55000/webdock/the-web-cloud-server:dist-0.0.0"
+    image: "localhost:55000/webdock/the-web-cloud-server:dist-0.0.0"
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
       - NPM_TOKEN
       - WEBDOCK_REGISTRY_TOKEN
   builder:
-    image: "127.0.0.1:55000/webdock/the-web-cloud-server:builder-0.0.0"
+    image: "localhost:55000/webdock/the-web-cloud-server:builder-0.0.0"
     build:
       context: .
       dockerfile: Dockerfile

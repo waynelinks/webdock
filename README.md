@@ -20,11 +20,17 @@ Server: Docker Engine - Community
   Version:          19.03.4
 ```
 
-(Docker Swarm mode is not required)
+Note: Docker Swarm mode is not required
 
 ```console
 $ docker info --format="{{.Swarm.LocalNodeState}}"
 inactive
+```
+
+Recommended: use Docker BuildKit
+
+```console
+$ export DOCKER_BUILDKIT="1"
 ```
 
 Docker Compose tool
@@ -32,6 +38,12 @@ Docker Compose tool
 ```console
 $ docker-compose version --short
 1.25.2
+```
+
+Recommended: use BuildKit with Docker Compose
+
+```console
+$ export COMPOSE_DOCKER_CLI_BUILD="1"
 ```
 
 Kubectl tool and Kubernetes cluster
@@ -49,12 +61,10 @@ $ helm version --short
 v3.0.2+g19e47ee
 ```
 
-Helm Push plugin
+Helm OCI support
 
 ```console
-$ helm plugin list
-NAME	VERSION	DESCRIPTION
-push	0.8.1  	Push chart package to ChartMuseum
+$ export HELM_EXPERIMENTAL_OCI="1"
 ```
 
 ## Development

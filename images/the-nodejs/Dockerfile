@@ -11,7 +11,7 @@ CMD ["-e", "process.stderr.write(\"Node.js command not defined.\");process.exit(
 
 # Configure NPM registries
 ARG WEBDOCK_REGISTRY_SCHEME="http"
-ARG WEBDOCK_REGISTRY_HOST="127.0.0.1"
+ARG WEBDOCK_REGISTRY_HOST="localhost"
 ARG WEBDOCK_REGISTRY_PORT="54873"
 ARG WEBDOCK_REGISTRY_SCOPE="webdock"
 ENV NPM_TOKEN=""

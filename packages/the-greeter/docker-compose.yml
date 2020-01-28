@@ -6,7 +6,7 @@ services:
       source: .
       target: /workspace
     working_dir: /workspace
-    image: "127.0.0.1:55000/webdock/the-nodejs:sdk-0.0.0"
+    image: "localhost:55000/webdock/the-nodejs:sdk-0.0.0"
     entrypoint: []
     command: ["bash"]
     environment:

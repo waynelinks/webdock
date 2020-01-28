@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 set -e
 
+helm chart pull "localhost:55000/webdock/the-web-cloud-platform:0.0.0"
+helm chart export "localhost:55000/webdock/the-web-cloud-platform:0.0.0"
+
 helm \
   --kube-context="minikube" \
   --namespace="default" \
-  upgrade "the-web-cloud-platform-1" \
-  "webdock/the-web-cloud-platform" --version="0.0.0" \
-  --set-string="httpServer.image.tag=dist-0.0.0" \
-  --set-string="tester.image.tag=dist-0.0.0" \
+  upgrade "the-web-cloud-platform-1" ./the-web-cloud-platform \
   --values=./values.yaml \
   --install \
   --wait

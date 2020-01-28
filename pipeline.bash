@@ -39,7 +39,7 @@ printPipelineHeader "START"
 git clean -d -X -f -e '!/.idea'
 pausePipeline
 
-printPipelineHeader "Deploying local packages registry (Verdaccio)"
+printPipelineHeader "Deploying local NPM registry (Verdaccio)"
 docker volume create --driver=local npm_registry_data
 docker start npm_registry || docker run \
   --detach \
@@ -49,44 +49,28 @@ docker start npm_registry || docker run \
   --name=npm_registry \
 verdaccio/verdaccio:latest
 echo "
-Dashboard:          http://127.0.0.1:54873
+Dashboard:          http://localhost:54873
 "
 pausePipeline
 
-printPipelineHeader "Deploying local images registry (Docker Registy)"
-docker volume create --driver=local docker_registry_data
-docker start docker_registry || docker run \
+printPipelineHeader "Deploying local OCI registry (Docker Registy)"
+docker volume create --driver=local oci_registry_data
+docker start oci_registry || docker run \
   --detach \
   --restart=always \
   --publish=55000:5000 \
-  --mount=type=volume,source=docker_registry_data,destination=/var/lib/registry \
-  --name=docker_registry \
+  --mount=type=volume,source=oci_registry_data,destination=/var/lib/registry \
+  --name=oci_registry \
 registry:latest
 echo "
-Images list:        http://127.0.0.1:55000/v2/_catalog
-Image tags:         http://127.0.0.1:55000/v2/<name>/tags/list
+Artifacts list:     http://localhost:55000/v2/_catalog
+Artifacts tags:     http://localhost:55000/v2/<name>/tags/list
 "
 pausePipeline
 
-printPipelineHeader "Deploying local charts registry (ChartMuseum)"
-docker volume create --driver=local helm_registry_data
-docker start helm_registry || docker run \
-  --detach \
-  --restart=always \
-  --publish=58080:8080 \
-  --mount=type=volume,source=helm_registry_data,destination=/charts \
-  --env=ALLOW_OVERWRITE=true \
-  --env=STORAGE=local \
-  --env=STORAGE_LOCAL_ROOTDIR=/charts \
-  --user=0 \
-  --name=helm_registry \
-chartmuseum/chartmuseum:latest
-helm repo add webdock http://127.0.0.1:58080
-echo "
-Charts list:        http://127.0.0.1:58080/api/charts
-Chart details:      http://127.0.0.1:58080/api/charts/<name>/<version>
-"
-pausePipeline
+printPipelineHeader "Login to local OCI registry"
+docker login --username="whatever" --password="whatever" "localhost:55000"
+helm registry login "localhost:55000" --username="whatever" --password="whatever"
 
 printPipelineHeader "Creating Docker cache volumes"
 docker volume create --driver=local global_npm_cache
