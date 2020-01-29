@@ -3,9 +3,9 @@ x-common-services-config:
   &common-services-config
   entrypoint: []
   command: ["bash"]
-  #environment:
-  #- GITHUB_PACKAGES_TOKEN
-  #- NPM_TOKEN
+  environment:
+  - GITHUB_PACKAGES_TOKEN
+  - NPM_TOKEN
   #- FOO=bar
   #env_file:
   #- .env
@@ -15,9 +15,12 @@ x-common-services-config:
   - type: volume
     source: npm_cache
     target: /var/cache/npm
+  - type: bind
+    source: .
+    target: /app
 services:
-  rte: *common-services-config
-  sdk: *common-services-config
+  dist: *common-services-config
+  builder: *common-services-config
 networks:
   host:
     external: true

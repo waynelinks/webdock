@@ -2,12 +2,12 @@ httpServer:
   image:
     tag: "builder-0.0.0"
 
-  environmentVariables:
-    #decoded:
-    #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
-    encoded:
-      GITHUB_PACKAGES_TOKEN: ""
-      NPM_TOKEN: ""
+  #environmentVariables:
+  #  decoded:
+  #    NODE_OPTIONS: "--inspect=0.0.0.0:9229"
+  #  encoded:
+  #    GITHUB_PACKAGES_TOKEN: ""
+  #    NPM_TOKEN: ""
 
   minReplicas: 1
   maxReplicas: 1
@@ -36,7 +36,7 @@ httpServer:
     - name: app-code
       hostPath:
         type: Directory
-        path: /home/damlys/workspace/webdock/images/the-web-cloud-server
+        path: /home/damlys/workspace/webdock/images/the-web-cloud-app
     - name: npm-cache
       persistentVolumeClaim:
         claimName: global-npm-cache
@@ -47,12 +47,12 @@ httpServer:
       mountPath: /var/cache/npm
 
 tester:
-  environmentVariables:
-    #decoded:
-    #  NODE_OPTIONS: "--inspect=0.0.0.0:9229"
-    encoded:
-      GITHUB_PACKAGES_TOKEN: ""
-      NPM_TOKEN: ""
+  #environmentVariables:
+  #  decoded:
+  #    NODE_OPTIONS: "--inspect=0.0.0.0:9229"
+  #  encoded:
+  #    GITHUB_PACKAGES_TOKEN: ""
+  #    NPM_TOKEN: ""
 
   replicas: 1
 
@@ -67,7 +67,7 @@ tester:
     - name: app-code
       hostPath:
         type: Directory
-        path: /home/damlys/workspace/webdock/images/the-web-cloud-tester
+        path: /home/damlys/workspace/webdock/images/the-web-cloud-app
     - name: npm-cache
       persistentVolumeClaim:
         claimName: global-npm-cache

@@ -5,7 +5,6 @@ metadata:
   name: "{{ $.Release.Name }}-smoke-tests"
   labels:
     {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-tester"
     app.kubernetes.io/component: "smoke-tests"
   annotations:
     checksum/config: >
@@ -51,9 +50,11 @@ spec:
   - name: "{{ $.Release.Name }}-smoke-tests"
     image: "{{ .image.name }}:{{ .image.tag }}"
     imagePullPolicy: "{{ .image.pullPolicy }}"
+    command:
+    - npm
     args:
     - run
-    - target-smoke-tests
+    - smoke-tests
     envFrom:
     - configMapRef:
         name: "{{ $.Release.Name }}-tester"

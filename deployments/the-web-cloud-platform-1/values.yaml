@@ -8,4 +8,4 @@ httpServer:
 
 tester:
   image:
-    tag: "dist-0.0.0"
+    tag: "builder-0.0.0"

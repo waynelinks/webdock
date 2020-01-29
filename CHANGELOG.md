@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Use recommended `@typescript-eslint` rules.
 
+### Removed
+
+- `*-tester` images.
+
 ## [0.15.2] - 2019-01-26
 
 ### Changed

@@ -83,10 +83,8 @@ pausePipeline
 for projectComponent in \
   'images/the-nodejs' \
   'packages/the-greeter' \
-  'images/the-web-cloud-server' \
-  'images/the-web-cloud-tester' \
-  'images/the-web-browser-client' \
-  'images/the-web-browser-tester' \
+  'images/the-web-cloud-app' \
+  'images/the-web-browser-app' \
   'charts/the-web-cloud-platform' \
   'charts/the-web-browser-platform' \
   'deployments/the-web-cloud-platform-1' \

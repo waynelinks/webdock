@@ -10,4 +10,5 @@ app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
 {{- define "the-web-cloud-platform.matchLabels" -}}
 app.kubernetes.io/instance: "{{ .Release.Name }}"
 app.kubernetes.io/part-of: "{{ .Chart.Name }}"
+app.kubernetes.io/name: "the-web-cloud-app"
 {{- end -}}

@@ -1,6 +1,6 @@
 httpServer:
   image:
-    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-server"
+    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-app"
     tag: "dist-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []
@@ -98,7 +98,7 @@ httpServer:
     #- name: app-code
     #  hostPath:
     #    type: Directory
-    #    path: /home/<user>/workspace/webdock/images/the-web-cloud-server
+    #    path: /home/<USER>/workspace/webdock/images/the-web-cloud-app
     #- name: npm-cache
     #  persistentVolumeClaim:
     #    claimName: global-npm-cache
@@ -110,8 +110,8 @@ httpServer:
 
 tester:
   image:
-    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-tester"
-    tag: "dist-0.0.0"
+    name: "docker.pkg.github.com/damlys/webdock/the-web-cloud-app"
+    tag: "builder-0.0.0"
     pullPolicy: IfNotPresent
     pullSecrets: []
     #- name: "image-pull-secret"
@@ -164,7 +164,7 @@ tester:
     #- name: app-code
     #  hostPath:
     #    type: Directory
-    #    path: /home/<user>/workspace/webdock/images/the-web-cloud-tester
+    #    path: /home/<USER>/workspace/webdock/images/the-web-cloud-app
     #- name: npm-cache
     #  persistentVolumeClaim:
     #    claimName: global-npm-cache

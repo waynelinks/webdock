@@ -6,7 +6,6 @@ metadata:
   namespace: "{{ $.Release.Namespace }}"
   labels:
     {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-tester"
     app.kubernetes.io/component: "tester"
 spec:
   replicas: {{ .replicas }}
@@ -14,13 +13,11 @@ spec:
   selector:
     matchLabels:
       {{- include "the-web-cloud-platform.matchLabels" $ | nindent 6 }}
-      app.kubernetes.io/name: "the-web-cloud-tester"
       app.kubernetes.io/component: "tester"
   template:
     metadata:
       labels:
         {{- include "the-web-cloud-platform.metaLabels" $ | nindent 8 }}
-        app.kubernetes.io/name: "the-web-cloud-tester"
         app.kubernetes.io/component: "tester"
       annotations:
         checksum/config: >

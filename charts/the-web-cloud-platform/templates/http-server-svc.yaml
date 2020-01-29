@@ -6,7 +6,6 @@ metadata:
   namespace: "{{ $.Release.Namespace }}"
   labels:
     {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-server"
     app.kubernetes.io/component: "http-server"
   annotations:
     {{- toYaml .service.annotations | nindent 4 }}
@@ -28,6 +27,5 @@ spec:
     protocol: TCP
   selector:
     {{- include "the-web-cloud-platform.matchLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-server"
     app.kubernetes.io/component: "http-server"
 {{- end }}

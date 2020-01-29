@@ -6,7 +6,6 @@ metadata:
   namespace: "{{ $.Release.Namespace }}"
   labels:
     {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-server"
     app.kubernetes.io/component: "http-server"
 spec:
   replicas: {{ .minReplicas }}
@@ -17,13 +16,11 @@ spec:
   selector:
     matchLabels:
       {{- include "the-web-cloud-platform.matchLabels" $ | nindent 6 }}
-      app.kubernetes.io/name: "the-web-cloud-server"
       app.kubernetes.io/component: "http-server"
   template:
     metadata:
       labels:
         {{- include "the-web-cloud-platform.metaLabels" $ | nindent 8 }}
-        app.kubernetes.io/name: "the-web-cloud-server"
         app.kubernetes.io/component: "http-server"
       annotations:
         checksum/config: >

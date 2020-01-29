@@ -1,8 +1,10 @@
 version: "3.7"
 services:
   workspace:
-    env_file:
-    - .env
+    #environment:
+    #- FOO=bar
+    #env_file:
+    #- .env
     networks:
     - host
     volumes:

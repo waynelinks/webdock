@@ -2,5 +2,5 @@
 set -e
 
 docker-compose run --rm --entrypoint='' workspace bash -ce "
-  npm publish
+#  npm publish
 "

@@ -6,7 +6,6 @@ metadata:
   namespace: "{{ $.Release.Namespace }}"
   labels:
     {{- include "the-web-cloud-platform.metaLabels" $ | nindent 4 }}
-    app.kubernetes.io/name: "the-web-cloud-server"
     app.kubernetes.io/component: "http-server"
 data:
   {{- range $key, $val := .environmentVariables.decoded }}
