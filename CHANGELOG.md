@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [0.16.0] - 2019-01-30
+
+### Added
+
+- GitHub issues and pull requests templates.
+
 ### Changed
 
 - Store Helm charts within OCI registry.
