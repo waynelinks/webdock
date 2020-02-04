@@ -1,29 +1,9 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-if helm \
-  --kube-context="minikube" \
-  --namespace="default" \
-  test "the-web-cloud-platform-1" \
-  --timeout="30s"
-then
-  echo "Deployment passes the tests."
-
-  exit 0
-else
-  echo "Error! Rolling back the deployment..."
-
-  helm \
-    --kube-context="minikube" \
-    --namespace="default" \
-    rollback "the-web-cloud-platform-1" \
-    --timeout="30s"
-
-  kubectl \
-    --context="minikube" \
-    --namespace="default" \
-    rollout status deployment the-web-cloud-platform-1-http-server \
-    --timeout="30s"
-
-  exit 1
-fi
+helm \
+  --kube-context="$kubeContext" \
+  --namespace="$kubeNamespace" \
+  test "$helmReleaseName" \
+  --timeout='30s'

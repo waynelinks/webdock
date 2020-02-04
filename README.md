@@ -9,6 +9,15 @@ Cloud native and framework agnostic boilerplate with Docker & Kubernetes for Typ
 
 ## Requirements
 
+Node.js and NPM
+
+```console
+$ node --version
+v12.15.0
+$ npm --version
+6.13.4
+```
+
 Docker client and server
 
 ```console
@@ -20,33 +29,21 @@ Server: Docker Engine - Community
   Version:          19.03.4
 ```
 
-Note: Docker Swarm mode is not required
-
-```console
-$ docker info --format="{{.Swarm.LocalNodeState}}"
-inactive
-```
-
-Recommended: use Docker BuildKit
-
-```console
-$ export DOCKER_BUILDKIT="1"
-```
-
-Docker Compose tool
+Docker Compose
 
 ```console
 $ docker-compose version --short
 1.25.2
 ```
 
-Recommended: use BuildKit with Docker Compose
+Recommended: use Docker BuildKit
 
 ```console
+$ export DOCKER_BUILDKIT="1"
 $ export COMPOSE_DOCKER_CLI_BUILD="1"
 ```
 
-Kubectl tool and Kubernetes cluster
+`kubectl` and Kubernetes cluster
 
 ```console
 $ kubectl version --short
@@ -54,7 +51,7 @@ Client Version: v1.16.2
 Server Version: v1.16.2
 ```
 
-Helm tool
+Helm
 
 ```console
 $ helm version --short
@@ -70,9 +67,12 @@ $ export HELM_EXPERIMENTAL_OCI="1"
 GitHub Packages access
 
 ```console
-$ export GITHUB_PACKAGES_TOKEN="<TOKEN>"
-$ docker login --username="damlys" --password="<TOKEN>" "docker.pkg.github.com"
-$ helm registry login "docker.pkg.github.com" --username="damlys" --password="<TOKEN>"
+$ npm config set "//npm.pkg.github.com/:_authToken" "<TOKEN>"
+$ npm config set "@damlys:registry" "https://npm.pkg.github.com"
+
+$ docker login --username="<USER>" --password="<TOKEN>" "docker.pkg.github.com"
+
+$ helm registry login "docker.pkg.github.com" --username="<USER>" --password="<TOKEN>"
 ```
 
 ## Development
@@ -85,7 +85,5 @@ $ ./pipeline.bash
 
 *** 17:48:28 *** END ***
 
-Success!
+Done!
 ```
-
-Note: `.examples/` are adjusted to my private machine

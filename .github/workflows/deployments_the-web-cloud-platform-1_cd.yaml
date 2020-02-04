@@ -1,0 +1,31 @@
+name: "deployments/the-web-cloud-platform-1 CD"
+on:
+  push:
+    branches:
+    # TODO set "master"
+    - "feature/ci"
+    paths:
+    - "deployments/the-web-cloud-platform-1/**.sh"
+    - "deployments/the-web-cloud-platform-1/**.yaml"
+env:
+  WORKFLOW_WORKING_DIRECTORY: "./deployments/the-web-cloud-platform-1"
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      HELM_EXPERIMENTAL_OCI: "1"
+    steps:
+    - name: "Log into Helm registry"
+      run: helm registry login "docker.pkg.github.com" --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}"
+    - uses: actions/checkout@v2
+    # TODO k8s context
+    - name: "Deploy"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/deploy.sh
+    - name: "Run implementation tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-implementation-tests.sh
+    - name: "Rollback"
+      if: failure()
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/rollback.sh

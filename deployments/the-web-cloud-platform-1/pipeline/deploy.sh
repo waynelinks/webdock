@@ -1,20 +1,21 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-# TODO GitHub packages does not support Helm yet
-#helm chart pull "docker.pkg.github.com/damlys/webdock/the-web-cloud-platform:0.0.0"
-helm chart export "docker.pkg.github.com/damlys/webdock/the-web-cloud-platform:0.0.0"
+# TODO GitHub Packages does not support Helm OCI yet
+#helm chart pull "$chart"
+helm chart export "$chart"
 
 helm \
-  --kube-context="minikube" \
-  --namespace="default" \
-  upgrade "the-web-cloud-platform-1" ./the-web-cloud-platform \
-  --values=./values.yaml \
+  --kube-context="$kubeContext" \
+  --namespace="$kubeNamespace" \
+  upgrade "$helmReleaseName" ./the-web-cloud-platform \
+  --values="$helmValuesPath" \
   --install \
-  --timeout="30s"
+  --timeout='30s'
 
 kubectl \
-  --context="minikube" \
-  --namespace="default" \
-  rollout status deployment the-web-cloud-platform-1-http-server \
-  --timeout="30s"
+  --context="$kubeContext" \
+  --namespace="$kubeNamespace" \
+  rollout status deployment "${helmReleaseName}-http-server" \
+  --timeout='30s'

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-docker-compose run --rm --entrypoint='' builder bash -ce "
-  npm run unit-tests
-"
+docker run --rm --entrypoint='' "$tempBuilderImage" \
+  npm run test:unit

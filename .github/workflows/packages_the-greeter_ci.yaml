@@ -1,0 +1,43 @@
+name: "packages/the-greeter CI"
+on:
+  push:
+    branches:
+    # TODO set "master"
+    - "feature/ci"
+    paths:
+    - "packages/the-greeter/package.json"
+  pull_request:
+    paths:
+    - "packages/the-greeter/**"
+    - "!packages/the-greeter/**.md"
+env:
+  WORKFLOW_WORKING_DIRECTORY: "./packages/the-greeter"
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PACKAGES_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      NPM_TOKEN: ""
+    steps:
+    - name: "Log into Docker registry"
+      run: docker login --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}" "docker.pkg.github.com"
+    - uses: actions/checkout@v2
+    - name: "Build"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/build.sh
+    - name: "Run vulnerabilities scanning"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-vulnerabilities-scanning.sh
+    - name: "Run lint check"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-lint-check.sh
+    - name: "Run unit tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-unit-tests.sh
+    - name: "Run integration tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-integration-tests.sh
+    - name: "Publish"
+      if: github.event_name == 'push'
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/publish.sh

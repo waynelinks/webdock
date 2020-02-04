@@ -41,11 +41,11 @@ spec:
       runAsGroup: 65534
     resources:
       requests:
-        cpu: 10m
+        cpu: 25m
         memory: 32M
       limits:
-        cpu: 100m
-        memory: 128M
+        cpu: 50m
+        memory: 64M
   containers:
   - name: "{{ $.Release.Name }}-smoke-tests"
     image: "{{ .image.name }}:{{ .image.tag }}"
@@ -54,7 +54,7 @@ spec:
     - npm
     args:
     - run
-    - smoke-tests
+    - test:smoke
     envFrom:
     - configMapRef:
         name: "{{ $.Release.Name }}-tester"

@@ -1,0 +1,34 @@
+name: "images/the-nodejs CI"
+on:
+  push:
+    branches:
+    # TODO set "master"
+    - "feature/ci"
+    paths:
+    - "images/the-nodejs/Image.yaml"
+  pull_request:
+    paths:
+    - "images/the-nodejs/**"
+    - "!images/the-nodejs/**.md"
+env:
+  WORKFLOW_WORKING_DIRECTORY: "./images/the-nodejs"
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: "1"
+      COMPOSE_DOCKER_CLI_BUILD: "1"
+    steps:
+    - name: "Log into Docker registry"
+      run: docker login --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}" "docker.pkg.github.com"
+    - uses: actions/checkout@v2
+    - name: "Build"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/build.sh
+    - name: "Run installation tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-installation-tests.sh
+    - name: "Publish"
+      if: github.event_name == 'push'
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/publish.sh

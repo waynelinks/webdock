@@ -1,10 +1,40 @@
 #############################
-### Boilerplate
+### Node.js
+#############################
+
+/build
+/coverage
+/node_modules
+/npm-debug.log
+
+#############################
+### Docker
+#############################
+
+/.dockerignore
+/Dockerfile
+
+#############################
+### Helm
+#############################
+
+/the-web-cloud-platform
+/values.yaml
+
+#############################
+### Workflow
 #############################
 
 /.examples
 /pipeline
-/pipeline.sh
+
+#############################
+### Git
+#############################
+
+.git
+.gitignore
+.gitkeep
 
 #############################
 ### System
@@ -17,30 +47,3 @@
 .DS_Store
 desktop.ini
 thumbs.db
-
-#############################
-### Git
-#############################
-
-.git
-.gitignore
-.gitkeep
-
-#############################
-### Docker
-#############################
-
-/.dockerignore
-/.env
-/docker-compose.override.yml
-/docker-compose.yml
-/Dockerfile
-
-#############################
-### Node.js
-#############################
-
-/build
-/coverage
-/node_modules
-/npm-debug.log

@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-#docker-compose push
+docker tag "$tempBuilderImage" "$builderImage"
+docker tag "$tempDistImage" "$distImage"
+
+#docker push "$builderImage"
+#docker push "$distImage"

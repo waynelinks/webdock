@@ -1,6 +1,6 @@
 {
-  "name": "@damlys/the-greeter",
   "version": "0.0.0",
+  "name": "@damlys/the-greeter",
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/damlys/webdock.git"
@@ -14,7 +14,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "engines": {
-    "node": ">=12"
+    "node": ">=12 <13"
   },
   "dependencies": {
     "duck-interface": "*"
@@ -32,12 +32,12 @@
   },
   "scripts": {
     "build": "rm -rf ./build && tsc",
-    "lint": "eslint './**/*.{js,jsx,ts,tsx}' && tsc --noEmit",
-    "lint-fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
-    "test": "jest",
-    "test-coverage": "rm -rf ./coverage && jest --coverage",
-    "test-watch": "jest --watchAll",
-    "unit-tests": "jest ./tests/unit-tests",
-    "integration-tests": "jest ./tests/integration-tests"
+    "lint": "eslint './**/*.{ts,tsx}' && tsc --noEmit",
+    "lint:fix": "eslint './**/*.{ts,tsx}' --fix",
+    "test:all": "jest",
+    "test:all:coverage": "rm -rf ./coverage && jest --coverage",
+    "test:all:watch": "jest --watchAll",
+    "test:unit": "jest ./tests/unit-tests",
+    "test:integration": "jest ./tests/integration-tests"
   }
 }

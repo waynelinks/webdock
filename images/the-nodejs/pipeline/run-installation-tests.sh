@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
 echo "---RTE---"
-docker-compose run --rm --entrypoint='' rte bash -ce '
+docker run --rm --entrypoint='' "$rteImage" bash -ce '
   which node
   node --version
   which npm
@@ -31,7 +32,7 @@ docker-compose run --rm --entrypoint='' rte bash -ce '
 '
 
 echo "---SDK---"
-docker-compose run --rm --entrypoint='' sdk bash -ce '
+docker run --rm --entrypoint='' "$sdkImage" bash -ce '
   which node
   node --version
   which npm

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-docker-compose run --rm --entrypoint='' workspace bash -ce "
+# TODO audit does not pass "*" versions
+#docker-compose run --rm workspace bash -ce '
 #  npm audit
-"
+#'

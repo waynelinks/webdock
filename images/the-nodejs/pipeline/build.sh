@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-docker-compose build
+docker build \
+  --target='rte' \
+  --tag="$rteImage" \
+  .
+
+docker build \
+  --target='sdk' \
+  --tag="$sdkImage" \
+  .

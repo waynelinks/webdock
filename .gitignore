@@ -1,4 +1,14 @@
 #############################
+### IDE
+#############################
+
+/*.code-workspace
+/*.sublime-project
+/*.sublime-workspace
+/.idea
+/.vscode
+
+#############################
 ### System
 #############################
 
@@ -9,13 +19,3 @@
 .DS_Store
 desktop.ini
 thumbs.db
-
-#############################
-### IDE
-#############################
-
-/*.code-workspace
-/*.sublime-project
-/*.sublime-workspace
-/.idea
-/.vscode

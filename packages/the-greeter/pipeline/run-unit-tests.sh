@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-docker-compose run --rm --entrypoint='' workspace bash -ce "
-  npm run unit-tests
-"
+docker-compose run --rm workspace bash -ce '
+  npm run test:unit
+'

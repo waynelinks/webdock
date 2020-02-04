@@ -1,16 +1,17 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
 helm \
-  --kube-context="minikube" \
-  --namespace="default" \
-  uninstall "the-web-cloud-platform-1" \
-  --timeout="30s"
+  --kube-context="$kubeContext" \
+  --namespace="$kubeNamespace" \
+  uninstall "$helmReleaseName" \
+  --timeout='30s'
 
 kubectl \
-  --context="minikube" \
-  --namespace="default" \
+  --context="$kubeContext" \
+  --namespace="$kubeNamespace" \
   wait pod \
-  --selector="app.kubernetes.io/instance=the-web-cloud-platform-1,app.kubernetes.io/component=http-server" \
-  --for="delete" \
-  --timeout="30s"
+  --selector="app.kubernetes.io/instance=${helmReleaseName},app.kubernetes.io/component=http-server" \
+  --for='delete' \
+  --timeout='30s'

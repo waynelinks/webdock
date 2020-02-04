@@ -1,4 +1,4 @@
-FROM node:slim AS rte
+FROM node:12-slim AS rte
 
 # User and group are already present:
 # /etc/passwd  ->  node:x:1000:1000::/home/node:/bin/bash
@@ -38,5 +38,6 @@ RUN npm config set unsafe-perm true --global
 RUN apt-get update && apt-get install --yes --no-install-recommends \
   bash-completion \
 && apt-get clean && rm -rf /var/lib/apt/lists/* \
-&& echo ". /etc/bash_completion" >> ~/.bashrc \
+&& echo ". /etc/bash_completion" >> /root/.bashrc \
+&& echo ". /etc/bash_completion" >> /home/node/.bashrc \
 && npm completion > /etc/bash_completion.d/npm

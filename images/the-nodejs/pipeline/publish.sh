@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-#docker-compose push
+#docker push "$rteImage"
+#docker push "$sdkImage"

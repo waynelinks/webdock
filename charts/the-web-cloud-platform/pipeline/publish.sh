@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-helm chart save . "docker.pkg.github.com/damlys/webdock/the-web-cloud-platform:0.0.0"
-# TODO GitHub packages does not support Helm yet
-#helm chart push "docker.pkg.github.com/damlys/webdock/the-web-cloud-platform:0.0.0"
+helm chart save . "$chart"
+# TODO GitHub Packages does not support Helm OCI yet
+#helm chart push "$chart"

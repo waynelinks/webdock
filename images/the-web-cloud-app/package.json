@@ -1,9 +1,7 @@
 {
-  "name": "the-web-cloud-app",
-  "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=12"
+    "node": ">=12 <13"
   },
   "dependencies": {
     "@damlys/the-greeter": "0.0.0",
@@ -23,15 +21,15 @@
     "typescript": "*"
   },
   "scripts": {
-    "build": "rm -rf ./build && tsc && chmod a+x ./build/bin/*.js",
-    "lint": "eslint './**/*.{js,jsx,ts,tsx}' && tsc --noEmit",
-    "lint-fix": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
-    "test": "jest",
-    "test-coverage": "rm -rf ./coverage && jest --coverage",
-    "test-watch": "jest --watchAll",
-    "unit-tests": "jest ./tests/unit-tests",
-    "integration-tests": "jest ./tests/integration-tests",
-    "api-tests": "jest ./tests/api-tests",
-    "smoke-tests": "jest ./tests/smoke-tests"
+    "build": "rm -rf ./build && tsc",
+    "lint": "eslint './**/*.{ts,tsx}' && tsc --noEmit",
+    "lint:fix": "eslint './**/*.{ts,tsx}' --fix",
+    "test:all": "jest",
+    "test:all:coverage": "rm -rf ./coverage && jest --coverage",
+    "test:all:watch": "jest --watchAll",
+    "test:unit": "jest ./tests/unit-tests",
+    "test:integration": "jest ./tests/integration-tests",
+    "test:api": "jest ./tests/api-tests",
+    "test:smoke": "jest ./tests/smoke-tests"
   }
 }

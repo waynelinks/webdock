@@ -3,7 +3,7 @@
 import { HttpServer } from "../HttpServer";
 import { Logger } from "../Logger";
 
-async function bootstrap(): Promise<void> {
+async function boot(): Promise<void> {
     process.on("uncaughtException", (error: Error): void => {
         (new Logger("uncaught-exception"))
             .critical(error);
@@ -21,4 +21,4 @@ async function bootstrap(): Promise<void> {
     }
 }
 
-bootstrap();
+boot();

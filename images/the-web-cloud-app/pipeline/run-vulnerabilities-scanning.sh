@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
-set -e
+set -ex
+. "$(dirname $0)/_config.sh"
 
-docker-compose run --rm --entrypoint='' builder bash -ce "
+# TODO audit does not pass "*" versions
+#docker run --rm --entrypoint='' "$tempBuilderImage" \
 #  npm audit
-"

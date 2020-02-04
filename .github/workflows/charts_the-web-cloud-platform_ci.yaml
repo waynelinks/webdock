@@ -1,0 +1,31 @@
+name: "charts/the-web-cloud-platform CI"
+on:
+  push:
+    branches:
+    # TODO set "master"
+    - "feature/ci"
+    paths:
+    - "charts/the-web-cloud-platform/Chart.yaml"
+  pull_request:
+    paths:
+    - "charts/the-web-cloud-platform/**"
+    - "!charts/the-web-cloud-platform/**.md"
+env:
+  WORKFLOW_WORKING_DIRECTORY: "./charts/the-web-cloud-platform"
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      HELM_EXPERIMENTAL_OCI: "1"
+    steps:
+    - name: "Log into Helm registry"
+      run: helm registry login "docker.pkg.github.com" --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}"
+    - uses: actions/checkout@v2
+    # TODO k8s context
+    - name: "Run lint check"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-lint-check.sh
+    - name: "Publish"
+      if: github.event_name == 'push'
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/publish.sh

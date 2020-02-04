@@ -1,0 +1,69 @@
+name: "images/the-web-cloud-app CI"
+on:
+  push:
+    branches:
+    # TODO set "master"
+    - "feature/ci"
+    paths:
+    - "images/the-web-cloud-app/Image.yaml"
+  pull_request:
+    paths:
+    - "images/the-web-cloud-app/**"
+    - "!images/the-web-cloud-app/**.md"
+env:
+  WORKFLOW_WORKING_DIRECTORY: "./images/the-web-cloud-app"
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PACKAGES_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      NPM_TOKEN: ""
+      DOCKER_BUILDKIT: "1"
+      COMPOSE_DOCKER_CLI_BUILD: "1"
+      HELM_EXPERIMENTAL_OCI: "1"
+      PIPELINE_JOB_ID: "${{ env.GITHUB_RUN_ID }}"
+    steps:
+    - name: "Log into Docker registry"
+      run: docker login --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}" "docker.pkg.github.com"
+    - name: "Log into Helm registry"
+      run: helm registry login "docker.pkg.github.com" --username="${{ github.actor }}" --password="${{ secrets.GITHUB_TOKEN }}"
+    - uses: actions/checkout@v2
+    - name: "Build"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/build.sh
+    - name: "Run vulnerabilities scanning"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-vulnerabilities-scanning.sh
+    - name: "Run lint check"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-lint-check.sh
+    - name: "Run unit tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-unit-tests.sh
+    - name: "Publish snapshots"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/publish-snapshots.sh
+    # TODO k8s context
+    - name: "Configure"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/configure.sh
+    - name: "Deploy"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/deploy.sh
+    - name: "Run implementation tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-implementation-tests.sh
+    - name: "Run integration tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-integration-tests.sh
+    - name: "Run system tests"
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/run-system-tests.sh
+    - name: "Destroy"
+      if: always()
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/destroy.sh
+    - name: "Publish"
+      if: github.event_name == 'push'
+      working-directory: "${{ env.WORKFLOW_WORKING_DIRECTORY }}"
+      run: ./pipeline/publish.sh

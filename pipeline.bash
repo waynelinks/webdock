@@ -12,20 +12,20 @@ function printPipelineHeader() {
   printf "\n\e[90m$row\e[0m\n\n"
 }
 
-pipelineWatch="1"
 pipelinePauseMessage="Press a key...
 
 [Enter]   Continue
 [Esc]     Disable pausing and continue
 [Ctrl+C]  Break
 "
+pipelineWatch="1"
 function pausePipeline() {
   if [ "$pipelineWatch" == "1" ]
   then
     printPipelineHeader "Pause"
     printf "$pipelinePauseMessage"
-    read -s -n1 keyPressed
-    case "$keyPressed" in
+    read -s -n1 pressedKeyCode
+    case "$pressedKeyCode" in
       $'\e') # Escape
         pipelineWatch="0"
       ;;
@@ -81,45 +81,42 @@ EOF
 pausePipeline
 
 for projectComponent in \
+  'charts/the-web-cloud-platform' \
+  'charts/the-web-browser-platform' \
   'images/the-nodejs' \
   'packages/the-greeter' \
   'images/the-web-cloud-app' \
   'images/the-web-browser-app' \
-  'charts/the-web-cloud-platform' \
-  'charts/the-web-browser-platform' \
   'deployments/the-web-cloud-platform-1' \
   'deployments/the-web-browser-platform-1'
 do
   printPipelineHeader "Entering project component *** $projectComponent"
   cd "$projectComponent"
   pwd
-  pausePipeline
 
   printPipelineHeader "Linking example config *** $PWD/.examples"
-  for exampleConfig in \
-    '.env' \
+  for configFile in \
     'docker-compose.override.yml' \
-    'values.override.yaml'
+    'values.yaml'
   do
-    if [[ -f ".examples/$exampleConfig" ]]
+    if [[ -f ".examples/$configFile" ]]
     then
-      ln --symbolic --verbose ".examples/$exampleConfig" .
+      ln --symbolic --verbose ".examples/$configFile" .
     fi
   done
-  pausePipeline
 
-  printPipelineHeader "Executing script *** $PWD/pipeline.sh"
-  if [[ -x "./pipeline.sh" ]]
+  printPipelineHeader "Executing script *** $PWD/pipeline/_all.sh"
+  if [[ -x "./pipeline/_all.sh" ]]
   then
-    ./pipeline.sh
+    ./pipeline/_all.sh
   fi
-  pausePipeline
 
   printPipelineHeader "Leaving project component *** $projectComponent"
   cd ../..
   pwd
+
   pausePipeline
 done
 
 printPipelineHeader "END"
-echo "Success!"
+echo "Done!"

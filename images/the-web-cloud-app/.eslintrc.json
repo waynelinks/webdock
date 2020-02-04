@@ -1,10 +1,5 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "/build",
-    "/coverage",
-    "/node_modules"
-  ],
   "env": {
     "commonjs": true,
     "jest": true,
@@ -39,11 +34,5 @@
     "@typescript-eslint/typedef": ["error", {"arrayDestructuring": true, "arrowParameter": true, "memberVariableDeclaration": true, "objectDestructuring": true, "parameter": true, "propertyDeclaration": true, "variableDeclaration": true}],
     "comma-dangle": ["error", "always-multiline"],
     "max-len": "off"
-  },
-  "overrides": [
-    {
-      "files": ["*.js", "*.jsx"],
-      "rules": {}
-    }
-  ]
+  }
 }

@@ -1,8 +1,9 @@
 apiVersion: v2
-name: the-web-cloud-platform
 version: 0.0.0
+name: the-web-cloud-platform
+repository: docker.pkg.github.com/damlys/webdock/the-web-cloud-platform
 type: application
-appVersion: 0.0.0
+appVersion: "0.0"
 dependencies:
 - name: mongodb
   repository: https://kubernetes-charts.storage.googleapis.com
