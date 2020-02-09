@@ -67,12 +67,15 @@ $ export HELM_EXPERIMENTAL_OCI="1"
 GitHub Packages access
 
 ```console
-$ npm config set "//npm.pkg.github.com/:_authToken" "<TOKEN>"
+$ npm config set "//npm.pkg.github.com/:_authToken" "${GITHUB_TOKEN}"
+$ docker login --username="${GITHUB_USER}" --password="${GITHUB_TOKEN}" "docker.pkg.github.com"
+$ helm registry login "docker.pkg.github.com" --username="${GITHUB_USER}" --password="${GITHUB_TOKEN}"
+```
+
+GitHub Packages scope
+
+```console
 $ npm config set "@damlys:registry" "https://npm.pkg.github.com"
-
-$ docker login --username="<USER>" --password="<TOKEN>" "docker.pkg.github.com"
-
-$ helm registry login "docker.pkg.github.com" --username="<USER>" --password="<TOKEN>"
 ```
 
 ## Development

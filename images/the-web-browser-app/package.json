@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=12 <13"
+  },
+  "devDependencies": {
+    "@damlys/the-greeter": "0.0.0",
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@types/node-fetch": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "jest": "*",
+    "node-fetch": "*",
+    "ts-jest": "*",
+    "ts-node-dev": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "build": "rm -rf ./build && tsc && cp -r ./src/static/* ./build",
+    "lint": "eslint './**/*.{ts,tsx}' && tsc --noEmit",
+    "lint:fix": "eslint './**/*.{ts,tsx}' --fix",
+    "test:all": "jest",
+    "test:all:coverage": "rm -rf ./coverage && jest --coverage",
+    "test:all:watch": "jest --watchAll",
+    "test:unit": "jest ./tests/unit-tests",
+    "test:integration": "jest ./tests/integration-tests",
+    "test:gui": "jest ./tests/gui-tests",
+    "test:smoke": "jest ./tests/smoke-tests"
+  }
+}

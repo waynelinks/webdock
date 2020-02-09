@@ -1,0 +1,6 @@
+version: 0.0.0
+name: docker.pkg.github.com/damlys/webdock/the-nginx
+targets:
+- dist
+sources:
+- https://hub.docker.com/_/nginx

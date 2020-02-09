@@ -6,7 +6,7 @@ httpServer:
   #  decoded:
   #    NODE_OPTIONS: "--inspect=0.0.0.0:9229"
   #  encoded:
-  #    GITHUB_PACKAGES_TOKEN: ""
+  #    GITHUB_TOKEN: ""
   #    NPM_TOKEN: ""
 
   minReplicas: 1
@@ -51,7 +51,7 @@ tester:
   #  decoded:
   #    NODE_OPTIONS: "--inspect=0.0.0.0:9229"
   #  encoded:
-  #    GITHUB_PACKAGES_TOKEN: ""
+  #    GITHUB_TOKEN: ""
   #    NPM_TOKEN: ""
 
   replicas: 1

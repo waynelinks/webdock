@@ -1,0 +1,19 @@
+{
+  "include": [
+    "./src/app.ts"
+  ],
+  "exclude": [
+    "./node_modules"
+  ],
+  "compilerOptions": {
+    "lib": ["es2019", "dom"],
+    "target": "es2019",
+    "strict": true,
+    "module": "AMD",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "outFile": "./build/app.js",
+    "declaration": false,
+    "sourceMap": true
+  }
+}

@@ -3,7 +3,7 @@ on:
   push:
     branches:
     # TODO set "master"
-    - "feature/ci"
+    - "develop"
     paths:
     - "deployments/the-web-cloud-platform-1/**.sh"
     - "deployments/the-web-cloud-platform-1/**.yaml"

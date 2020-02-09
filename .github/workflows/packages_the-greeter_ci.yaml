@@ -3,7 +3,7 @@ on:
   push:
     branches:
     # TODO set "master"
-    - "feature/ci"
+    - "develop"
     paths:
     - "packages/the-greeter/package.json"
   pull_request:
@@ -16,7 +16,7 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PACKAGES_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       NPM_TOKEN: ""
     steps:
     - name: "Log into Docker registry"

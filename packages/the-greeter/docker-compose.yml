@@ -10,5 +10,5 @@ services:
     entrypoint: []
     command: ["bash"]
     environment:
-    - GITHUB_PACKAGES_TOKEN
+    - GITHUB_TOKEN
     - NPM_TOKEN

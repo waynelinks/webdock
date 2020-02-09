@@ -3,7 +3,7 @@ on:
   push:
     branches:
     # TODO set "master"
-    - "feature/ci"
+    - "develop"
     paths:
     - "images/the-nodejs/Image.yaml"
   pull_request:

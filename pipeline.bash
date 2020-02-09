@@ -84,6 +84,7 @@ for projectComponent in \
   'charts/the-web-cloud-platform' \
   'charts/the-web-browser-platform' \
   'images/the-nodejs' \
+  'images/the-nginx' \
   'packages/the-greeter' \
   'images/the-web-cloud-app' \
   'images/the-web-browser-app' \
@@ -105,10 +106,10 @@ do
     fi
   done
 
-  printPipelineHeader "Executing script *** $PWD/pipeline/_all.sh"
-  if [[ -x "./pipeline/_all.sh" ]]
+  printPipelineHeader "Executing script *** $PWD/pipeline/_pipeline.sh"
+  if [[ -x "./pipeline/_pipeline.sh" ]]
   then
-    ./pipeline/_all.sh
+    ./pipeline/_pipeline.sh
   fi
 
   printPipelineHeader "Leaving project component *** $projectComponent"

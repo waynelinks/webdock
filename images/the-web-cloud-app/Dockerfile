@@ -4,7 +4,7 @@ ARG BASE_IMAGE_TAG="0.0.0"
 
 FROM ${BASE_IMAGE_NAME}:sdk-${BASE_IMAGE_TAG} AS builder
 
-ARG GITHUB_PACKAGES_TOKEN
+ARG GITHUB_TOKEN
 ARG NPM_TOKEN
 COPY ./package.json ./package-lock.json /app/
 RUN npm install \
@@ -20,7 +20,7 @@ EXPOSE 8080
 
 FROM ${BASE_IMAGE_NAME}:rte-${BASE_IMAGE_TAG} AS dist
 
-ARG GITHUB_PACKAGES_TOKEN
+ARG GITHUB_TOKEN
 ARG NPM_TOKEN
 COPY --from=builder /app/package.json /app/package-lock.json /app/
 RUN npm install \

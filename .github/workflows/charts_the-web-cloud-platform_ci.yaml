@@ -3,7 +3,7 @@ on:
   push:
     branches:
     # TODO set "master"
-    - "feature/ci"
+    - "develop"
     paths:
     - "charts/the-web-cloud-platform/Chart.yaml"
   pull_request:
