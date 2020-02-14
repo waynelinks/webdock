@@ -9,17 +9,6 @@ WORKDIR /app
 ENTRYPOINT ["node"]
 CMD ["-e", "process.stderr.write(\"Node.js command not defined.\");process.exit(127);"]
 
-# Configure NPM registries
-ENV GITHUB_TOKEN=""
-ENV NPM_TOKEN=""
-RUN npm config set "@damlys:registry" "https://npm.pkg.github.com" --global \
-&& rm -f /root/.npmrc \
-&& touch /root/.npmrc \
-&& echo "//npm.pkg.github.com/:_authToken=\${GITHUB_TOKEN}" >> /root/.npmrc \
-&& echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> /root/.npmrc \
-&& cp /root/.npmrc /home/node/.npmrc \
-&& chown 1000:1000 /home/node/.npmrc
-
 # Set NPM cache directory
 RUN rm -rf /var/cache/npm \
 && mkdir --parents /var/cache/npm \

@@ -72,12 +72,6 @@ $ docker login --username="${GITHUB_USER}" --password="${GITHUB_TOKEN}" "docker.
 $ helm registry login "docker.pkg.github.com" --username="${GITHUB_USER}" --password="${GITHUB_TOKEN}"
 ```
 
-GitHub Packages scope
-
-```console
-$ npm config set "@damlys:registry" "https://npm.pkg.github.com"
-```
-
 ## Development
 
 Follow the pipeline
